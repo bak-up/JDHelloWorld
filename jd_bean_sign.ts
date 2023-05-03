@@ -1,48 +1,42 @@
-// import {User, JDHelloWorld} from "./TS_JDHelloWorld"
-//
-// class Jd_bean_sign extends JDHelloWorld {
-//   user: User
-//   iosVer: string
-//
-//   constructor() {
-//     super();
-//   }
-//
-//   async init() {
-//     await this.run(this)
-//   }
-//
-//   async main(user: User) {
-//     try {
-//       this.user = user
-//       this.user.UserAgent = `jdapp;iPhone;11.3.0;`
-//       let res: any = await this.get(`https://api.m.jd.com/client.action`, {
-//         'Host': 'api.m.jd.com',
-//         'referer': 'https://h5.m.jd.com/',
-//         'user-agent': this.user.UserAgent,
-//         'accept-language': 'zh-CN,zh-Hans;q=0.9',
-//         'cookie': this.user.cookie
-//       }, {
-//         'functionId': 'signBeanAct',
-//         'body': '{"fp":"-1","shshshfp":"-1","shshshfpa":"-1","referUrl":"-1","userAgent":"-1","jda":"-1","rnVersion":"3.9"}',
-//         'appid': 'ld',
-//         'client': 'apple',
-//         'clientVersion': '11.3.0',
-//         'networkType': 'wifi',
-//         'osVersion': this.iosVer,
-//         'uuid': '',
-//         'openudid': '',
-//         'jsonp': `jsonp_${Date.now()}_${this.getRandomNumberByRange(18888, 88888)}`
-//       })
-//       res = JSON.parse(res.match(/\((.*)\)/)[1])
-//       res.code === '0'
-//         ? console.log(res.data.dailyAward.title, parseInt(res.data.dailyAward.beanAward.beanCount))
-//         : console.log(res.errorMessage)
-//     } catch (e) {
-//       console.log(e.message)
-//       await this.wait(5000)
-//     }
-//   }
-// }
-//
-// new Jd_bean_sign().init().then()
+/**
+ * App签到
+ * cron: 8 10 * * *
+ */
+
+import {User, JDHelloWorld} from "./TS_JDHelloWorld"
+
+class Jd_bean_sign extends JDHelloWorld {
+  user: User
+  iosVer: string
+
+  constructor() {
+    super();
+  }
+
+  async init() {
+    await this.run(this)
+  }
+
+  async main(user: User) {
+    try {
+      this.user = user
+      let res: any = await this.get('https://api.m.jd.com/client.action?functionId=signBeanAct&body=%7B%22fp%22%3A%22-1%22%2C%22shshshfp%22%3A%22-1%22%2C%22shshshfpa%22%3A%22-1%22%2C%22referUrl%22%3A%22-1%22%2C%22userAgent%22%3A%22-1%22%2C%22jda%22%3A%22-1%22%2C%22rnVersion%22%3A%223.9%22%7D&appid=ld', {
+        'Host': 'api.m.jd.com',
+        'User-Agent': this.user.UserAgent,
+        'Referer': 'https://h5.m.jd.com/',
+        'Cookie': this.user.cookie
+      })
+      this.o2s(res)
+      if (res.data.status === '1') {
+        console.log('开始签到')
+      } else if (res.data.status === '2') {
+        console.log('已签到')
+      }
+    } catch (e) {
+      console.log(e.message)
+      await this.wait(5000)
+    }
+  }
+}
+
+new Jd_bean_sign().init().then()
