@@ -147,7 +147,7 @@ var Jd_Cash = /** @class */ (function (_super) {
                             inviteCode: res.data.result.inviteCode,
                             shareDate: res.data.result.shareDate
                         });
-                        if (!(res.data.result.signedStatus === 4)) return [3 /*break*/, 4];
+                        if (!(res.data.result.signedStatus === 3)) return [3 /*break*/, 4];
                         console.log('签到');
                         return [4 /*yield*/, this.api('cash_mob_sign', { "version": "1", "channel": "applet", "remind": 0 })];
                     case 3:
@@ -173,28 +173,29 @@ var Jd_Cash = /** @class */ (function (_super) {
         });
     };
     Jd_Cash.prototype.help = function (users) {
+        var _a;
         return __awaiter(this, void 0, void 0, function () {
-            var res, temp, shareCodeHW, _i, temp_1, t, _a, users_1, user, shareCode, _b, shareCode_1, code, e_2;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
+            var res, temp, shareCodeHW, _i, temp_1, t, _b, users_1, user, shareCode, _c, shareCode_1, code, e_2;
+            return __generator(this, function (_d) {
+                switch (_d.label) {
                     case 0:
                         this.o2s(this.shareCodeSelf, '内部助力');
                         return [4 /*yield*/, this.getshareCodeHW('cash')];
                     case 1:
-                        temp = _c.sent();
+                        temp = _d.sent();
                         shareCodeHW = [];
                         for (_i = 0, temp_1 = temp; _i < temp_1.length; _i++) {
                             t = temp_1[_i];
                             shareCodeHW.push({ inviteCode: t.inviteCode, shareDate: t.shareDate });
                         }
-                        _a = 0, users_1 = users;
-                        _c.label = 2;
+                        _b = 0, users_1 = users;
+                        _d.label = 2;
                     case 2:
-                        if (!(_a < users_1.length)) return [3 /*break*/, 12];
-                        user = users_1[_a];
-                        _c.label = 3;
+                        if (!(_b < users_1.length)) return [3 /*break*/, 12];
+                        user = users_1[_b];
+                        _d.label = 3;
                     case 3:
-                        _c.trys.push([3, 10, , 11]);
+                        _d.trys.push([3, 10, , 11]);
                         this.user = user;
                         shareCode = void 0;
                         if (user.index === 0)
@@ -204,17 +205,17 @@ var Jd_Cash = /** @class */ (function (_super) {
                         this.h5stTool = new h5st_pro_1.H5ST("c8815", this.user.UserAgent, this.fp, 'https://servicewechat.com/wx91d27dbf599dff74/707/page-frame.html', 'https://servicewechat.com', this.user.UserName);
                         return [4 /*yield*/, this.h5stTool.__genAlgo()];
                     case 4:
-                        _c.sent();
-                        _b = 0, shareCode_1 = shareCode;
-                        _c.label = 5;
+                        _d.sent();
+                        _c = 0, shareCode_1 = shareCode;
+                        _d.label = 5;
                     case 5:
-                        if (!(_b < shareCode_1.length)) return [3 /*break*/, 9];
-                        code = shareCode_1[_b];
+                        if (!(_c < shareCode_1.length)) return [3 /*break*/, 9];
+                        code = shareCode_1[_c];
                         console.log("\u8D26\u53F7".concat(user.index + 1, " ").concat(user.UserName, " \u53BB\u52A9\u529B ").concat(code.inviteCode));
                         return [4 /*yield*/, this.api('cash_qr_code_assist', { "version": "1", "channel": "applet", "type": 2, "inviteCode": code.inviteCode, "shareDate": code.shareDate, "lng": "", "lat": "" })];
                     case 6:
-                        res = _c.sent();
-                        if (res.data.bizCode === 0) {
+                        res = _d.sent();
+                        if (((_a = res.data) === null || _a === void 0 ? void 0 : _a.bizCode) === 0) {
                             console.log('助力成功');
                         }
                         else {
@@ -222,18 +223,18 @@ var Jd_Cash = /** @class */ (function (_super) {
                         }
                         return [4 /*yield*/, this.wait(3000)];
                     case 7:
-                        _c.sent();
-                        _c.label = 8;
+                        _d.sent();
+                        _d.label = 8;
                     case 8:
-                        _b++;
+                        _c++;
                         return [3 /*break*/, 5];
                     case 9: return [3 /*break*/, 11];
                     case 10:
-                        e_2 = _c.sent();
+                        e_2 = _d.sent();
                         console.log(e_2);
                         return [3 /*break*/, 11];
                     case 11:
-                        _a++;
+                        _b++;
                         return [3 /*break*/, 2];
                     case 12: return [2 /*return*/];
                 }
