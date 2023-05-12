@@ -27,7 +27,7 @@ const $ = new Env('京东极速版');
 const jdCookieNode = require('./jdCookie.js')
 const CryptoJS = require('crypto-js')
 
-let cookiesArr = [], cookie = '', message;
+let cookiesArr = [], cookie = '', message, url_uuid = '';
 Object.keys(jdCookieNode).forEach((item) => {
   cookiesArr.push(jdCookieNode[item])
 })
@@ -40,6 +40,7 @@ Object.keys(jdCookieNode).forEach((item) => {
     $.isLogin = true;
     $.nickName = $.UserName;
     message = '';
+    url_uuid = randomString(16)
     console.log(`\n******开始【京东账号${$.index}】${$.nickName || $.UserName}*********\n`);
     await jdGlobal()
     await $.wait(3000)
@@ -511,7 +512,13 @@ function apTaskList() {
 function apDoTask(taskType, taskId, channel, itemId) {
   return new Promise(resolve => {
     $.get(taskGetUrl('apDoTask',
-        {"linkId": "toxw9c5sy9xllGBr3QFdYg", "taskType": taskType, "taskId": taskId, "channel": channel, "itemId": itemId}),
+        {
+          "linkId": "toxw9c5sy9xllGBr3QFdYg",
+          "taskType": taskType,
+          "taskId": taskId,
+          "channel": channel,
+          "itemId": itemId
+        }),
       async (err, resp, data) => {
         try {
           if (err) {
@@ -592,20 +599,35 @@ function shootRichManDice() {
   })
 }
 
-function taskUrl(fn, body = {}) {
-  let t = Date.now()
-  let params = `lite-android&${JSON.stringify(body)}&android&3.1.0&${fn}&${t}&846c4c32dae910ef`
-  let key = CryptoJS.HmacSHA256(params, '12aea658f76e453faf803d15c40a72e0').toString()
+function randomString(e) {
+  e = e || 32;
+  let t = "0123456789abcdef",
+    a = t.length,
+    n = "";
+  for (let i = 0; i < e; i++)
+    n += t.charAt(Math.floor(Math.random() * a));
+  return n
+}
+
+function taskUrl(functionId, body = {}) {
+  const struuid = url_uuid;
+  let nowTime = Date.now();
+  let _0x7683x5 = `${"lite-android&"}${JSON["stringify"](body)}${"&android&3.1.0&"}${functionId}&${nowTime}&${struuid}`;
+  let _0x7683x6 = "12aea658f76e453faf803d15c40a72e0";
+  const _0x7683x7 = $["isNode"]() ? require("crypto-js") : CryptoJS;
+  let sign = _0x7683x7.HmacSHA256(_0x7683x5, _0x7683x6).toString();
+  let strurl = "https://api.m.jd.com/api?functionId=" + functionId + "&body=" + `${escape(JSON["stringify"](body))}&appid=lite-android&client=android&uuid=` + struuid + `&clientVersion=3.1.0&t=${nowTime}&sign=${sign}`;
   return {
-    url: `https://api.m.jd.com/api?functionId=${fn}&body=${encodeURIComponent(JSON.stringify(body))}&appid=lite-android&client=android&uuid=846c4c32dae910ef&clientVersion=3.1.0&t=${t}&sign=${key}`,
+    url: strurl,
     headers: {
-      'Host': 'api.m.jd.com',
-      'accept': '*/*',
-      'kernelplatform': 'RN',
-      'user-agent': 'JDMobileLite/3.1.0 (iPad; iOS 14.4; Scale/2.00)',
-      'accept-language': 'zh-Hans-CN;q=1, ja-CN;q=0.9',
+      'Host': "api.m.jd.com",
+      'accept': "*/*",
+      'kernelplatform': "RN",
+      'user-agent': "JDMobileLite/3.1.0 (iPad; iOS 14.4; Scale/2.00)",
+      'accept-language': "zh-Hans-CN;q=1, ja-CN;q=0.9",
       'Cookie': cookie
-    }
+    },
+    timeout: 10000
   }
 }
 
@@ -732,7 +754,11 @@ function Env(t, e) {
         i = i ? i.replace(/\n/g, "").trim() : i;
         let r = this.getdata("@chavy_boxjs_userCfgs.httpapi_timeout");
         r = r ? 1 * r : 20, r = e && e.timeout ? e.timeout : r;
-        const [o, h] = i.split("@"), n = {url: `http://${h}/v1/scripting/evaluate`, body: {script_text: t, mock_type: "cron", timeout: r}, headers: {"X-Key": o, Accept: "*/*"}};
+        const [o, h] = i.split("@"), n = {
+          url: `http://${h}/v1/scripting/evaluate`,
+          body: {script_text: t, mock_type: "cron", timeout: r},
+          headers: {"X-Key": o, Accept: "*/*"}
+        };
         this.post(n, (t, e, i) => s(i))
       }).catch(t => this.logErr(t))
     }
@@ -741,7 +767,8 @@ function Env(t, e) {
       if (!this.isNode()) return {};
       {
         this.fs = this.fs ? this.fs : require("fs"), this.path = this.path ? this.path : require("path");
-        const t = this.path.resolve(this.dataFile), e = this.path.resolve(process.cwd(), this.dataFile), s = this.fs.existsSync(t), i = !s && this.fs.existsSync(e);
+        const t = this.path.resolve(this.dataFile), e = this.path.resolve(process.cwd(), this.dataFile),
+          s = this.fs.existsSync(t), i = !s && this.fs.existsSync(e);
         if (!s && !i) return {};
         {
           const i = s ? t : e;
@@ -757,7 +784,8 @@ function Env(t, e) {
     writedata() {
       if (this.isNode()) {
         this.fs = this.fs ? this.fs : require("fs"), this.path = this.path ? this.path : require("path");
-        const t = this.path.resolve(this.dataFile), e = this.path.resolve(process.cwd(), this.dataFile), s = this.fs.existsSync(t), i = !s && this.fs.existsSync(e), r = JSON.stringify(this.data);
+        const t = this.path.resolve(this.dataFile), e = this.path.resolve(process.cwd(), this.dataFile),
+          s = this.fs.existsSync(t), i = !s && this.fs.existsSync(e), r = JSON.stringify(this.data);
         s ? this.fs.writeFileSync(t, r) : i ? this.fs.writeFileSync(e, r) : this.fs.writeFileSync(t, r)
       }
     }
@@ -790,7 +818,8 @@ function Env(t, e) {
     setdata(t, e) {
       let s = !1;
       if (/^@/.test(e)) {
-        const [, i, r] = /^@(.*?)\.(.*?)$/.exec(e), o = this.getval(i), h = i ? "null" === o ? null : o || "{}" : "{}";
+        const [, i, r] = /^@(.*?)\.(.*?)$/.exec(e), o = this.getval(i),
+          h = i ? "null" === o ? null : o || "{}" : "{}";
         try {
           const e = JSON.parse(h);
           this.lodash_set(e, r, t), s = this.setval(JSON.stringify(e), i)
@@ -861,7 +890,15 @@ function Env(t, e) {
 
     time(t, e = null) {
       const s = e ? new Date(e) : new Date;
-      let i = {"M+": s.getMonth() + 1, "d+": s.getDate(), "H+": s.getHours(), "m+": s.getMinutes(), "s+": s.getSeconds(), "q+": Math.floor((s.getMonth() + 3) / 3), S: s.getMilliseconds()};
+      let i = {
+        "M+": s.getMonth() + 1,
+        "d+": s.getDate(),
+        "H+": s.getHours(),
+        "m+": s.getMinutes(),
+        "s+": s.getSeconds(),
+        "q+": Math.floor((s.getMonth() + 3) / 3),
+        S: s.getMilliseconds()
+      };
       /(y+)/.test(t) && (t = t.replace(RegExp.$1, (s.getFullYear() + "").substr(4 - RegExp.$1.length)));
       for (let e in i) new RegExp("(" + e + ")").test(t) && (t = t.replace(RegExp.$1, 1 == RegExp.$1.length ? i[e] : ("00" + i[e]).substr(("" + i[e]).length)));
       return t
