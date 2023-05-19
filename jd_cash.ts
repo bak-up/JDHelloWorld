@@ -48,13 +48,23 @@ class Jd_Cash extends JDHelloWorld {
       this.h5stTool = new H5ST("c8815", this.user.UserAgent, this.fp, 'https://servicewechat.com/wx91d27dbf599dff74/707/page-frame.html', 'https://servicewechat.com', this.user.UserName);
       await this.h5stTool.__genAlgo()
       let res: any = await this.api('cash_mob_home', {"version": "1", "channel": "applet"})
-      this.o2s(res)
+      console.log('signedStatus', res.data.result.signedStatus)
+      // this.o2s(res)
       console.log('助力码', res.data.result.inviteCode)
       this.shareCodeSelf.push({
         inviteCode: res.data.result.inviteCode,
         shareDate: res.data.result.shareDate
       })
-      if (res.data.result.signedStatus === 3) {
+      res = await this.post('https://api.m.jd.com/', `appid=wh5_mp&client=wh5&t=${Date.now()}&clientVersion=1.0.0&functionId=cash_mini_app_detail&body=%7B%22version%22%3A%221%22%2C%22channel%22%3A%22applet%22%2C%22type%22%3A3%7D&loginType=2&loginWQBiz=pet-town`, {
+        'Host': 'api.m.jd.com',
+        'user-agent': this.user.UserAgent,
+        'referer': 'https://servicewechat.com/wx91d27dbf599dff74/710/page-frame.html',
+        'wqreferer': 'http://wq.jd.com/wxapp/pages/ac/get_cash/pages/details/index',
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Cookie': this.user.cookie
+      })
+      console.log('收到助力', res.data.result.assistDetail[0].assistResult.length)
+      if (1) {
         console.log('签到')
         res = await this.api('cash_mob_sign', {"version": "1", "channel": "applet", "remind": 0})
         if (res.data.bizCode === 0) {

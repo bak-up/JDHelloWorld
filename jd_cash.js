@@ -132,7 +132,7 @@ var Jd_Cash = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 5, , 7]);
+                        _a.trys.push([0, 6, , 8]);
                         this.user = user;
                         this.h5stTool = new h5st_pro_1.H5ST("c8815", this.user.UserAgent, this.fp, 'https://servicewechat.com/wx91d27dbf599dff74/707/page-frame.html', 'https://servicewechat.com', this.user.UserName);
                         return [4 /*yield*/, this.h5stTool.__genAlgo()];
@@ -141,16 +141,28 @@ var Jd_Cash = /** @class */ (function (_super) {
                         return [4 /*yield*/, this.api('cash_mob_home', { "version": "1", "channel": "applet" })];
                     case 2:
                         res = _a.sent();
-                        this.o2s(res);
+                        console.log('signedStatus', res.data.result.signedStatus);
+                        // this.o2s(res)
                         console.log('助力码', res.data.result.inviteCode);
                         this.shareCodeSelf.push({
                             inviteCode: res.data.result.inviteCode,
                             shareDate: res.data.result.shareDate
                         });
-                        if (!(res.data.result.signedStatus === 3)) return [3 /*break*/, 4];
+                        return [4 /*yield*/, this.post('https://api.m.jd.com/', "appid=wh5_mp&client=wh5&t=".concat(Date.now(), "&clientVersion=1.0.0&functionId=cash_mini_app_detail&body=%7B%22version%22%3A%221%22%2C%22channel%22%3A%22applet%22%2C%22type%22%3A3%7D&loginType=2&loginWQBiz=pet-town"), {
+                                'Host': 'api.m.jd.com',
+                                'user-agent': this.user.UserAgent,
+                                'referer': 'https://servicewechat.com/wx91d27dbf599dff74/710/page-frame.html',
+                                'wqreferer': 'http://wq.jd.com/wxapp/pages/ac/get_cash/pages/details/index',
+                                'Content-Type': 'application/x-www-form-urlencoded',
+                                'Cookie': this.user.cookie
+                            })];
+                    case 3:
+                        res = _a.sent();
+                        console.log('收到助力', res.data.result.assistDetail[0].assistResult.length);
+                        if (!1) return [3 /*break*/, 5];
                         console.log('签到');
                         return [4 /*yield*/, this.api('cash_mob_sign', { "version": "1", "channel": "applet", "remind": 0 })];
-                    case 3:
+                    case 4:
                         res = _a.sent();
                         if (res.data.bizCode === 0) {
                             console.log('签到成功', res.data.result.signCash);
@@ -158,16 +170,16 @@ var Jd_Cash = /** @class */ (function (_super) {
                         else {
                             this.o2s(res, '签到失败');
                         }
-                        _a.label = 4;
-                    case 4: return [3 /*break*/, 7];
-                    case 5:
+                        _a.label = 5;
+                    case 5: return [3 /*break*/, 8];
+                    case 6:
                         e_1 = _a.sent();
                         console.log(e_1.message);
                         return [4 /*yield*/, this.wait(5000)];
-                    case 6:
+                    case 7:
                         _a.sent();
-                        return [3 /*break*/, 7];
-                    case 7: return [2 /*return*/];
+                        return [3 /*break*/, 8];
+                    case 8: return [2 /*return*/];
                 }
             });
         });
