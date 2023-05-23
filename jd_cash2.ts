@@ -55,6 +55,25 @@ class Jd_Cash2 extends JDHelloWorld {
       console.log('助力码', res.data.inviteCode)
       this.shareCodeSelf.push({inviteCode: res.data.inviteCode, inviter: res.data.inviter})
 
+      res = await this.get(`https://api.m.jd.com/api?functionId=inviteFissionHelpRecord&body=%7B%22linkId%22:%22c6Bkpjp7dYcvQwO9-PR7-g%22,%22lastTime%22:null,%22lastId%22:null,%22pageSize%22:10%7D&t=${Date.now()}&appid=activities_platform&client=ios&clientVersion=12.0.1&`, {
+        'Host': 'api.m.jd.com',
+        'User-Agent': this.user.UserAgent,
+        'x-referer-page': 'https://prodev.m.jd.com/mall/active/uFdv8vAHsiLz4MGsg4HEauwte8d/index.html',
+        'Origin': 'https://prodev.m.jd.com',
+        'Referer': 'https://prodev.m.jd.com/mall/active/uFdv8vAHsiLz4MGsg4HEauwte8d/index.html',
+        'Cookie': this.user.cookie
+      })
+
+      for (let t of res.data.recordVos) {
+        if (!t.amount) {
+          data = await this.api('inviteFissionReceive', {"linkId": "c6Bkpjp7dYcvQwO9-PR7-g"})
+          for (let k of data.data.receiveList) {
+            console.log('助力奖励', k.amount * 1, k.specialCrowdName)
+          }
+          break
+        }
+      }
+
       this.h5stTool = new H5ST("b3f11", this.user.UserAgent, this.fp, 'https://prodev.m.jd.com/mall/active/uFdv8vAHsiLz4MGsg4HEauwte8d/index.html', 'https://prodev.m.jd.com', this.user.UserName);
       await this.h5stTool.__genAlgo()
 
