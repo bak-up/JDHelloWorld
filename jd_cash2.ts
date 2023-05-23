@@ -9,6 +9,8 @@ import {User, JDHelloWorld} from "./TS_JDHelloWorld";
 class Jd_Cash2 extends JDHelloWorld {
   user: User
   h5stTool: H5ST
+  drawPrizeTool: H5ST
+  receiveTool: H5ST
   fp: string
   shareCodeSelf: { inviteCode: string, inviter: string }[] = []
 
@@ -28,7 +30,8 @@ class Jd_Cash2 extends JDHelloWorld {
 
   async api(fn: string, body: object) {
     let t: number = Date.now()
-    let h5st: string = await this.h5stTool.__genH5st({
+    let tool = fn === 'inviteFissionDrawPrize' ? this.drawPrizeTool : fn === 'inviteFissionReceive' ? this.receiveTool : this.h5stTool
+    let h5st: string = await tool.__genH5st({
       appid: "activities_platform",
       body: JSON.stringify(body),
       client: "ios",
@@ -53,37 +56,43 @@ class Jd_Cash2 extends JDHelloWorld {
       await this.h5stTool.__genAlgo()
       res = await this.api('inviteFissionHome', {"linkId": "c6Bkpjp7dYcvQwO9-PR7-g", "inviter": ""})
       console.log('助力码', res.data.inviteCode)
+      // this.o2s(res)
       this.shareCodeSelf.push({inviteCode: res.data.inviteCode, inviter: res.data.inviter})
 
-      res = await this.get(`https://api.m.jd.com/api?functionId=inviteFissionHelpRecord&body=%7B%22linkId%22:%22c6Bkpjp7dYcvQwO9-PR7-g%22,%22lastTime%22:null,%22lastId%22:null,%22pageSize%22:10%7D&t=${Date.now()}&appid=activities_platform&client=ios&clientVersion=12.0.1&`, {
-        'Host': 'api.m.jd.com',
-        'User-Agent': this.user.UserAgent,
-        'x-referer-page': 'https://prodev.m.jd.com/mall/active/uFdv8vAHsiLz4MGsg4HEauwte8d/index.html',
-        'Origin': 'https://prodev.m.jd.com',
-        'Referer': 'https://prodev.m.jd.com/mall/active/uFdv8vAHsiLz4MGsg4HEauwte8d/index.html',
-        'Cookie': this.user.cookie
-      })
-
-      for (let t of res.data.recordVos) {
-        if (!t.amount) {
-          data = await this.api('inviteFissionReceive', {"linkId": "c6Bkpjp7dYcvQwO9-PR7-g"})
-          for (let k of data.data.receiveList) {
-            console.log('助力奖励', k.amount * 1, k.specialCrowdName)
-          }
-          break
-        }
-      }
+      console.log(res.data.cashVo.amount * 1, res.data.cashVo.leftAmount * 1)
+      // res = await this.get(`https://api.m.jd.com/api?functionId=inviteFissionHelpRecord&body=%7B%22linkId%22:%22c6Bkpjp7dYcvQwO9-PR7-g%22,%22lastTime%22:null,%22lastId%22:null,%22pageSize%22:10%7D&t=${Date.now()}&appid=activities_platform&client=ios&clientVersion=12.0.1&`, {
+      //   'Host': 'api.m.jd.com',
+      //   'User-Agent': this.user.UserAgent,
+      //   'x-referer-page': 'https://prodev.m.jd.com/mall/active/uFdv8vAHsiLz4MGsg4HEauwte8d/index.html',
+      //   'Origin': 'https://prodev.m.jd.com',
+      //   'Referer': 'https://prodev.m.jd.com/mall/active/uFdv8vAHsiLz4MGsg4HEauwte8d/index.html',
+      //   'Cookie': this.user.cookie
+      // })
 
       this.h5stTool = new H5ST("b3f11", this.user.UserAgent, this.fp, 'https://prodev.m.jd.com/mall/active/uFdv8vAHsiLz4MGsg4HEauwte8d/index.html', 'https://prodev.m.jd.com', this.user.UserName);
       await this.h5stTool.__genAlgo()
-
       res = await this.api('inviteFissionPoll', {"linkId": "c6Bkpjp7dYcvQwO9-PR7-g"})
       let lotteryTimes: number = res.data.lotteryTimes
       console.log('可抽奖', lotteryTimes)
+
+      this.drawPrizeTool = new H5ST("c02c6", this.user.UserAgent, this.fp, 'https://prodev.m.jd.com/mall/active/uFdv8vAHsiLz4MGsg4HEauwte8d/index.html', 'https://prodev.m.jd.com', this.user.UserName);
+      await this.drawPrizeTool.__genAlgo()
+      this.receiveTool = new H5ST("b8469", this.user.UserAgent, this.fp, 'https://prodev.m.jd.com/mall/active/uFdv8vAHsiLz4MGsg4HEauwte8d/index.html', 'https://prodev.m.jd.com', this.user.UserName);
+      await this.receiveTool.__genAlgo()
       for (let i = 0; i < lotteryTimes; i++) {
         data = await this.api('inviteFissionDrawPrize', {"linkId": "c6Bkpjp7dYcvQwO9-PR7-g"})
-        data.data.prizeType === 4 ? console.log('抽到现金', data.data.prizeValue * 1) : console.log('抽到其他', data.data)
-        await this.wait(6000)
+        if (data.data.prizeType === 4)
+          console.log('抽到现金', data.data.prizeValue * 1)
+        else if (data.data.prizeType === 2)
+          console.log('抽到红包', data.data.prizeValue * 1)
+        else if (data.data.prizeType === 1)
+          console.log('抽到优惠券')
+        else
+          this.o2s(data.data, '抽到其他')
+        await this.wait(5000)
+        // data = await this.api('inviteFissionReceive', {"linkId": "c6Bkpjp7dYcvQwO9-PR7-g"})
+        // console.log('助力奖励', data.data.receiveList[0].amount * 1, data.data.receiveList[0].specialCrowdName)
+        // await this.wait(1000)
       }
     } catch (e) {
       console.log(e.message)

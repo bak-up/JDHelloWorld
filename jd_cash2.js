@@ -107,12 +107,13 @@ var Jd_Cash2 = /** @class */ (function (_super) {
     };
     Jd_Cash2.prototype.api = function (fn, body) {
         return __awaiter(this, void 0, void 0, function () {
-            var t, h5st;
+            var t, tool, h5st;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         t = Date.now();
-                        return [4 /*yield*/, this.h5stTool.__genH5st({
+                        tool = fn === 'inviteFissionDrawPrize' ? this.drawPrizeTool : fn === 'inviteFissionReceive' ? this.receiveTool : this.h5stTool;
+                        return [4 /*yield*/, tool.__genH5st({
                                 appid: "activities_platform",
                                 body: JSON.stringify(body),
                                 client: "ios",
@@ -136,80 +137,81 @@ var Jd_Cash2 = /** @class */ (function (_super) {
     };
     Jd_Cash2.prototype.main = function (user) {
         return __awaiter(this, void 0, void 0, function () {
-            var res, data, _i, _a, t, _b, _c, k, lotteryTimes, i, e_2;
-            return __generator(this, function (_d) {
-                switch (_d.label) {
+            var res, data, lotteryTimes, i, e_2;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
                     case 0:
-                        _d.trys.push([0, 15, , 16]);
+                        _a.trys.push([0, 12, , 13]);
                         this.user = user;
                         res = void 0, data = void 0;
                         this.h5stTool = new h5st_pro_1.H5ST("eb67b", this.user.UserAgent, this.fp, 'https://prodev.m.jd.com/mall/active/uFdv8vAHsiLz4MGsg4HEauwte8d/index.html', 'https://prodev.m.jd.com', this.user.UserName);
                         return [4 /*yield*/, this.h5stTool.__genAlgo()];
                     case 1:
-                        _d.sent();
+                        _a.sent();
                         return [4 /*yield*/, this.api('inviteFissionHome', { "linkId": "c6Bkpjp7dYcvQwO9-PR7-g", "inviter": "" })];
                     case 2:
-                        res = _d.sent();
+                        res = _a.sent();
                         console.log('助力码', res.data.inviteCode);
+                        // this.o2s(res)
                         this.shareCodeSelf.push({ inviteCode: res.data.inviteCode, inviter: res.data.inviter });
-                        return [4 /*yield*/, this.get("https://api.m.jd.com/api?functionId=inviteFissionHelpRecord&body=%7B%22linkId%22:%22c6Bkpjp7dYcvQwO9-PR7-g%22,%22lastTime%22:null,%22lastId%22:null,%22pageSize%22:10%7D&t=".concat(Date.now(), "&appid=activities_platform&client=ios&clientVersion=12.0.1&"), {
-                                'Host': 'api.m.jd.com',
-                                'User-Agent': this.user.UserAgent,
-                                'x-referer-page': 'https://prodev.m.jd.com/mall/active/uFdv8vAHsiLz4MGsg4HEauwte8d/index.html',
-                                'Origin': 'https://prodev.m.jd.com',
-                                'Referer': 'https://prodev.m.jd.com/mall/active/uFdv8vAHsiLz4MGsg4HEauwte8d/index.html',
-                                'Cookie': this.user.cookie
-                            })];
-                    case 3:
-                        res = _d.sent();
-                        _i = 0, _a = res.data.recordVos;
-                        _d.label = 4;
-                    case 4:
-                        if (!(_i < _a.length)) return [3 /*break*/, 7];
-                        t = _a[_i];
-                        if (!!t.amount) return [3 /*break*/, 6];
-                        return [4 /*yield*/, this.api('inviteFissionReceive', { "linkId": "c6Bkpjp7dYcvQwO9-PR7-g" })];
-                    case 5:
-                        data = _d.sent();
-                        for (_b = 0, _c = data.data.receiveList; _b < _c.length; _b++) {
-                            k = _c[_b];
-                            console.log('助力奖励', k.amount * 1, k.specialCrowdName);
-                        }
-                        return [3 /*break*/, 7];
-                    case 6:
-                        _i++;
-                        return [3 /*break*/, 4];
-                    case 7:
+                        console.log(res.data.cashVo.amount * 1, res.data.cashVo.leftAmount * 1);
+                        // res = await this.get(`https://api.m.jd.com/api?functionId=inviteFissionHelpRecord&body=%7B%22linkId%22:%22c6Bkpjp7dYcvQwO9-PR7-g%22,%22lastTime%22:null,%22lastId%22:null,%22pageSize%22:10%7D&t=${Date.now()}&appid=activities_platform&client=ios&clientVersion=12.0.1&`, {
+                        //   'Host': 'api.m.jd.com',
+                        //   'User-Agent': this.user.UserAgent,
+                        //   'x-referer-page': 'https://prodev.m.jd.com/mall/active/uFdv8vAHsiLz4MGsg4HEauwte8d/index.html',
+                        //   'Origin': 'https://prodev.m.jd.com',
+                        //   'Referer': 'https://prodev.m.jd.com/mall/active/uFdv8vAHsiLz4MGsg4HEauwte8d/index.html',
+                        //   'Cookie': this.user.cookie
+                        // })
                         this.h5stTool = new h5st_pro_1.H5ST("b3f11", this.user.UserAgent, this.fp, 'https://prodev.m.jd.com/mall/active/uFdv8vAHsiLz4MGsg4HEauwte8d/index.html', 'https://prodev.m.jd.com', this.user.UserName);
                         return [4 /*yield*/, this.h5stTool.__genAlgo()];
-                    case 8:
-                        _d.sent();
+                    case 3:
+                        _a.sent();
                         return [4 /*yield*/, this.api('inviteFissionPoll', { "linkId": "c6Bkpjp7dYcvQwO9-PR7-g" })];
-                    case 9:
-                        res = _d.sent();
+                    case 4:
+                        res = _a.sent();
                         lotteryTimes = res.data.lotteryTimes;
                         console.log('可抽奖', lotteryTimes);
+                        this.drawPrizeTool = new h5st_pro_1.H5ST("c02c6", this.user.UserAgent, this.fp, 'https://prodev.m.jd.com/mall/active/uFdv8vAHsiLz4MGsg4HEauwte8d/index.html', 'https://prodev.m.jd.com', this.user.UserName);
+                        return [4 /*yield*/, this.drawPrizeTool.__genAlgo()];
+                    case 5:
+                        _a.sent();
+                        this.receiveTool = new h5st_pro_1.H5ST("b8469", this.user.UserAgent, this.fp, 'https://prodev.m.jd.com/mall/active/uFdv8vAHsiLz4MGsg4HEauwte8d/index.html', 'https://prodev.m.jd.com', this.user.UserName);
+                        return [4 /*yield*/, this.receiveTool.__genAlgo()];
+                    case 6:
+                        _a.sent();
                         i = 0;
-                        _d.label = 10;
-                    case 10:
-                        if (!(i < lotteryTimes)) return [3 /*break*/, 14];
+                        _a.label = 7;
+                    case 7:
+                        if (!(i < lotteryTimes)) return [3 /*break*/, 11];
                         return [4 /*yield*/, this.api('inviteFissionDrawPrize', { "linkId": "c6Bkpjp7dYcvQwO9-PR7-g" })];
-                    case 11:
-                        data = _d.sent();
-                        data.data.prizeType === 4 ? console.log('抽到现金', data.data.prizeValue * 1) : console.log('抽到其他', data.data);
-                        return [4 /*yield*/, this.wait(6000)];
-                    case 12:
-                        _d.sent();
-                        _d.label = 13;
-                    case 13:
+                    case 8:
+                        data = _a.sent();
+                        if (data.data.prizeType === 4)
+                            console.log('抽到现金', data.data.prizeValue * 1);
+                        else if (data.data.prizeType === 2)
+                            console.log('抽到红包', data.data.prizeValue * 1);
+                        else if (data.data.prizeType === 1)
+                            console.log('抽到优惠券');
+                        else
+                            this.o2s(data.data, '抽到其他');
+                        return [4 /*yield*/, this.wait(5000)
+                            // data = await this.api('inviteFissionReceive', {"linkId": "c6Bkpjp7dYcvQwO9-PR7-g"})
+                            // console.log('助力奖励', data.data.receiveList[0].amount * 1, data.data.receiveList[0].specialCrowdName)
+                            // await this.wait(1000)
+                        ];
+                    case 9:
+                        _a.sent();
+                        _a.label = 10;
+                    case 10:
                         i++;
-                        return [3 /*break*/, 10];
-                    case 14: return [3 /*break*/, 16];
-                    case 15:
-                        e_2 = _d.sent();
+                        return [3 /*break*/, 7];
+                    case 11: return [3 /*break*/, 13];
+                    case 12:
+                        e_2 = _a.sent();
                         console.log(e_2.message);
-                        return [3 /*break*/, 16];
-                    case 16: return [2 /*return*/];
+                        return [3 /*break*/, 13];
+                    case 13: return [2 /*return*/];
                 }
             });
         });
