@@ -92,7 +92,7 @@ class Jd_Cash2 extends JDHelloWorld {
         await this.wait(5000)
         // data = await this.api('inviteFissionReceive', {"linkId": "c6Bkpjp7dYcvQwO9-PR7-g"})
         // console.log('助力奖励', data.data.receiveList[0].amount * 1, data.data.receiveList[0].specialCrowdName)
-        // await this.wait(1000)
+        // await this.wait(5000)
       }
     } catch (e) {
       console.log(e.message)
