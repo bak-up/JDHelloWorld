@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = require("axios");
 var TS_USER_AGENTS_1 = require("./TS_USER_AGENTS");
 var cookie = '', cookiesArr = [], res;
@@ -222,14 +222,14 @@ function mission(fn, goodsNumId, missionType) {
         var data;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, axios_1["default"].post("https://jinggengjcq-isv.isvjcloud.com/dm/front/foodRunning/complete/mission?open_id=&mix_nick=&bizExtString=&user_id=10299171", JSON.stringify(body), {
+                case 0: return [4 /*yield*/, axios_1.default.post("https://jinggengjcq-isv.isvjcloud.com/dm/front/foodRunning/complete/mission?open_id=&mix_nick=&bizExtString=&user_id=10299171", JSON.stringify(body), {
                         headers: {
                             'Origin': 'https://jinggengjcq-isv.isvjcloud.com',
                             'X-Requested-With': 'XMLHttpRequest',
-                            'User-Agent': TS_USER_AGENTS_1["default"],
+                            'User-Agent': TS_USER_AGENTS_1.default,
                             'Referer': 'https://jinggengjcq-isv.isvjcloud.com/paoku/index.html',
                             'Content-Type': 'application/json; charset=UTF-8',
-                            'Host': 'jinggengjcq-isv.isvjcloud.com'
+                            'Host': 'jinggengjcq-isv.isvjcloud.com',
                         }
                     })];
                 case 1:
@@ -246,7 +246,7 @@ function api(fn) {
         var data;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, axios_1["default"].post("https://jinggengjcq-isv.isvjcloud.com/dm/front/foodRunning/".concat(fn, "?open_id=&mix_nick=&bizExtString=&user_id=10299171"), JSON.stringify({
+                case 0: return [4 /*yield*/, axios_1.default.post("https://jinggengjcq-isv.isvjcloud.com/dm/front/foodRunning/".concat(fn, "?open_id=&mix_nick=&bizExtString=&user_id=10299171"), JSON.stringify({
                         "jsonRpc": "2.0",
                         "params": {
                             "commonParameter": {
@@ -270,10 +270,10 @@ function api(fn) {
                         headers: {
                             'Origin': 'https://jinggengjcq-isv.isvjcloud.com',
                             'X-Requested-With': 'XMLHttpRequest',
-                            'User-Agent': TS_USER_AGENTS_1["default"],
+                            'User-Agent': TS_USER_AGENTS_1.default,
                             'Referer': 'https://jinggengjcq-isv.isvjcloud.com/paoku/index.html',
                             'Content-Type': 'application/json; charset=UTF-8',
-                            'Host': 'jinggengjcq-isv.isvjcloud.com'
+                            'Host': 'jinggengjcq-isv.isvjcloud.com',
                         }
                     })];
                 case 1:
@@ -290,10 +290,10 @@ function getIsvToken2() {
         var data;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, axios_1["default"].post("https://api.m.jd.com/client.action?functionId=isvObfuscator&clientVersion=10.0.2&client=android&uuid=818aa057737ba6a4&st=1623934998790&sign=e571148c8dfb456a1795d249c6aa3956&sv=100", 'body=%7B%22id%22%3A%22%22%2C%22url%22%3A%22https%3A//xinruidddj-isv.isvjcloud.com%22%7D', {
+                case 0: return [4 /*yield*/, axios_1.default.post("https://api.m.jd.com/client.action?functionId=isvObfuscator&clientVersion=10.0.2&client=android&uuid=818aa057737ba6a4&st=1623934998790&sign=e571148c8dfb456a1795d249c6aa3956&sv=100", 'body=%7B%22id%22%3A%22%22%2C%22url%22%3A%22https%3A//xinruidddj-isv.isvjcloud.com%22%7D', {
                         headers: {
                             'Host': 'api.m.jd.com',
-                            'user-agent': TS_USER_AGENTS_1["default"],
+                            'user-agent': TS_USER_AGENTS_1.default,
                             'content-type': 'application/x-www-form-urlencoded',
                             'Cookie': cookie
                         }

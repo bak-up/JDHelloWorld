@@ -39,7 +39,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var path = require("path");
 var sendNotify_1 = require("./sendNotify");
 var fs_1 = require("fs");
@@ -94,7 +94,7 @@ var cookie = '', UserName, allMessage = '', res = '';
                 message = '', markdown = '', i = 1;
                 headers = {
                     'authority': 'wq.jd.com',
-                    'user-agent': TS_USER_AGENTS_1["default"],
+                    'user-agent': TS_USER_AGENTS_1.default,
                     'referer': 'https://wqs.jd.com/',
                     'cookie': cookie
                 };

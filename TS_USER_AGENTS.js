@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.USER_AGENTS_ARR = exports.USER_AGENT = exports.post = exports.get = exports.jdpingou = exports.randomWord = exports.getShareCodePool = exports.getshareCodeHW = exports.randomNumString = exports.o2s = exports.randomString = exports.exceptCookie = exports.getJxToken = exports.getRandomNumberByRange = exports.wait = exports.getCookie = exports.getFarmShareCode = exports.getBeanShareCode = void 0;
 var axios_1 = require("axios");
 var ts_md5_1 = require("ts-md5");
@@ -94,7 +94,7 @@ function getBeanShareCode(cookie) {
         var data;
         return __generator(this, function (_c) {
             switch (_c.label) {
-                case 0: return [4 /*yield*/, axios_1["default"].post('https://api.m.jd.com/client.action', "functionId=plantBeanIndex&body=".concat(encodeURIComponent(JSON.stringify({ version: "9.0.0.1", "monitor_source": "plant_app_plant_index", "monitor_refer": "" })), "&appid=ld&client=apple&area=5_274_49707_49973&build=167283&clientVersion=9.1.0"), {
+                case 0: return [4 /*yield*/, axios_1.default.post('https://api.m.jd.com/client.action', "functionId=plantBeanIndex&body=".concat(encodeURIComponent(JSON.stringify({ version: "9.0.0.1", "monitor_source": "plant_app_plant_index", "monitor_refer": "" })), "&appid=ld&client=apple&area=5_274_49707_49973&build=167283&clientVersion=9.1.0"), {
                         headers: {
                             Cookie: cookie,
                             Host: "api.m.jd.com",
@@ -120,7 +120,7 @@ function getFarmShareCode(cookie) {
         var data;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, axios_1["default"].post('https://api.m.jd.com/client.action?functionId=initForFarm', "body=".concat(encodeURIComponent(JSON.stringify({ "version": 4 })), "&appid=wh5&clientVersion=9.1.0"), {
+                case 0: return [4 /*yield*/, axios_1.default.post('https://api.m.jd.com/client.action?functionId=initForFarm', "body=".concat(encodeURIComponent(JSON.stringify({ "version": 4 })), "&appid=wh5&clientVersion=9.1.0"), {
                         headers: {
                             "cookie": cookie,
                             "origin": "https://home.m.jd.com",
@@ -255,7 +255,7 @@ function getshareCodeHW(key) {
                     _a.label = 2;
                 case 2:
                     _a.trys.push([2, 4, , 6]);
-                    return [4 /*yield*/, axios_1["default"].get('https://sharecodepool.cnmb.win/api/HW_CODES')];
+                    return [4 /*yield*/, axios_1.default.get('https://sharecodepool.cnmb.win/api/HW_CODES')];
                 case 3:
                     data = (_a.sent()).data;
                     shareCodeHW = data[key] || [];
@@ -293,7 +293,7 @@ function getShareCodePool(key, num) {
                     _a.label = 2;
                 case 2:
                     _a.trys.push([2, 4, , 6]);
-                    return [4 /*yield*/, axios_1["default"].get("https://sharecodepool.cnmb.win/api/".concat(key, "/").concat(num))];
+                    return [4 /*yield*/, axios_1.default.get("https://sharecodepool.cnmb.win/api/".concat(key, "/").concat(num))];
                 case 3:
                     data = (_a.sent()).data;
                     shareCode = data.data || [];
@@ -345,7 +345,7 @@ function getDevice() {
         var data;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, axios_1["default"].get('https://betahub.cn/api/apple/devices/iPhone', {
+                case 0: return [4 /*yield*/, axios_1.default.get('https://betahub.cn/api/apple/devices/iPhone', {
                         headers: {
                             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36'
                         }
@@ -363,7 +363,7 @@ function getVersion(device) {
         var data;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, axios_1["default"].get("https://betahub.cn/api/apple/firmwares/".concat(device), {
+                case 0: return [4 /*yield*/, axios_1.default.get("https://betahub.cn/api/apple/firmwares/".concat(device), {
                         headers: {
                             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36'
                         }
@@ -395,7 +395,7 @@ function jdpingou() {
 exports.jdpingou = jdpingou;
 function get(url, headers) {
     return new Promise(function (resolve, reject) {
-        axios_1["default"].get(url, {
+        axios_1.default.get(url, {
             headers: headers
         }).then(function (res) {
             if (typeof res.data === 'string' && res.data.includes('jsonpCBK')) {
@@ -404,7 +404,7 @@ function get(url, headers) {
             else {
                 resolve(res.data);
             }
-        })["catch"](function (err) {
+        }).catch(function (err) {
             var _a, _b;
             reject({
                 code: ((_a = err === null || err === void 0 ? void 0 : err.response) === null || _a === void 0 ? void 0 : _a.status) || -1,
@@ -416,11 +416,11 @@ function get(url, headers) {
 exports.get = get;
 function post(url, prarms, headers) {
     return new Promise(function (resolve, reject) {
-        axios_1["default"].post(url, prarms, {
+        axios_1.default.post(url, prarms, {
             headers: headers
         }).then(function (res) {
             resolve(res.data);
-        })["catch"](function (err) {
+        }).catch(function (err) {
             var _a, _b;
             reject({
                 code: ((_a = err === null || err === void 0 ? void 0 : err.response) === null || _a === void 0 ? void 0 : _a.status) || -1,
@@ -430,4 +430,4 @@ function post(url, prarms, headers) {
     });
 }
 exports.post = post;
-exports["default"] = USER_AGENT;
+exports.default = USER_AGENT;

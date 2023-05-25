@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = require("axios");
 var TS_USER_AGENTS_1 = require("./TS_USER_AGENTS");
 var cookie = '', res, shareCodes = [], UserName, index;
@@ -119,12 +119,12 @@ function api(fn, body) {
         var _a, data, headers;
         return __generator(this, function (_b) {
             switch (_b.label) {
-                case 0: return [4 /*yield*/, axios_1["default"].post(url, typeof body === 'string' ? body : JSON.stringify(body), {
+                case 0: return [4 /*yield*/, axios_1.default.post(url, typeof body === 'string' ? body : JSON.stringify(body), {
                         headers: {
                             'Host': 'lzdz-isv.isvjcloud.com',
                             'Content-Type': 'application/x-www-form-urlencoded',
                             'Referer': 'https://lzdz-isv.isvjcloud.com/dingzhi/qqxing/pasture/activity?activityId=90121061401',
-                            'User-Agent': TS_USER_AGENTS_1["default"],
+                            'User-Agent': TS_USER_AGENTS_1.default,
                             'Accept': 'application/json',
                             'Origin': 'https://lzdz-isv.isvjcloud.com',
                             'Cookie': cookie
@@ -147,7 +147,7 @@ function getIsvToken() {
                 case 0: return [4 /*yield*/, sign()];
                 case 1:
                     body = _a.sent();
-                    return [4 /*yield*/, axios_1["default"].post("https://api.m.jd.com/client.action?functionId=genToken", body, {
+                    return [4 /*yield*/, axios_1.default.post("https://api.m.jd.com/client.action?functionId=genToken", body, {
                             headers: {
                                 'Host': 'api.m.jd.com',
                                 'content-type': 'application/x-www-form-urlencoded',
@@ -172,7 +172,7 @@ function getIsvToken2() {
                 case 0: return [4 /*yield*/, isvObfuscator()];
                 case 1:
                     body = _a.sent();
-                    return [4 /*yield*/, axios_1["default"].post("https://api.m.jd.com/client.action?functionId=isvObfuscator", body, {
+                    return [4 /*yield*/, axios_1.default.post("https://api.m.jd.com/client.action?functionId=isvObfuscator", body, {
                             headers: {
                                 'Host': 'api.m.jd.com',
                                 'accept': '*/*',
@@ -196,10 +196,10 @@ function init() {
         var headers;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, axios_1["default"].get("https://lzdz-isv.isvjcloud.com/dingzhi/qqxing/pasture/activity?activityId=90121061401", {
+                case 0: return [4 /*yield*/, axios_1.default.get("https://lzdz-isv.isvjcloud.com/dingzhi/qqxing/pasture/activity?activityId=90121061401", {
                         headers: {
                             'Host': 'lzdz-isv.isvjcloud.com',
-                            'User-Agent': TS_USER_AGENTS_1["default"],
+                            'User-Agent': TS_USER_AGENTS_1.default,
                             'X-Requested-With': 'com.jingdong.app.mall',
                             'Cookie': 'IsvToken=' + token
                         }
@@ -217,7 +217,7 @@ function sign() {
         var data;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, axios_1["default"].post("https://api.jds.codes/sign", { "fn": "genToken", "body": { "to": "https:\/\/lzdz-isv.isvjcloud.com\/dingzhi\/qqxing\/pasture\/activity?activityId=90121061401", "action": "to" } })];
+                case 0: return [4 /*yield*/, axios_1.default.post("https://api.jds.codes/sign", { "fn": "genToken", "body": { "to": "https:\/\/lzdz-isv.isvjcloud.com\/dingzhi\/qqxing\/pasture\/activity?activityId=90121061401", "action": "to" } })];
                 case 1:
                     data = (_a.sent()).data;
                     return [2 /*return*/, data.data.sign];
@@ -230,7 +230,7 @@ function isvObfuscator() {
         var data;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, axios_1["default"].post("https://api.jds.codes/sign", { "fn": "isvObfuscator", "body": { "url": "https:\/\/lzdz-isv.isvjcloud.com", "id": "" } })];
+                case 0: return [4 /*yield*/, axios_1.default.post("https://api.jds.codes/sign", { "fn": "isvObfuscator", "body": { "url": "https:\/\/lzdz-isv.isvjcloud.com", "id": "" } })];
                 case 1:
                     data = (_a.sent()).data;
                     return [2 /*return*/, data.data.sign];

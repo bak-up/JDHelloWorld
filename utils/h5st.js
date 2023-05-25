@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.H5ST = void 0;
 var axios_1 = require("axios");
 var date_fns_1 = require("date-fns");
@@ -62,7 +62,7 @@ var H5ST = /** @class */ (function () {
                     case 0:
                         this.time = Date.now();
                         this.timestamp = (0, date_fns_1.format)(this.time, "yyyyMMddHHmmssSSS");
-                        return [4 /*yield*/, axios_1["default"].post("https://cactus.jd.com/request_algo?g_ty=ajax", {
+                        return [4 /*yield*/, axios_1.default.post("https://cactus.jd.com/request_algo?g_ty=ajax", {
                                 'version': '3.0',
                                 'fp': this.fp,
                                 'appId': this.appId.toString(),
@@ -74,7 +74,7 @@ var H5ST = /** @class */ (function () {
                                     'Host': 'cactus.jd.com',
                                     'accept': 'application/json',
                                     'content-type': 'application/json',
-                                    'user-agent': this.ua
+                                    'user-agent': this.ua,
                                 }
                             })];
                     case 1:

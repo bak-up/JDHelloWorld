@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = require("axios");
 var sendNotify_1 = require("./sendNotify");
 var TS_USER_AGENTS_1 = require("./TS_USER_AGENTS");
@@ -54,7 +54,7 @@ var cookie = '', UserName;
                 t = Date.now(), fn = 'MyAssetsService.execute', body = { "method": "goldShopPage", "data": { "channel": 1 } };
                 params = "lite-android&".concat(JSON.stringify(body), "&android&3.1.0&").concat(fn, "&").concat(t, "&846c4c32dae910ef");
                 key = CryptoJS.HmacSHA256(params, '12aea658f76e453faf803d15c40a72e0').toString();
-                return [4 /*yield*/, axios_1["default"].get("https://api.m.jd.com/api?functionId=".concat(fn, "&body=").concat(encodeURIComponent(JSON.stringify(body)), "&appid=lite-android&client=android&uuid=846c4c32dae910ef&clientVersion=3.1.0&t=").concat(t, "&sign=").concat(key), {
+                return [4 /*yield*/, axios_1.default.get("https://api.m.jd.com/api?functionId=".concat(fn, "&body=").concat(encodeURIComponent(JSON.stringify(body)), "&appid=lite-android&client=android&uuid=846c4c32dae910ef&clientVersion=3.1.0&t=").concat(t, "&sign=").concat(key), {
                         headers: {
                             'Host': 'api.m.jd.com',
                             'accept': '*/*',

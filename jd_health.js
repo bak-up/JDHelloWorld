@@ -59,7 +59,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     }
     return to.concat(ar || Array.prototype.slice.call(from));
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var TS_JDHelloWorld_1 = require("./TS_JDHelloWorld");
 var Health = /** @class */ (function (_super) {
     __extends(Health, _super);

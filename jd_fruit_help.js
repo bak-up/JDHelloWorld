@@ -67,7 +67,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     }
     return to.concat(ar || Array.prototype.slice.call(from));
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var TS_JDHelloWorld_1 = require("./TS_JDHelloWorld");
 var sendNotify_1 = require("./sendNotify");
 var Jd_fruit_help = /** @class */ (function (_super) {

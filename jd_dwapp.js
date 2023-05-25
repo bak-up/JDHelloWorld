@@ -53,7 +53,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var TS_JDHelloWorld_1 = require("./TS_JDHelloWorld");
 var Jd_dwapp = /** @class */ (function (_super) {
     __extends(Jd_dwapp, _super);
@@ -126,7 +126,7 @@ var Jd_dwapp = /** @class */ (function (_super) {
                         if (!(_i < _c.length)) return [3 /*break*/, 10];
                         t = _c[_i];
                         if (!(t.viewStatus === 0)) return [3 /*break*/, 9];
-                        return [4 /*yield*/, this.api('dwRecord', { id: t.id, "taskType": t.taskType, "agentNum": "m", "followChannelStatus": "" })];
+                        return [4 /*yield*/, this.api('dwRecord', { id: t.id, "taskType": t.taskType, "agentNum": "m", "followChannelStatus": "", })];
                     case 7:
                         res = _f.sent();
                         console.log(res.msg);

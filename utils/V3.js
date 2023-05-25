@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.geth5st = exports.requestAlgo = void 0;
 var axios_1 = require("axios");
 var date_fns_1 = require("date-fns");
@@ -57,7 +57,7 @@ function requestAlgo(appId, USER_AGENT) {
             switch (_a.label) {
                 case 0:
                     fp = generateFp();
-                    return [4 /*yield*/, axios_1["default"].post("https://cactus.jd.com/request_algo?g_ty=ajax", "{\"version\":\"3.0\",\"fp\":\"".concat(fp, "\",\"appId\":\"").concat(appId, "\",\"timestamp\":").concat(Date.now(), ",\"platform\":\"web\",\"expandParams\":\"\"}"), {
+                    return [4 /*yield*/, axios_1.default.post("https://cactus.jd.com/request_algo?g_ty=ajax", "{\"version\":\"3.0\",\"fp\":\"".concat(fp, "\",\"appId\":\"").concat(appId, "\",\"timestamp\":").concat(Date.now(), ",\"platform\":\"web\",\"expandParams\":\"\"}"), {
                             headers: {
                                 'Accept': 'application/json',
                                 'Content-Type': 'application/json',

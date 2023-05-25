@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.jxfactory = exports.sgmh = exports.factory = exports.pet = exports.health = exports.farm = exports.bean = void 0;
 var axios_1 = require("axios");
 var TS_USER_AGENTS_1 = require("../TS_USER_AGENTS");
@@ -46,11 +46,11 @@ function bean(cookie) {
         var data;
         return __generator(this, function (_d) {
             switch (_d.label) {
-                case 0: return [4 /*yield*/, axios_1["default"].post('https://api.m.jd.com/client.action', "functionId=plantBeanIndex&body=".concat(decodeURIComponent(JSON.stringify({ version: "9.0.0.1", "monitor_source": "plant_app_plant_index", "monitor_refer": "" })), "&appid=ld&client=apple&area=5_274_49707_49973&build=167283&clientVersion=9.1.0"), {
+                case 0: return [4 /*yield*/, axios_1.default.post('https://api.m.jd.com/client.action', "functionId=plantBeanIndex&body=".concat(decodeURIComponent(JSON.stringify({ version: "9.0.0.1", "monitor_source": "plant_app_plant_index", "monitor_refer": "" })), "&appid=ld&client=apple&area=5_274_49707_49973&build=167283&clientVersion=9.1.0"), {
                         headers: {
                             Cookie: cookie,
                             Host: "api.m.jd.com",
-                            "User-Agent": TS_USER_AGENTS_1["default"]
+                            "User-Agent": TS_USER_AGENTS_1.default
                         }
                     })];
                 case 1:
@@ -71,12 +71,12 @@ function farm(cookie) {
         var data;
         return __generator(this, function (_c) {
             switch (_c.label) {
-                case 0: return [4 /*yield*/, axios_1["default"].post('https://api.m.jd.com/client.action?functionId=initForFarm', "body=".concat(encodeURIComponent(JSON.stringify({ "version": 4 })), "&appid=wh5&clientVersion=9.1.0"), {
+                case 0: return [4 /*yield*/, axios_1.default.post('https://api.m.jd.com/client.action?functionId=initForFarm', "body=".concat(encodeURIComponent(JSON.stringify({ "version": 4 })), "&appid=wh5&clientVersion=9.1.0"), {
                         headers: {
                             "cookie": cookie,
                             "origin": "https://home.m.jd.com",
                             "referer": "https://home.m.jd.com/myJd/newhome.action",
-                            "User-Agent": TS_USER_AGENTS_1["default"],
+                            "User-Agent": TS_USER_AGENTS_1.default,
                             "Content-Type": "application/x-www-form-urlencoded"
                         }
                     })];
@@ -94,13 +94,13 @@ function health(cookie) {
         var data;
         return __generator(this, function (_d) {
             switch (_d.label) {
-                case 0: return [4 /*yield*/, axios_1["default"].get("https://api.m.jd.com/client.action/client.action?functionId=jdhealth_getTaskDetail&body=".concat(encodeURIComponent(JSON.stringify({ "buildingId": "", taskId: 6, "channelId": 1 })), "&client=wh5&clientVersion=1.0.0"), {
+                case 0: return [4 /*yield*/, axios_1.default.get("https://api.m.jd.com/client.action/client.action?functionId=jdhealth_getTaskDetail&body=".concat(encodeURIComponent(JSON.stringify({ "buildingId": "", taskId: 6, "channelId": 1 })), "&client=wh5&clientVersion=1.0.0"), {
                         headers: {
                             "Cookie": cookie,
                             "origin": "https://h5.m.jd.com",
                             "referer": "https://h5.m.jd.com/",
                             'Content-Type': 'application/x-www-form-urlencoded',
-                            "User-Agent": TS_USER_AGENTS_1["default"]
+                            "User-Agent": TS_USER_AGENTS_1.default
                         }
                     })];
                 case 1:
@@ -117,11 +117,11 @@ function pet(cookie) {
         var data;
         return __generator(this, function (_c) {
             switch (_c.label) {
-                case 0: return [4 /*yield*/, axios_1["default"].post('https://api.m.jd.com/client.action', "functionId=initPetTown&body=".concat(JSON.stringify({ "version": 1 }), "&appid=wh5&client=apple&clientVersion=10.3.6&build=167963&rfs=0000"), {
+                case 0: return [4 /*yield*/, axios_1.default.post('https://api.m.jd.com/client.action', "functionId=initPetTown&body=".concat(JSON.stringify({ "version": 1 }), "&appid=wh5&client=apple&clientVersion=10.3.6&build=167963&rfs=0000"), {
                         headers: {
                             'Host': 'api.m.jd.com',
                             'Origin': 'https://h5.m.jd.com',
-                            'User-Agent': TS_USER_AGENTS_1["default"],
+                            'User-Agent': TS_USER_AGENTS_1.default,
                             'Referer': 'https://h5.m.jd.com/',
                             'Content-Type': 'application/x-www-form-urlencoded',
                             'Cookie': cookie
@@ -141,13 +141,13 @@ function factory(cookie) {
         var data, _i, _c, t;
         return __generator(this, function (_d) {
             switch (_d.label) {
-                case 0: return [4 /*yield*/, axios_1["default"].post("https://api.m.jd.com/client.action?functionId=jdfactory_getTaskDetail", "functionId=jdfactory_getTaskDetail&body=".concat(encodeURIComponent(JSON.stringify({})), "&client=wh5&clientVersion=9.1.0"), {
+                case 0: return [4 /*yield*/, axios_1.default.post("https://api.m.jd.com/client.action?functionId=jdfactory_getTaskDetail", "functionId=jdfactory_getTaskDetail&body=".concat(encodeURIComponent(JSON.stringify({})), "&client=wh5&clientVersion=9.1.0"), {
                         headers: {
                             Cookie: cookie,
                             origin: "https://h5.m.jd.com",
                             referer: "https://h5.m.jd.com/",
                             "Content-Type": "application/x-www-form-urlencoded",
-                            'User-Agent': TS_USER_AGENTS_1["default"]
+                            'User-Agent': TS_USER_AGENTS_1.default,
                         }
                     })];
                 case 1:
@@ -171,13 +171,13 @@ function sgmh(cookie) {
         var data, _i, _c, t;
         return __generator(this, function (_d) {
             switch (_d.label) {
-                case 0: return [4 /*yield*/, axios_1["default"].post("https://api.m.jd.com/client.action", "functionId=interact_template_getHomeData&body={\"appId\":\"1EFRXxg\",\"taskToken\":\"\"}&client=wh5&clientVersion=1.0.0", {
+                case 0: return [4 /*yield*/, axios_1.default.post("https://api.m.jd.com/client.action", "functionId=interact_template_getHomeData&body={\"appId\":\"1EFRXxg\",\"taskToken\":\"\"}&client=wh5&clientVersion=1.0.0", {
                         headers: {
                             'Origin': "https://h5.m.jd.com",
                             'Cookie': cookie,
                             'Accept': "application/json, text/plain, */*",
                             'Referer': "https://h5.m.jd.com/babelDiy/Zeus/2WBcKYkn8viyxv7MoKKgfzmu7Dss/index.html",
-                            'Host': "api.m.jd.com"
+                            'Host': "api.m.jd.com",
                         }
                     })];
                 case 1:
@@ -220,10 +220,10 @@ function jxfactory(cookie) {
                     }
                     h5st = (0, V3_1.geth5st)(t, 'c0ff1');
                     url += "&h5st=".concat(encodeURIComponent(h5st));
-                    return [4 /*yield*/, axios_1["default"].get(url, {
+                    return [4 /*yield*/, axios_1.default.get(url, {
                             headers: {
                                 'Referer': 'https://actst.jingxi.com/pingou/dream_factory/index.html',
-                                'User-Agent': TS_USER_AGENTS_1["default"],
+                                'User-Agent': TS_USER_AGENTS_1.default,
                                 'Host': 'm.jingxi.com',
                                 'Cookie': cookie
                             }

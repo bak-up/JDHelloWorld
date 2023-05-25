@@ -39,7 +39,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var path = require("path");
 var ts_md5_1 = require("ts-md5");
 var sendNotify_1 = require("./sendNotify");
@@ -384,7 +384,7 @@ var shareCodesSelf = [], shareCodesHW = [];
                         'do': '',
                         'dov': '',
                         'dn': '',
-                        'type': '2'
+                        'type': '2',
                     })];
             case 67:
                 res = _m.sent();
@@ -520,7 +520,7 @@ function api(fn, stk, params) {
                         jxmc_jstoken: jxToken['farm_jstoken'],
                         phoneid: jxToken['phoneid'],
                         sceneid: '1001',
-                        timestamp: jxToken['timestamp']
+                        timestamp: jxToken['timestamp'],
                     };
                     if (['GetUserTaskStatusList', 'DoTask', 'Award'].indexOf(fn) > -1)
                         url = "https://m.jingxi.com/newtasksys/newtasksys_front/".concat(fn, "?_=").concat(Date.now(), "&source=jxmc&bizCode=jxmc&_stk=").concat(encodeURIComponent(stk), "&_ste=1&sceneval=2&g_login_type=1&callback=jsonpCBK").concat((0, TS_USER_AGENTS_1.randomWord)(), "&g_ty=ls");
@@ -536,7 +536,7 @@ function api(fn, stk, params) {
                     _c.label = 1;
                 case 1:
                     _c.trys.push([1, 3, , 4]);
-                    return [4 /*yield*/, axios_1["default"].get(url, {
+                    return [4 /*yield*/, axios_1.default.get(url, {
                             headers: {
                                 'Host': 'm.jingxi.com',
                                 'Accept': '*/*',

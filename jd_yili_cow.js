@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = require("axios");
 var TS_USER_AGENTS_1 = require("./TS_USER_AGENTS");
 var dotenv = require("dotenv");
@@ -196,12 +196,12 @@ function api(fn, body) {
         var _a, data, headers;
         return __generator(this, function (_b) {
             switch (_b.label) {
-                case 0: return [4 /*yield*/, axios_1["default"].post(url, body, {
+                case 0: return [4 /*yield*/, axios_1.default.post(url, body, {
                         headers: {
                             'Host': 'lzdz-isv.isvjcloud.com',
                             'Content-Type': 'application/x-www-form-urlencoded',
                             'Referer': 'https://lzdz-isv.isvjcloud.com/dingzhi/yili/yangniu/activity',
-                            'User-Agent': TS_USER_AGENTS_1["default"],
+                            'User-Agent': TS_USER_AGENTS_1.default,
                             'Accept': 'application/json',
                             'Origin': 'https://lzdz-isv.isvjcloud.com',
                             'Cookie': cookie
@@ -222,11 +222,11 @@ function getIsvToken() {
         var data;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, axios_1["default"].post("https://api.m.jd.com/client.action?functionId=genToken&clientVersion=10.0.2&client=android&uuid=818aa057737ba6a4&st=1623934987178&sign=0877498be29cda51b9628fa0195f412f&sv=111", "body=".concat(decodeURIComponent('{"action":"to","to":"https%3A%2F%2Fh5.m.jd.com%2FbabelDiy%2FZeus%2F3KSjXqQabiTuD1cJ28QskrpWoBKT%2Findex.html%3FbabelChannel%3D45%26collectionId%3D519"}')), {
+                case 0: return [4 /*yield*/, axios_1.default.post("https://api.m.jd.com/client.action?functionId=genToken&clientVersion=10.0.2&client=android&uuid=818aa057737ba6a4&st=1623934987178&sign=0877498be29cda51b9628fa0195f412f&sv=111", "body=".concat(decodeURIComponent('{"action":"to","to":"https%3A%2F%2Fh5.m.jd.com%2FbabelDiy%2FZeus%2F3KSjXqQabiTuD1cJ28QskrpWoBKT%2Findex.html%3FbabelChannel%3D45%26collectionId%3D519"}')), {
                         headers: {
                             'Host': 'api.m.jd.com',
                             'charset': 'UTF-8',
-                            'User-Agent': TS_USER_AGENTS_1["default"],
+                            'User-Agent': TS_USER_AGENTS_1.default,
                             'cache-control': 'no-cache',
                             'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
                             'cookie': cookie
@@ -247,10 +247,10 @@ function getIsvToken2() {
         var data;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, axios_1["default"].post("https://api.m.jd.com/client.action?functionId=isvObfuscator&clientVersion=10.0.2&client=android&uuid=818aa057737ba6a4&st=1623934998790&sign=e571148c8dfb456a1795d249c6aa3956&sv=100", 'body=%7B%22id%22%3A%22%22%2C%22url%22%3A%22https%3A//xinruidddj-isv.isvjcloud.com%22%7D', {
+                case 0: return [4 /*yield*/, axios_1.default.post("https://api.m.jd.com/client.action?functionId=isvObfuscator&clientVersion=10.0.2&client=android&uuid=818aa057737ba6a4&st=1623934998790&sign=e571148c8dfb456a1795d249c6aa3956&sv=100", 'body=%7B%22id%22%3A%22%22%2C%22url%22%3A%22https%3A//xinruidddj-isv.isvjcloud.com%22%7D', {
                         headers: {
                             'Host': 'api.m.jd.com',
-                            'user-agent': TS_USER_AGENTS_1["default"],
+                            'user-agent': TS_USER_AGENTS_1.default,
                             'content-type': 'application/x-www-form-urlencoded',
                             'Cookie': cookie
                         }
@@ -267,10 +267,10 @@ function getIsvToken2() {
 }
 function init() {
     return new Promise(function (resolve) {
-        axios_1["default"].get("https://lzdz-isv.isvjcloud.com/dingzhi/yili/yangniu/activity", {
+        axios_1.default.get("https://lzdz-isv.isvjcloud.com/dingzhi/yili/yangniu/activity", {
             headers: {
                 'Host': 'lzdz-isv.isvjcloud.com',
-                'User-Agent': TS_USER_AGENTS_1["default"],
+                'User-Agent': TS_USER_AGENTS_1.default,
                 'Cookie': 'IsvToken=' + token
             }
         }).then(function (res) {

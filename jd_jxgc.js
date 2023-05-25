@@ -39,7 +39,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = require("axios");
 var path = require("path");
 var date_fns_1 = require("date-fns");
@@ -292,7 +292,7 @@ function api(fn, stk, params) {
                     }
                     h5st = (0, V3_1.geth5st)(t, 'c0ff1');
                     url += "&h5st=".concat(encodeURIComponent(h5st));
-                    return [4 /*yield*/, axios_1["default"].get(url, {
+                    return [4 /*yield*/, axios_1.default.get(url, {
                             headers: {
                                 'Host': 'm.jingxi.com',
                                 'User-Agent': 'jdpingou;',

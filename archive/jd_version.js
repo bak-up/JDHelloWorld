@@ -39,7 +39,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = require("axios");
 var child_process_1 = require("child_process");
 var sendNotify_1 = require("./sendNotify");
@@ -83,7 +83,7 @@ function githubVersion() {
                             }
                         });
                     }
-                    return [4 /*yield*/, axios_1["default"].get('https://github.com/JDHelloWorld/jd_scripts/commits/main', config)];
+                    return [4 /*yield*/, axios_1.default.get('https://github.com/JDHelloWorld/jd_scripts/commits/main', config)];
                 case 1:
                     data = (_a.sent()).data;
                     return [2 /*return*/, {

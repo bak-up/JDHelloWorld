@@ -3,7 +3,7 @@
  * 🐉 ql repo
  * cron: 30 2 * * *
  */
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var child_process_1 = require("child_process");
 if (process.env.HOSTNAME === 'qinglong' || process.env.QL_DIR) {
     process.chdir('../../repo/JDHelloWorld_jd_scripts/');

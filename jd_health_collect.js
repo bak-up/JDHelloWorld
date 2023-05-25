@@ -39,7 +39,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = require("axios");
 var path = require("path");
 var TS_USER_AGENTS_1 = require("./TS_USER_AGENTS");
@@ -84,11 +84,11 @@ function api(fn, body) {
         var data;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, axios_1["default"].post('https://api.m.jd.com/', "functionId=".concat(fn, "&body=").concat(encodeURIComponent(JSON.stringify(body)), "&client=wh5&clientVersion=1.0.0&uuid="), {
+                case 0: return [4 /*yield*/, axios_1.default.post('https://api.m.jd.com/', "functionId=".concat(fn, "&body=").concat(encodeURIComponent(JSON.stringify(body)), "&client=wh5&clientVersion=1.0.0&uuid="), {
                         headers: {
                             'Host': 'api.m.jd.com',
                             'Origin': 'https://h5.m.jd.com',
-                            'User-Agent': TS_USER_AGENTS_1["default"],
+                            'User-Agent': TS_USER_AGENTS_1.default,
                             'Referer': 'https://h5.m.jd.com/',
                             'Content-Type': 'application/x-www-form-urlencoded',
                             'Cookie': cookie

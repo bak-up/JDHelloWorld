@@ -49,7 +49,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     }
     return to.concat(ar || Array.prototype.slice.call(from));
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var TS_USER_AGENTS_1 = require("./TS_USER_AGENTS");
 var axios_1 = require("axios");
 var cookie, cookiesArr = [], res, UserName;
@@ -311,7 +311,7 @@ function api(fn, body) {
         var data;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, axios_1["default"].post('https://api.m.jd.com/api', new URLSearchParams({
+                case 0: return [4 /*yield*/, axios_1.default.post('https://api.m.jd.com/api', new URLSearchParams({
                         'body': JSON.stringify(body)
                     }), {
                         params: {

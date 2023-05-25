@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.H5ST = void 0;
 var axios_1 = require("axios");
 var date_fns_1 = require("date-fns");
@@ -59,7 +59,7 @@ var H5ST = /** @class */ (function () {
                     case 0:
                         this.time = Date.now();
                         this.timestamp = (0, date_fns_1.format)(this.time, "yyyyMMddHHmmssSSS");
-                        return [4 /*yield*/, axios_1["default"].post("".concat(this.api, "/expandParams"), {
+                        return [4 /*yield*/, axios_1.default.post("".concat(this.api, "/expandParams"), {
                                 iosVer: this.iosVer,
                                 ua: this.ua,
                                 pin: this.pin,
@@ -70,7 +70,7 @@ var H5ST = /** @class */ (function () {
                             })];
                     case 1:
                         expandParams = (_a.sent()).data;
-                        return [4 /*yield*/, axios_1["default"].post("https://cactus.jd.com/request_algo?g_ty=ajax", {
+                        return [4 /*yield*/, axios_1.default.post("https://cactus.jd.com/request_algo?g_ty=ajax", {
                                 'version': '3.1',
                                 'fp': this.fp,
                                 'appId': this.appId.toString(),
@@ -114,7 +114,7 @@ var H5ST = /** @class */ (function () {
                             key === 'body' ? s += "".concat(key, ":").concat(CryptoJS.SHA256(body[key]).toString(CryptoJS.enc.Hex), "&") : s += "".concat(key, ":").concat(body[key], "&");
                         }
                         s = s.slice(0, -1);
-                        return [4 /*yield*/, axios_1["default"].post("".concat(this.api, "/h5st"), { s: s, y: y, iosVer: this.iosVer, pin: this.pin, fp: this.fp })];
+                        return [4 /*yield*/, axios_1.default.post("".concat(this.api, "/h5st"), { s: s, y: y, iosVer: this.iosVer, pin: this.pin, fp: this.fp })];
                     case 1:
                         data = (_b.sent()).data;
                         return [2 /*return*/, encodeURIComponent("".concat(this.timestamp, ";").concat(this.fp, ";").concat(this.appId.toString(), ";").concat(this.tk, ";").concat(data.s, ";3.1;").concat(this.time.toString(), ";").concat(data.u))];

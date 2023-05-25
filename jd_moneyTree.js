@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = require("axios");
 var TS_USER_AGENTS_1 = require("./TS_USER_AGENTS");
 var cookie = '', res = '', UserName, index;
@@ -66,7 +66,7 @@ var cookie = '', res = '', UserName, index;
                         "sdkToken": "",
                         "token": "",
                         "jstub": "",
-                        "appType": "2"
+                        "appType": "2",
                     }
                 };
                 body.riskDeviceParam = JSON.stringify(body.riskDeviceParam);
@@ -272,9 +272,9 @@ function api(fn, body) {
                     else {
                         body = encodeURIComponent(JSON.stringify(body));
                     }
-                    return [4 /*yield*/, axios_1["default"].post("https://ms.jr.jd.com/gw/generic/uc/h5/m/".concat(fn, "?_=").concat(Date.now() * 1000), "reqData=".concat(body), {
+                    return [4 /*yield*/, axios_1.default.post("https://ms.jr.jd.com/gw/generic/uc/h5/m/".concat(fn, "?_=").concat(Date.now() * 1000), "reqData=".concat(body), {
                             headers: {
-                                'User-Agent': TS_USER_AGENTS_1["default"],
+                                'User-Agent': TS_USER_AGENTS_1.default,
                                 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
                                 'Origin': 'https://uua.jr.jd.com',
                                 'Host': 'ms.jr.jd.com',
@@ -297,7 +297,7 @@ function mission(fn, reqData, referer) {
             switch (_a.label) {
                 case 0:
                     url = 'https://ms.jr.jd.com/gw/generic/mission/h5/m/' + fn + '?reqData=' + reqData;
-                    return [4 /*yield*/, axios_1["default"].get(url, {
+                    return [4 /*yield*/, axios_1.default.get(url, {
                             headers: {
                                 'Host': 'ms.jr.jd.com',
                                 'Origin': referer.split('.com/')[0] + '.com',

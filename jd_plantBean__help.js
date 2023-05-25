@@ -65,7 +65,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     }
     return to.concat(ar || Array.prototype.slice.call(from));
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var TS_JDHelloWorld_1 = require("./TS_JDHelloWorld");
 var h5st_pro_1 = require("./utils/h5st_pro");
 var Jd_plantBean__help = /** @class */ (function (_super) {
@@ -114,7 +114,7 @@ var Jd_plantBean__help = /** @class */ (function (_super) {
                             'body': JSON.stringify(body),
                             'client': 'apple',
                             'clientVersion': '11.3.6',
-                            'functionId': fn
+                            'functionId': fn,
                         })];
                     case 1:
                         h5st = _a.sent();
@@ -122,7 +122,7 @@ var Jd_plantBean__help = /** @class */ (function (_super) {
                                 'Host': 'api.m.jd.com',
                                 'User-Agent': this.user.UserAgent,
                                 'Referer': 'https://plantearth.m.jd.com/',
-                                'Cookie': this.user.cookie
+                                'Cookie': this.user.cookie,
                             })];
                     case 2:
                         data = _a.sent();

@@ -50,7 +50,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var TS_JDHelloWorld_1 = require("./TS_JDHelloWorld");
 var h5st_3_1_1 = require("./utils/h5st_3.1");
 var TS_USER_AGENTS_1 = require("./TS_USER_AGENTS");
@@ -95,7 +95,7 @@ var Cfd = /** @class */ (function (_super) {
                             'g_login_type': '1',
                             'callback': "jsonpCBK".concat(this.getRandomWord()),
                             'g_ty': 'ls',
-                            'appCode': 'msd1188198'
+                            'appCode': 'msd1188198',
                         };
                         Object.assign(body, obj);
                         this._ombfd ? body['_imbfd'] = this._ombfd : '';
@@ -157,7 +157,7 @@ var Cfd = /** @class */ (function (_super) {
                                 'strPhoneID': this.token.strPhoneID,
                                 'strPgUUNum': this.token.strPgUUNum,
                                 'strVersion': '1.0.1',
-                                'dwIsReJoin': '0'
+                                'dwIsReJoin': '0',
                             })];
                     case 2:
                         res = _j.sent();
@@ -185,7 +185,7 @@ var Cfd = /** @class */ (function (_super) {
                         _i++;
                         return [3 /*break*/, 4];
                     case 8: return [4 /*yield*/, this.api('story/querystorageroom', {
-                            _stk: '_cfd_t,_imbfd,bizCode,dwEnv,ptag,source,strDeviceId,strZone'
+                            _stk: '_cfd_t,_imbfd,bizCode,dwEnv,ptag,source,strDeviceId,strZone',
                         })];
                     case 9:
                         // 背包
@@ -198,7 +198,7 @@ var Cfd = /** @class */ (function (_super) {
                         return [4 /*yield*/, this.api('story/sellgoods', {
                                 _stk: '_cfd_t,_imbfd,bizCode,dwEnv,dwSceneId,ptag,source,strDeviceId,strTypeCnt,strZone',
                                 dwSceneId: '1',
-                                strTypeCnt: "".concat(t.dwType, ":").concat(t.dwCount)
+                                strTypeCnt: "".concat(t.dwType, ":").concat(t.dwCount),
                             })];
                     case 11:
                         data = _j.sent();
@@ -211,7 +211,7 @@ var Cfd = /** @class */ (function (_super) {
                         _c++;
                         return [3 /*break*/, 10];
                     case 14: return [4 /*yield*/, this.api('story/queryshell', {
-                            _stk: '_cfd_t,_imbfd,bizCode,dwEnv,ptag,source,strDeviceId,strZone'
+                            _stk: '_cfd_t,_imbfd,bizCode,dwEnv,ptag,source,strDeviceId,strZone',
                         })];
                     case 15:
                         // 贝壳

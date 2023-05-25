@@ -64,7 +64,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     }
     return to.concat(ar || Array.prototype.slice.call(from));
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var TS_JDHelloWorld_1 = require("./TS_JDHelloWorld");
 var h5st_1 = require("./utils/h5st");
 var date_fns_1 = require("date-fns");
@@ -115,7 +115,7 @@ var Jd_fruit = /** @class */ (function (_super) {
                             'body': JSON.stringify(body),
                             'client': 'iOS',
                             'clientVersion': '11.3.0',
-                            'functionId': fn
+                            'functionId': fn,
                         });
                         return [4 /*yield*/, this.get("https://api.m.jd.com/client.action?functionId=".concat(fn, "&body=").concat(encodeURIComponent(JSON.stringify(body)), "&appid=signed_wh5&timestamp=").concat(timestamp, "&client=iOS&clientVersion=11.3.0&h5st=").concat(h5st), {
                                 'Host': 'api.m.jd.com',

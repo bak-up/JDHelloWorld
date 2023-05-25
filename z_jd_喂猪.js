@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = require("axios");
 var TS_USER_AGENTS_1 = require("./TS_USER_AGENTS");
 var cookie = '', res = '', UserName, index;
@@ -150,13 +150,13 @@ function api(fn, body) {
         var data;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, axios_1["default"].post("https://ms.jr.jd.com/gw/generic/uc/h5/m/".concat(fn, "?_=").concat(Date.now()), "reqData=".concat(encodeURIComponent(JSON.stringify(body))), {
+                case 0: return [4 /*yield*/, axios_1.default.post("https://ms.jr.jd.com/gw/generic/uc/h5/m/".concat(fn, "?_=").concat(Date.now()), "reqData=".concat(encodeURIComponent(JSON.stringify(body))), {
                         headers: {
                             'Host': 'ms.jr.jd.com',
                             'Accept': 'application/json',
                             'Accept-Language': 'zh-CN,zh-Hans;q=0.9',
                             'Origin': 'https://u.jr.jd.com',
-                            'User-Agent': TS_USER_AGENTS_1["default"],
+                            'User-Agent': TS_USER_AGENTS_1.default,
                             'Referer': 'https://u.jr.jd.com/',
                             'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
                             'Cookie': cookie

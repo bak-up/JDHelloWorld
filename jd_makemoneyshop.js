@@ -75,7 +75,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     }
     return to.concat(ar || Array.prototype.slice.call(from));
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var TS_JDHelloWorld_1 = require("./TS_JDHelloWorld");
 var h5st_pro_1 = require("./utils/h5st_pro");
 var Jd_makemoneyshop = /** @class */ (function (_super) {
@@ -139,7 +139,7 @@ var Jd_makemoneyshop = /** @class */ (function (_super) {
                             'body': JSON.stringify(body),
                             'client': 'jxh5',
                             'clientVersion': '1.2.5',
-                            'functionId': fn
+                            'functionId': fn,
                         })];
                     case 1:
                         h5st = _a.sent();

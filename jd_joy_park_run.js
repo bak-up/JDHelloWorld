@@ -56,7 +56,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var h5st_pro_1 = require("./utils/h5st_pro");
 var date_fns_1 = require("date-fns");
 var TS_JDHelloWorld_1 = require("./TS_JDHelloWorld");
@@ -141,7 +141,7 @@ var Joy_Park_Run = /** @class */ (function (_super) {
                                 'cookie': this.user.cookie,
                                 'origin': 'https://h5platform.jd.com',
                                 'referer': 'https://h5platform.jd.com/',
-                                'User-Agent': this.user.UserAgent
+                                'User-Agent': this.user.UserAgent,
                             })];
                     case 3: return [2 /*return*/, _a.sent()];
                 }

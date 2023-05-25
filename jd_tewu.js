@@ -48,7 +48,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     }
     return to.concat(ar || Array.prototype.slice.call(from));
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var TS_USER_AGENTS_1 = require("./TS_USER_AGENTS");
 var path = require("path");
 var cookie = '', UserName = '', res = '', message = '', shareCodes = [], shareCodesSelf = [], shareCodesHW = [], black = [];
@@ -290,7 +290,7 @@ function api(fn, body) {
                 case 0: return [4 /*yield*/, (0, TS_USER_AGENTS_1.post)("https://api.m.jd.com/?uuid=&client=wh5&appid=ProductZ4Brand&functionId=".concat(fn, "&t=").concat(Date.now(), "&body=").concat(encodeURIComponent(JSON.stringify(body))), '', {
                         'Host': 'api.m.jd.com',
                         'Origin': 'https://pro.m.jd.com',
-                        'User-Agent': TS_USER_AGENTS_1["default"],
+                        'User-Agent': TS_USER_AGENTS_1.default,
                         'Referer': 'https://pro.m.jd.com/',
                         'Cookie': cookie
                     })];

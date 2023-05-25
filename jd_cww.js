@@ -61,7 +61,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var TS_JDHelloWorld_1 = require("./TS_JDHelloWorld");
 var h5st_pro_1 = require("./utils/h5st_pro");
 var JDJRValidator = require("./utils/validate_single");
@@ -125,7 +125,7 @@ var Cww = /** @class */ (function (_super) {
                                 'Origin': 'https://h5.m.jd.com',
                                 'Cookie': this.user.cookie,
                                 'User-Agent': this.user.UserAgent,
-                                'Referer': 'https://h5.m.jd.com/'
+                                'Referer': 'https://h5.m.jd.com/',
                             })];
                     case 2:
                         beforeApiRes = _b.sent();
@@ -165,7 +165,7 @@ var Cww = /** @class */ (function (_super) {
                                 'Origin': 'https://h5.m.jd.com',
                                 'Cookie': this.user.cookie,
                                 'User-Agent': this.user.UserAgent,
-                                'Referer': 'https://h5.m.jd.com/'
+                                'Referer': 'https://h5.m.jd.com/',
                             })];
                     case 2:
                         res = _a.sent();

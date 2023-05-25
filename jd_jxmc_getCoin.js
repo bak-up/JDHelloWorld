@@ -39,7 +39,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = require("axios");
 var path = require("path");
 var TS_USER_AGENTS_1 = require("./TS_USER_AGENTS");
@@ -156,7 +156,7 @@ function api(fn, stk, params) {
                     _c.label = 1;
                 case 1:
                     _c.trys.push([1, 3, , 4]);
-                    return [4 /*yield*/, axios_1["default"].get(url, {
+                    return [4 /*yield*/, axios_1.default.get(url, {
                             headers: {
                                 'Host': 'm.jingxi.com',
                                 'Accept': '*/*',

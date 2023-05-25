@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = require("axios");
 var TS_USER_AGENTS_1 = require("./TS_USER_AGENTS");
 var cookie = '', UserName = '', elements;
@@ -54,12 +54,12 @@ var cookie = '', UserName = '', elements;
                 cookie = value;
                 UserName = decodeURIComponent(cookie.match(/pt_pin=([^;]*)/)[1]);
                 console.log("\n\u5F00\u59CB\u3010\u4EAC\u4E1C\u8D26\u53F7".concat(index + 1, "\u3011").concat(UserName, "\n"));
-                axios_1["default"].get("https://api.m.jd.com/?t=".concat(Date.now(), "&functionId=pg_channel_page_data&appid=vip_h5&body=%7B%22paramData%22:%7B%22token%22:%2260143dce-1cde-44de-8130-a6e5579e1567%22%7D%7D"), {
+                axios_1.default.get("https://api.m.jd.com/?t=".concat(Date.now(), "&functionId=pg_channel_page_data&appid=vip_h5&body=%7B%22paramData%22:%7B%22token%22:%2260143dce-1cde-44de-8130-a6e5579e1567%22%7D%7D"), {
                     headers: {
                         'Host': 'api.m.jd.com',
                         'Origin': 'https://vipgrowth.m.jd.com',
                         'Accept': 'application/json',
-                        'User-Agent': TS_USER_AGENTS_1["default"],
+                        'User-Agent': TS_USER_AGENTS_1.default,
                         'Accept-Language': 'zh-CN,zh-Hans;q=0.9',
                         'Referer': 'https://vipgrowth.m.jd.com/',
                         'Cookie': cookie
@@ -75,7 +75,7 @@ var cookie = '', UserName = '', elements;
                         }
                     }
                     console.log('更新时间', res.data.floorInfoList[0].floorData.jxScoreInfo.lastUpdateTime);
-                })["catch"](function (err) {
+                }).catch(function (err) {
                     console.log(err);
                 });
                 return [4 /*yield*/, (0, TS_USER_AGENTS_1.wait)(3000)];

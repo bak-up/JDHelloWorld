@@ -55,7 +55,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var h5st_pro_1 = require("./utils/h5st_pro");
 var TS_JDHelloWorld_1 = require("./TS_JDHelloWorld");
 var Jd_wechat_sign = /** @class */ (function (_super) {
@@ -105,7 +105,7 @@ var Jd_wechat_sign = /** @class */ (function (_super) {
                             body: JSON.stringify(body),
                             client: "android",
                             clientVersion: "7.22.240",
-                            functionId: signComponent
+                            functionId: signComponent,
                         })];
                     case 1:
                         h5st = _a.sent();
