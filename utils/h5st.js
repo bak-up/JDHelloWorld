@@ -36,72 +36,25 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.H5ST = void 0;
+exports.getH5ST = void 0;
 var axios_1 = require("axios");
-var date_fns_1 = require("date-fns");
-var CryptoJS = require("crypto-js");
-var H5ST = /** @class */ (function () {
-    function H5ST(appId, ua, fp) {
-        this.appId = appId;
-        this.ua = ua;
-        this.fp = fp || this.__genFp();
-    }
-    H5ST.prototype.__genFp = function () {
-        var e = "0123456789";
-        var a = 13;
-        var i = '';
-        for (; a--;)
-            i += e[Math.random() * e.length | 0];
-        return (i + Date.now()).slice(0, 16);
-    };
-    H5ST.prototype.__genAlgo = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var data;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        this.time = Date.now();
-                        this.timestamp = (0, date_fns_1.format)(this.time, "yyyyMMddHHmmssSSS");
-                        return [4 /*yield*/, axios_1.default.post("https://cactus.jd.com/request_algo?g_ty=ajax", {
-                                'version': '3.0',
-                                'fp': this.fp,
-                                'appId': this.appId.toString(),
-                                'timestamp': this.time,
-                                'platform': 'web',
-                                'expandParams': ''
-                            }, {
-                                headers: {
-                                    'Host': 'cactus.jd.com',
-                                    'accept': 'application/json',
-                                    'content-type': 'application/json',
-                                    'user-agent': this.ua,
-                                }
-                            })];
-                    case 1:
-                        data = (_a.sent()).data;
-                        this.tk = data.data.result.tk;
-                        this.rd = data.data.result.algo.match(/rd='(.*)'/)[1];
-                        this.enc = data.data.result.algo.match(/algo\.(.*)\(/)[1];
-                        return [2 /*return*/];
-                }
-            });
+function getH5ST(fn, body, appid, fp, ua) {
+    return __awaiter(this, void 0, void 0, function () {
+        var data;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, axios_1.default.post('https://sharecodepool.cnmb.win/api/h5st', {
+                        fn: fn,
+                        body: body,
+                        appid: appid,
+                        fp: fp,
+                        ua: ua
+                    })];
+                case 1:
+                    data = (_a.sent()).data;
+                    return [2 /*return*/, data];
+            }
         });
-    };
-    H5ST.prototype.__genKey = function (tk, fp, ts, ai, algo) {
-        var str = "".concat(tk).concat(fp).concat(ts).concat(ai).concat(this.rd);
-        return algo[this.enc](str, tk);
-    };
-    H5ST.prototype.__genH5st = function (body) {
-        var y = this.__genKey(this.tk, this.fp, this.timestamp, this.appId, CryptoJS).toString(CryptoJS.enc.Hex);
-        var s = '';
-        for (var _i = 0, _a = Object.keys(body); _i < _a.length; _i++) {
-            var key = _a[_i];
-            key === 'body' ? s += "".concat(key, ":").concat(CryptoJS.SHA256(body[key]).toString(CryptoJS.enc.Hex), "&") : s += "".concat(key, ":").concat(body[key], "&");
-        }
-        s = s.slice(0, -1);
-        s = CryptoJS.HmacSHA256(s, y).toString(CryptoJS.enc.Hex);
-        return encodeURIComponent("".concat(this.timestamp, ";").concat(this.fp, ";").concat(this.appId.toString(), ";").concat(this.tk, ";").concat(s, ";3.0;").concat(this.time.toString()));
-    };
-    return H5ST;
-}());
-exports.H5ST = H5ST;
+    });
+}
+exports.getH5ST = getH5ST;
