@@ -132,7 +132,7 @@ var Jd_Cash = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 6, , 8]);
+                        _a.trys.push([0, 6, , 7]);
                         this.user = user;
                         this.h5stTool = new h5st_pro_1.H5ST("c8815", this.user.UserAgent, this.fp, 'https://servicewechat.com/wx91d27dbf599dff74/707/page-frame.html', 'https://servicewechat.com', this.user.UserName);
                         return [4 /*yield*/, this.h5stTool.__genAlgo()];
@@ -159,7 +159,7 @@ var Jd_Cash = /** @class */ (function (_super) {
                     case 3:
                         res = _a.sent();
                         console.log('收到助力', res.data.result.assistDetail[0].assistResult.length);
-                        if (!1) return [3 /*break*/, 5];
+                        if (!(res.data.result.signedStatus !== 1)) return [3 /*break*/, 5];
                         console.log('签到');
                         return [4 /*yield*/, this.api('cash_mob_sign', { "version": "1", "channel": "applet", "remind": 0 })];
                     case 4:
@@ -171,43 +171,42 @@ var Jd_Cash = /** @class */ (function (_super) {
                             this.o2s(res, '签到失败');
                         }
                         _a.label = 5;
-                    case 5: return [3 /*break*/, 8];
+                    case 5: return [3 /*break*/, 7];
                     case 6:
                         e_1 = _a.sent();
                         console.log(e_1.message);
-                        return [4 /*yield*/, this.wait(5000)];
-                    case 7:
+                        return [3 /*break*/, 7];
+                    case 7: return [4 /*yield*/, this.wait(15000)];
+                    case 8:
                         _a.sent();
-                        return [3 /*break*/, 8];
-                    case 8: return [2 /*return*/];
+                        return [2 /*return*/];
                 }
             });
         });
     };
     Jd_Cash.prototype.help = function (users) {
-        var _a;
         return __awaiter(this, void 0, void 0, function () {
-            var res, temp, shareCodeHW, _i, temp_1, t, _b, users_1, user, shareCode, _c, shareCode_1, code, e_2;
-            return __generator(this, function (_d) {
-                switch (_d.label) {
+            var res, temp, shareCodeHW, _i, temp_1, t, _a, users_1, user, shareCode, _b, shareCode_1, code, e_2;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
                     case 0:
                         this.o2s(this.shareCodeSelf, '内部助力');
                         return [4 /*yield*/, this.getshareCodeHW('cash')];
                     case 1:
-                        temp = _d.sent();
+                        temp = _c.sent();
                         shareCodeHW = [];
                         for (_i = 0, temp_1 = temp; _i < temp_1.length; _i++) {
                             t = temp_1[_i];
                             shareCodeHW.push({ inviteCode: t.inviteCode, shareDate: t.shareDate });
                         }
-                        _b = 0, users_1 = users;
-                        _d.label = 2;
+                        _a = 0, users_1 = users;
+                        _c.label = 2;
                     case 2:
-                        if (!(_b < users_1.length)) return [3 /*break*/, 12];
-                        user = users_1[_b];
-                        _d.label = 3;
+                        if (!(_a < users_1.length)) return [3 /*break*/, 14];
+                        user = users_1[_a];
+                        _c.label = 3;
                     case 3:
-                        _d.trys.push([3, 10, , 11]);
+                        _c.trys.push([3, 10, , 11]);
                         this.user = user;
                         shareCode = void 0;
                         if (user.index === 0)
@@ -217,38 +216,47 @@ var Jd_Cash = /** @class */ (function (_super) {
                         this.h5stTool = new h5st_pro_1.H5ST("c8815", this.user.UserAgent, this.fp, 'https://servicewechat.com/wx91d27dbf599dff74/707/page-frame.html', 'https://servicewechat.com', this.user.UserName);
                         return [4 /*yield*/, this.h5stTool.__genAlgo()];
                     case 4:
-                        _d.sent();
-                        _c = 0, shareCode_1 = shareCode;
-                        _d.label = 5;
+                        _c.sent();
+                        _b = 0, shareCode_1 = shareCode;
+                        _c.label = 5;
                     case 5:
-                        if (!(_c < shareCode_1.length)) return [3 /*break*/, 9];
-                        code = shareCode_1[_c];
+                        if (!(_b < shareCode_1.length)) return [3 /*break*/, 9];
+                        code = shareCode_1[_b];
                         console.log("\u8D26\u53F7".concat(user.index + 1, " ").concat(user.UserName, " \u53BB\u52A9\u529B ").concat(code.inviteCode));
                         return [4 /*yield*/, this.api('cash_qr_code_assist', { "version": "1", "channel": "applet", "type": 2, "inviteCode": code.inviteCode, "shareDate": code.shareDate, "lng": "", "lat": "" })];
                     case 6:
-                        res = _d.sent();
-                        if (((_a = res.data) === null || _a === void 0 ? void 0 : _a.bizCode) === 0) {
+                        res = _c.sent();
+                        if (res.data.bizCode === 0) {
                             console.log('助力成功');
+                            return [3 /*break*/, 9];
+                        }
+                        else if (res.data.bizCode === 207) {
+                            console.log('上限');
+                            return [3 /*break*/, 9];
                         }
                         else {
                             this.o2s(res, '助力结果');
                         }
-                        return [4 /*yield*/, this.wait(3000)];
+                        return [4 /*yield*/, this.wait(15000)];
                     case 7:
-                        _d.sent();
-                        _d.label = 8;
+                        _c.sent();
+                        _c.label = 8;
                     case 8:
-                        _c++;
+                        _b++;
                         return [3 /*break*/, 5];
                     case 9: return [3 /*break*/, 11];
                     case 10:
-                        e_2 = _d.sent();
+                        e_2 = _c.sent();
                         console.log(e_2);
                         return [3 /*break*/, 11];
-                    case 11:
-                        _b++;
+                    case 11: return [4 /*yield*/, this.wait(15000)];
+                    case 12:
+                        _c.sent();
+                        _c.label = 13;
+                    case 13:
+                        _a++;
                         return [3 /*break*/, 2];
-                    case 12: return [2 /*return*/];
+                    case 14: return [2 /*return*/];
                 }
             });
         });
