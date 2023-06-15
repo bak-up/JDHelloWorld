@@ -72,8 +72,29 @@ var Jd_dwapp = /** @class */ (function (_super) {
             });
         });
     };
+    Jd_dwapp.prototype.getTaskList = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.post('https://api.m.jd.com/api?functionId=dwapp_task_dwList', new URLSearchParams({
+                            'appid': 'h5-sep',
+                            'functionId': 'dwapp_task_dwList',
+                            'body': JSON.stringify(this.getEncStr('dwapp_task_dwList', {})),
+                            'client': 'm',
+                            'clientVersion': '6.0.0'
+                        }), {
+                            'Host': 'api.m.jd.com',
+                            'Cookie': this.user.cookie,
+                            'Origin': 'https://prodev.m.jd.com',
+                            'Referer': 'https://prodev.m.jd.com/mall/active/eEcYM32eezJB7YX4SBihziJCiGV/index.html',
+                            'user-agent': this.user.UserAgent
+                        })];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
     Jd_dwapp.prototype.api = function (fn, body) {
-        if (body === void 0) { body = {}; }
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -86,10 +107,10 @@ var Jd_dwapp = /** @class */ (function (_super) {
                         _a.sent();
                         return [4 /*yield*/, this.post("https://dwapp.jd.com/user/".concat(fn), JSON.stringify(body), {
                                 'Host': 'dwapp.jd.com',
-                                'Cookie': this.cookie,
+                                'Cookie': this.user.cookie,
                                 'content-type': 'application/json',
                                 'origin': 'https://prodev.m.jd.com',
-                                'user-agent': 'jdapp;',
+                                'user-agent': this.user.UserAgent,
                                 'referer': 'https://prodev.m.jd.com/'
                             })];
                     case 2: return [2 /*return*/, _a.sent()];
@@ -104,12 +125,12 @@ var Jd_dwapp = /** @class */ (function (_super) {
             return __generator(this, function (_f) {
                 switch (_f.label) {
                     case 0:
-                        this.cookie = user.cookie;
-                        return [4 /*yield*/, this.api('dwSignInfo')];
+                        this.user = user;
+                        return [4 /*yield*/, this.api('dwSignInfo', {})];
                     case 1:
                         res = _f.sent();
                         if (!(res.data.signInfo.signStatus === 0)) return [3 /*break*/, 3];
-                        return [4 /*yield*/, this.api('dwSign')];
+                        return [4 /*yield*/, this.api('dwSign', {})];
                     case 2:
                         res = _f.sent();
                         console.log('签到成功', res.data.signInfo.signNum);
@@ -117,7 +138,7 @@ var Jd_dwapp = /** @class */ (function (_super) {
                     case 3:
                         console.log('已签到');
                         _f.label = 4;
-                    case 4: return [4 /*yield*/, this.api('dwList')];
+                    case 4: return [4 /*yield*/, this.getTaskList()];
                     case 5:
                         res = _f.sent();
                         _i = 0, _c = res.data;
@@ -126,7 +147,7 @@ var Jd_dwapp = /** @class */ (function (_super) {
                         if (!(_i < _c.length)) return [3 /*break*/, 10];
                         t = _c[_i];
                         if (!(t.viewStatus === 0)) return [3 /*break*/, 9];
-                        return [4 /*yield*/, this.api('dwRecord', { id: t.id, "taskType": t.taskType, "agentNum": "m", "followChannelStatus": "", })];
+                        return [4 /*yield*/, this.api('dwRecord', { id: t.id, "taskType": t.taskType, "agentNum": "m", "followChannelStatus": "" })];
                     case 7:
                         res = _f.sent();
                         console.log(res.msg);
@@ -138,7 +159,7 @@ var Jd_dwapp = /** @class */ (function (_super) {
                     case 9:
                         _i++;
                         return [3 /*break*/, 6];
-                    case 10: return [4 /*yield*/, this.api('dwList')];
+                    case 10: return [4 /*yield*/, this.getTaskList()];
                     case 11:
                         res = _f.sent();
                         _d = 0, _e = res.data;

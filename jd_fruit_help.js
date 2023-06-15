@@ -114,87 +114,112 @@ var Jd_fruit_help = /** @class */ (function (_super) {
         });
     };
     Jd_fruit_help.prototype.main = function (user) {
+        var _a;
         return __awaiter(this, void 0, void 0, function () {
             var res, e_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
+            return __generator(this, function (_b) {
+                switch (_b.label) {
                     case 0:
-                        _a.trys.push([0, 2, , 3]);
+                        _b.trys.push([0, 2, , 3]);
                         this.user = user;
-                        this.user.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS ".concat(this.getIosVer(), " like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.37(0x1800252c) NetType/WIFI Language/zh_CN");
+                        this.user.UserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36 MicroMessenger/6.8.0(0x16080000) NetType/WIFI MiniProgramEnv/Mac MacWechat/WMPF XWEB/30515";
                         res = void 0;
-                        return [4 /*yield*/, this.api('initForFarm', { "PATH": "1", "PTAG": "", "ptag": "", "navStart": "", "referer": "http://wq.jd.com/wxapp/pages/index/index", "originUrl": "/pages/farm/pages/index/index", "originParams": { "ptag": "" }, "originOpts": {}, "imageUrl": "", "nickName": "", "version": 22, "channel": 2, "babelChannel": 0, "lat": "", "lng": "" })];
+                        return [4 /*yield*/, this.api('initForFarm', { "PATH": "1", "PTAG": "", "ptag": "", "navStart": new Date().toISOString(), "referer": "http://wq.jd.com/wxapp/pages/index/index", "originUrl": "/pages/farm/pages/index/index", "originParams": { "ptag": "" }, "originOpts": {}, "imageUrl": "", "nickName": "", "version": 22, "channel": 2, "babelChannel": 0, "lat": "", "lng": "" })];
                     case 1:
-                        // this.h5stTool = new H5ST('235ec', this.fp, this.user.UserAgent)
-                        res = _a.sent();
-                        console.log('助力码', res.farmUserPro.shareCode);
-                        this.shareCodeSelf.push(res.farmUserPro.shareCode);
+                        res = _b.sent();
+                        if ((_a = res === null || res === void 0 ? void 0 : res.farmUserPro) === null || _a === void 0 ? void 0 : _a.shareCode) {
+                            console.log('助力码', res.farmUserPro.shareCode);
+                            this.shareCodeSelf.push(res.farmUserPro.shareCode);
+                        }
+                        else {
+                            console.log('获取助力码失败');
+                        }
                         return [3 /*break*/, 3];
                     case 2:
-                        e_1 = _a.sent();
+                        e_1 = _b.sent();
                         console.log('error', e_1.message);
                         return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
+                    case 3: return [4 /*yield*/, this.wait(15000)];
+                    case 4:
+                        _b.sent();
+                        return [2 /*return*/];
                 }
             });
         });
     };
     Jd_fruit_help.prototype.help = function (users) {
+        var _a;
         return __awaiter(this, void 0, void 0, function () {
-            var res, _i, users_1, user, shareCodePool, shareCode, _a, shareCode_1, code, e_2, e_3;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
+            var res, _i, users_1, user, shareCodePool, shareCode, _b, shareCode_1, code, e_2, e_3;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
                     case 0:
                         _i = 0, users_1 = users;
-                        _b.label = 1;
+                        _c.label = 1;
                     case 1:
                         if (!(_i < users_1.length)) return [3 /*break*/, 16];
                         user = users_1[_i];
-                        _b.label = 2;
+                        _c.label = 2;
                     case 2:
-                        _b.trys.push([2, 12, , 13]);
+                        _c.trys.push([2, 12, , 13]);
                         this.user = user;
-                        this.user.UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS ".concat(this.getIosVer(), " like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.37(0x1800252c) NetType/WIFI Language/zh_CN");
                         return [4 /*yield*/, this.getShareCodePool('farm', 50)];
                     case 3:
-                        shareCodePool = _b.sent();
+                        shareCodePool = _c.sent();
                         shareCode = __spreadArray(__spreadArray([], this.shareCodeSelf, true), shareCodePool, true);
-                        _a = 0, shareCode_1 = shareCode;
-                        _b.label = 4;
+                        _b = 0, shareCode_1 = shareCode;
+                        _c.label = 4;
                     case 4:
-                        if (!(_a < shareCode_1.length)) return [3 /*break*/, 11];
-                        code = shareCode_1[_a];
-                        _b.label = 5;
+                        if (!(_b < shareCode_1.length)) return [3 /*break*/, 11];
+                        code = shareCode_1[_b];
+                        _c.label = 5;
                     case 5:
-                        _b.trys.push([5, 7, , 8]);
+                        _c.trys.push([5, 7, , 8]);
                         console.log("\u8D26\u53F7".concat(user.index + 1, " ").concat(user.UserName, " \u53BB\u52A9\u529B ").concat(code, " ").concat(this.shareCodeSelf.includes(code) ? '*内部*' : ''));
-                        return [4 /*yield*/, this.api('initForFarm', { "ad_od": "share", "mpin": "", "shareCode": code, "utm_campaign": "t_335139774", "utm_medium": "appshare", "utm_source": "androidapp", "utm_term": "Wxfriends", "imageUrl": "", "nickName": "", "version": 22, "channel": 2, "babelChannel": 0, "lat": "", "lng": "" })];
+                        return [4 /*yield*/, this.get("https://api.m.jd.com/client.action?functionId=initForFarm&body=".concat(encodeURIComponent(JSON.stringify({
+                                imageUrl: "",
+                                nickName: "",
+                                shareCode: code,
+                                babelChannel: "3",
+                                version: 2,
+                                channel: 1
+                            })), "&appid=wh5"), {
+                                "Host": "api.m.jd.com",
+                                "Accept": "*/*",
+                                "Origin": "https://carry.m.jd.com",
+                                "Accept-Encoding": "gzip, deflate, br",
+                                "User-Agent": this.user.UserAgent,
+                                "Accept-Language": "zh-CN,zh-Hans;q=0.9",
+                                "Referer": "https://carry.m.jd.com/",
+                                "Cookie": this.user.cookie
+                            })];
                     case 6:
-                        res = _b.sent();
-                        this.o2s(res.helpResult);
-                        if (res.remainTimes === 0)
+                        // res = await this.api('initForFarm', {"ad_od": "share", "mpin": "", "shareCode": code, "utm_campaign": "t_335139774", "utm_medium": "appshare", "utm_source": "androidapp", "utm_term": "Wxfriends", "imageUrl": "", "nickName": "", "version": 22, "channel": 2, "babelChannel": 0, "lat": "", "lng": ""})
+                        res = _c.sent();
+                        this.o2s(res);
+                        if (((_a = res === null || res === void 0 ? void 0 : res.helpResult) === null || _a === void 0 ? void 0 : _a.remainTimes) === 0)
                             return [3 /*break*/, 11];
                         return [3 /*break*/, 8];
                     case 7:
-                        e_2 = _b.sent();
+                        e_2 = _c.sent();
                         console.log(e_2.message);
                         return [3 /*break*/, 8];
-                    case 8: return [4 /*yield*/, this.wait(15000)];
+                    case 8: return [4 /*yield*/, this.wait(30000)];
                     case 9:
-                        _b.sent();
-                        _b.label = 10;
+                        _c.sent();
+                        _c.label = 10;
                     case 10:
-                        _a++;
+                        _b++;
                         return [3 /*break*/, 4];
                     case 11: return [3 /*break*/, 13];
                     case 12:
-                        e_3 = _b.sent();
+                        e_3 = _c.sent();
                         console.log(e_3);
                         return [3 /*break*/, 13];
                     case 13: return [4 /*yield*/, this.wait(60000)];
                     case 14:
-                        _b.sent();
-                        _b.label = 15;
+                        _c.sent();
+                        _c.label = 15;
                     case 15:
                         _i++;
                         return [3 /*break*/, 1];
