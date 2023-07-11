@@ -138,7 +138,7 @@ var Jd_plantBean__help = /** @class */ (function (_super) {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 4]);
-                        return [4 /*yield*/, this.get("https://sharecodepool.cnmb.win/api/runTimes0917?activityId=bean&sharecode=".concat(code))];
+                        return [4 /*yield*/, this.get("http://sharecodepool.cnmb.pw/api/runTimes0917?activityId=bean&sharecode=".concat(code))];
                     case 1:
                         data = _a.sent();
                         console.log(data);

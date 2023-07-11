@@ -43,7 +43,7 @@ function getH5ST(fn, body, appid, fp, ua) {
         var data;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, axios_1.default.post('https://sharecodepool.cnmb.win/api/h5st', {
+                case 0: return [4 /*yield*/, axios_1.default.post('http://sharecodepool.cnmb.win/api/h5st', {
                         fn: fn,
                         body: body,
                         appid: appid,
