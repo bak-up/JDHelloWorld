@@ -72,111 +72,100 @@ var Jd_dwapp = /** @class */ (function (_super) {
             });
         });
     };
-    Jd_dwapp.prototype.getTaskList = function () {
+    Jd_dwapp.prototype.api = function (fn, body) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.post('https://api.m.jd.com/api?functionId=dwapp_task_dwList', new URLSearchParams({
+                    case 0: return [4 /*yield*/, this.post("https://api.m.jd.com/api?functionId=".concat(fn), new URLSearchParams({
                             'appid': 'h5-sep',
-                            'functionId': 'dwapp_task_dwList',
-                            'body': JSON.stringify(this.getEncStr('dwapp_task_dwList', {})),
+                            'functionId': fn,
+                            'body': JSON.stringify(this.getEncStr(fn, body)),
                             'client': 'm',
                             'clientVersion': '6.0.0'
                         }), {
                             'Host': 'api.m.jd.com',
-                            'Cookie': this.user.cookie,
                             'Origin': 'https://prodev.m.jd.com',
+                            'User-Agent': this.user.UserAgent,
                             'Referer': 'https://prodev.m.jd.com/mall/active/eEcYM32eezJB7YX4SBihziJCiGV/index.html',
-                            'user-agent': this.user.UserAgent
+                            'Cookie': this.user.cookie
                         })];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
         });
     };
-    Jd_dwapp.prototype.api = function (fn, body) {
+    Jd_dwapp.prototype.task = function (fn, body) {
         return __awaiter(this, void 0, void 0, function () {
+            var url;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (['dwList', 'dwRecord', 'dwReceive'].includes(fn))
-                            fn = "task/".concat(fn);
-                        body = this.getEncStr(fn, body);
-                        return [4 /*yield*/, this.wait(2000)];
-                    case 1:
-                        _a.sent();
-                        return [4 /*yield*/, this.post("https://dwapp.jd.com/user/".concat(fn), JSON.stringify(body), {
+                        url = fn === 'dwSignInfo' ? fn : "task/".concat(fn);
+                        return [4 /*yield*/, this.post("https://dwapp.jd.com/user/".concat(url), this.getEncStr(fn, body), {
                                 'Host': 'dwapp.jd.com',
-                                'Cookie': this.user.cookie,
-                                'content-type': 'application/json',
-                                'origin': 'https://prodev.m.jd.com',
-                                'user-agent': this.user.UserAgent,
-                                'referer': 'https://prodev.m.jd.com/'
+                                'Origin': 'https://prodev.m.jd.com',
+                                'User-Agent': this.user.UserAgent,
+                                'Referer': 'https://prodev.m.jd.com/mall/active/eEcYM32eezJB7YX4SBihziJCiGV/index.html',
+                                'Cookie': this.user.cookie
                             })];
-                    case 2: return [2 /*return*/, _a.sent()];
+                    case 1: return [2 /*return*/, _a.sent()];
                 }
             });
         });
     };
     Jd_dwapp.prototype.main = function (user) {
-        var _a, _b;
+        var _a;
         return __awaiter(this, void 0, void 0, function () {
-            var res, _i, _c, t, _d, _e, t;
-            return __generator(this, function (_f) {
-                switch (_f.label) {
+            var res, _i, _b, t;
+            return __generator(this, function (_c) {
+                switch (_c.label) {
                     case 0:
                         this.user = user;
-                        return [4 /*yield*/, this.api('dwSignInfo', {})];
+                        return [4 /*yield*/, this.task('dwSignInfo', {})];
                     case 1:
-                        res = _f.sent();
-                        if (!(res.data.signInfo.signStatus === 0)) return [3 /*break*/, 3];
-                        return [4 /*yield*/, this.api('dwSign', {})];
+                        res = _c.sent();
+                        if (!(res.data.signInfo.signStatus !== 1)) return [3 /*break*/, 3];
+                        return [4 /*yield*/, this.api('DATAWALLET_USER_SIGN', {})];
                     case 2:
-                        res = _f.sent();
+                        res = _c.sent();
                         console.log('签到成功', res.data.signInfo.signNum);
                         return [3 /*break*/, 4];
                     case 3:
                         console.log('已签到');
-                        _f.label = 4;
-                    case 4: return [4 /*yield*/, this.getTaskList()];
+                        _c.label = 4;
+                    case 4: return [4 /*yield*/, this.api('dwapp_task_dwList', {})];
                     case 5:
-                        res = _f.sent();
-                        _i = 0, _c = res.data;
-                        _f.label = 6;
+                        res = _c.sent();
+                        _i = 0, _b = res.data;
+                        _c.label = 6;
                     case 6:
-                        if (!(_i < _c.length)) return [3 /*break*/, 10];
-                        t = _c[_i];
-                        if (!(t.viewStatus === 0)) return [3 /*break*/, 9];
-                        return [4 /*yield*/, this.api('dwRecord', { id: t.id, "taskType": t.taskType, "agentNum": "m", "followChannelStatus": "" })];
+                        if (!(_i < _b.length)) return [3 /*break*/, 13];
+                        t = _b[_i];
+                        if (!(t.viewStatus === 0)) return [3 /*break*/, 10];
+                        console.log(t.name);
+                        return [4 /*yield*/, this.task('dwRecord', { id: t.id, "taskType": t.taskType, "agentNum": "m", "followChannelStatus": "" })];
                     case 7:
-                        res = _f.sent();
+                        res = _c.sent();
                         console.log(res.msg);
-                        return [4 /*yield*/, this.api('dwReceive', { id: t.id })];
+                        return [4 /*yield*/, this.wait(4000)];
                     case 8:
-                        res = _f.sent();
-                        console.log((_a = res === null || res === void 0 ? void 0 : res.data) === null || _a === void 0 ? void 0 : _a.giveScoreNum);
-                        _f.label = 9;
+                        _c.sent();
+                        return [4 /*yield*/, this.task('dwReceive', { id: t.id })];
                     case 9:
+                        res = _c.sent();
+                        console.log((_a = res === null || res === void 0 ? void 0 : res.data) === null || _a === void 0 ? void 0 : _a.giveScoreNum);
+                        _c.label = 10;
+                    case 10: return [4 /*yield*/, this.wait(6000)];
+                    case 11:
+                        _c.sent();
+                        _c.label = 12;
+                    case 12:
                         _i++;
                         return [3 /*break*/, 6];
-                    case 10: return [4 /*yield*/, this.getTaskList()];
-                    case 11:
-                        res = _f.sent();
-                        _d = 0, _e = res.data;
-                        _f.label = 12;
-                    case 12:
-                        if (!(_d < _e.length)) return [3 /*break*/, 15];
-                        t = _e[_d];
-                        if (!(t.viewStatus === 2)) return [3 /*break*/, 14];
-                        return [4 /*yield*/, this.api('dwReceive', { id: t.id })];
-                    case 13:
-                        res = _f.sent();
-                        console.log((_b = res === null || res === void 0 ? void 0 : res.data) === null || _b === void 0 ? void 0 : _b.giveScoreNum);
-                        _f.label = 14;
+                    case 13: return [4 /*yield*/, this.wait(120000)];
                     case 14:
-                        _d++;
-                        return [3 /*break*/, 12];
-                    case 15: return [2 /*return*/];
+                        _c.sent();
+                        return [2 /*return*/];
                 }
             });
         });
