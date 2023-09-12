@@ -71,21 +71,22 @@ var Jd_fruit_help = /** @class */ (function (_super) {
     function Jd_fruit_help() {
         var _this = _super.call(this) || this;
         _this.shareCodeSelf = [];
-        _this.appid = '235ec';
-        _this.fp = 'gng5gi963mznng63';
+        _this.fp = '';
         return _this;
     }
     Jd_fruit_help.prototype.init = function () {
         return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
                     case 0:
-                        if (!this.fp) {
-                            process.exit();
-                        }
-                        return [4 /*yield*/, this.run(this)];
+                        _a = this;
+                        return [4 /*yield*/, this.getFp4_1()];
                     case 1:
-                        _a.sent();
+                        _a.fp = _b.sent();
+                        return [4 /*yield*/, this.run(this)];
+                    case 2:
+                        _b.sent();
                         return [2 /*return*/];
                 }
             });
@@ -98,132 +99,114 @@ var Jd_fruit_help = /** @class */ (function (_super) {
                 switch (_a.label) {
                     case 0:
                         timestamp = Date.now();
-                        return [4 /*yield*/, (0, h5st_1.getH5ST)(fn, body, this.appid, this.fp, this.user.UserAgent)];
-                    case 1:
-                        h5st = _a.sent();
-                        return [4 /*yield*/, this.get("https://api.m.jd.com/client.action?functionId=initForFarm&body=".concat(encodeURIComponent(JSON.stringify(body)), "&appid=signed_mp&timestamp=").concat(timestamp, "&client=mac&clientVersion=3.8.0&loginType=2&h5st=").concat(h5st), {
+                        h5st = this.h5stTool.genH5st('235ec', body, 'mac', '3.8.2', fn, timestamp);
+                        return [4 /*yield*/, this.get("https://api.m.jd.com/client.action?functionId=".concat(fn, "&body=").concat(encodeURIComponent(JSON.stringify(body)), "&appid=signed_mp&timestamp=").concat(timestamp, "&client=mac&clientVersion=3.8.2&loginType=2&loginWQBiz=ddnc&h5st=").concat(h5st), {
                                 'Host': 'api.m.jd.com',
                                 'user-agent': this.user.UserAgent,
-                                'referer': 'https://servicewechat.com/wx91d27dbf599dff74/712/page-frame.html',
-                                'Content-Type': 'application/json',
-                                'Cookie': this.user.cookie
+                                'Referer': 'https://servicewechat.com/wx91d27dbf599dff74/725/page-frame.html',
+                                'Cookie': this.user.cookie,
+                                'X-Referer-Package': 'wx91d27dbf599dff74',
+                                'X-Referer-Page': '/pages/farm/pages/index/index',
                             })];
-                    case 2: return [2 /*return*/, _a.sent()];
+                    case 1: return [2 /*return*/, _a.sent()];
                 }
             });
         });
     };
     Jd_fruit_help.prototype.main = function (user) {
-        var _a;
         return __awaiter(this, void 0, void 0, function () {
             var res, e_1;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
                     case 0:
-                        _b.trys.push([0, 2, , 3]);
+                        _a.trys.push([0, 3, , 4]);
                         this.user = user;
                         this.user.UserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36 MicroMessenger/6.8.0(0x16080000) NetType/WIFI MiniProgramEnv/Mac MacWechat/WMPF XWEB/30515";
-                        res = void 0;
-                        return [4 /*yield*/, this.api('initForFarm', { "PATH": "1", "PTAG": "", "ptag": "", "navStart": new Date().toISOString(), "referer": "http://wq.jd.com/wxapp/pages/index/index", "originUrl": "/pages/farm/pages/index/index", "originParams": { "ptag": "" }, "originOpts": {}, "imageUrl": "", "nickName": "", "version": 22, "channel": 2, "babelChannel": 0, "lat": "", "lng": "" })];
+                        this.h5stTool = new h5st_1.H5ST('235ec', this.fp, this.user.UserAgent, this.user.UserName, 'https://servicewechat.com/wx91d27dbf599dff74/725/page-frame.html', 'https://servicewechat.com');
+                        return [4 /*yield*/, this.h5stTool.genAlgo()];
                     case 1:
-                        res = _b.sent();
-                        if ((_a = res === null || res === void 0 ? void 0 : res.farmUserPro) === null || _a === void 0 ? void 0 : _a.shareCode) {
-                            console.log('助力码', res.farmUserPro.shareCode);
-                            this.shareCodeSelf.push(res.farmUserPro.shareCode);
-                        }
-                        else {
-                            console.log('获取助力码失败');
-                        }
-                        return [3 /*break*/, 3];
+                        _a.sent();
+                        return [4 /*yield*/, this.api('initForFarm', { "PATH": "1", "PTAG": "", "ptag": "", "referer": "http://wq.jd.com/wxapp/pages/index/index", "originUrl": "/pages/farm/pages/index/index", "imageUrl": "", "nickName": "微信用户", "version": 25, "channel": 2, "babelChannel": 0, "lat": "", "lng": "" })];
                     case 2:
-                        e_1 = _b.sent();
-                        console.log('error', e_1.message);
-                        return [3 /*break*/, 3];
-                    case 3: return [4 /*yield*/, this.wait(15000)];
-                    case 4:
-                        _b.sent();
-                        return [2 /*return*/];
+                        res = _a.sent();
+                        console.log('助力码', res['farmUserPro'].shareCode);
+                        this.shareCodeSelf.push(res['farmUserPro'].shareCode);
+                        return [3 /*break*/, 4];
+                    case 3:
+                        e_1 = _a.sent();
+                        console.log('获取失败', e_1);
+                        return [3 /*break*/, 4];
+                    case 4: return [2 /*return*/];
                 }
             });
         });
     };
     Jd_fruit_help.prototype.help = function (users) {
-        var _a;
         return __awaiter(this, void 0, void 0, function () {
-            var res, _i, users_1, user, shareCodePool, shareCode, _b, shareCode_1, code, e_2, e_3;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
+            var res, _i, users_1, user, shareCodePool, shareCode, _a, shareCode_1, code, e_2, e_3;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
                     case 0:
                         _i = 0, users_1 = users;
-                        _c.label = 1;
+                        _b.label = 1;
                     case 1:
-                        if (!(_i < users_1.length)) return [3 /*break*/, 16];
+                        if (!(_i < users_1.length)) return [3 /*break*/, 17];
                         user = users_1[_i];
-                        _c.label = 2;
+                        _b.label = 2;
                     case 2:
-                        _c.trys.push([2, 12, , 13]);
+                        _b.trys.push([2, 13, , 14]);
                         this.user = user;
-                        return [4 /*yield*/, this.getShareCodePool('farm', 50)];
+                        this.user.UserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36 MicroMessenger/6.8.0(0x16080000) NetType/WIFI MiniProgramEnv/Mac MacWechat/WMPF XWEB/30515";
+                        this.h5stTool = new h5st_1.H5ST('235ec', this.fp, this.user.UserAgent, this.user.UserName, 'https://servicewechat.com/wx91d27dbf599dff74/725/page-frame.html', 'https://servicewechat.com');
+                        return [4 /*yield*/, this.h5stTool.genAlgo()];
                     case 3:
-                        shareCodePool = _c.sent();
-                        shareCode = __spreadArray(__spreadArray([], this.shareCodeSelf, true), shareCodePool, true);
-                        _b = 0, shareCode_1 = shareCode;
-                        _c.label = 4;
+                        _b.sent();
+                        return [4 /*yield*/, this.getShareCodePool('farm', 50)];
                     case 4:
-                        if (!(_b < shareCode_1.length)) return [3 /*break*/, 11];
-                        code = shareCode_1[_b];
-                        _c.label = 5;
+                        shareCodePool = _b.sent();
+                        shareCode = __spreadArray(__spreadArray([], this.shareCodeSelf, true), shareCodePool, true);
+                        _a = 0, shareCode_1 = shareCode;
+                        _b.label = 5;
                     case 5:
-                        _c.trys.push([5, 7, , 8]);
-                        console.log("\u8D26\u53F7".concat(user.index + 1, " ").concat(user.UserName, " \u53BB\u52A9\u529B ").concat(code, " ").concat(this.shareCodeSelf.includes(code) ? '*内部*' : ''));
-                        return [4 /*yield*/, this.get("https://api.m.jd.com/client.action?functionId=initForFarm&body=".concat(encodeURIComponent(JSON.stringify({
-                                imageUrl: "",
-                                nickName: "",
-                                shareCode: code,
-                                babelChannel: "3",
-                                version: 2,
-                                channel: 1
-                            })), "&appid=wh5"), {
-                                "Host": "api.m.jd.com",
-                                "Accept": "*/*",
-                                "Origin": "https://carry.m.jd.com",
-                                "Accept-Encoding": "gzip, deflate, br",
-                                "User-Agent": this.user.UserAgent,
-                                "Accept-Language": "zh-CN,zh-Hans;q=0.9",
-                                "Referer": "https://carry.m.jd.com/",
-                                "Cookie": this.user.cookie
-                            })];
+                        if (!(_a < shareCode_1.length)) return [3 /*break*/, 12];
+                        code = shareCode_1[_a];
+                        _b.label = 6;
                     case 6:
-                        // res = await this.api('initForFarm', {"ad_od": "share", "mpin": "", "shareCode": code, "utm_campaign": "t_335139774", "utm_medium": "appshare", "utm_source": "androidapp", "utm_term": "Wxfriends", "imageUrl": "", "nickName": "", "version": 22, "channel": 2, "babelChannel": 0, "lat": "", "lng": ""})
-                        res = _c.sent();
-                        this.o2s(res);
-                        if (((_a = res === null || res === void 0 ? void 0 : res.helpResult) === null || _a === void 0 ? void 0 : _a.remainTimes) === 0)
-                            return [3 /*break*/, 11];
-                        return [3 /*break*/, 8];
+                        _b.trys.push([6, 8, , 9]);
+                        console.log("\u8D26\u53F7".concat(user.index + 1, " ").concat(user.UserName, " \u53BB\u52A9\u529B ").concat(code, " ").concat(this.shareCodeSelf.includes(code) ? '*内部*' : ''));
+                        return [4 /*yield*/, this.api('initForFarm', { "ad_od": "share", "mpin": "", "shareCode": code, "utm_campaign": "t_335139774", "utm_medium": "appshare", "utm_source": "androidapp", "utm_term": "Wxfriends", "imageUrl": "", "nickName": "微信用户", "version": 25, "channel": 2, "babelChannel": 0, "lat": "", "lng": "" })];
                     case 7:
-                        e_2 = _c.sent();
+                        res = _b.sent();
+                        console.log(res.helpResult.remainTimes, res.helpResult.code);
+                        if (res.helpResult.remainTimes === 0) {
+                            console.log('上限');
+                            return [3 /*break*/, 12];
+                        }
+                        return [3 /*break*/, 9];
+                    case 8:
+                        e_2 = _b.sent();
                         console.log(e_2.message);
-                        return [3 /*break*/, 8];
-                    case 8: return [4 /*yield*/, this.wait(30000)];
-                    case 9:
-                        _c.sent();
-                        _c.label = 10;
+                        return [3 /*break*/, 9];
+                    case 9: return [4 /*yield*/, this.wait(30000)];
                     case 10:
-                        _b++;
-                        return [3 /*break*/, 4];
-                    case 11: return [3 /*break*/, 13];
-                    case 12:
-                        e_3 = _c.sent();
+                        _b.sent();
+                        _b.label = 11;
+                    case 11:
+                        _a++;
+                        return [3 /*break*/, 5];
+                    case 12: return [3 /*break*/, 14];
+                    case 13:
+                        e_3 = _b.sent();
                         console.log(e_3);
-                        return [3 /*break*/, 13];
-                    case 13: return [4 /*yield*/, this.wait(60000)];
-                    case 14:
-                        _c.sent();
-                        _c.label = 15;
+                        return [3 /*break*/, 14];
+                    case 14: return [4 /*yield*/, this.wait(60000)];
                     case 15:
+                        _b.sent();
+                        _b.label = 16;
+                    case 16:
                         _i++;
                         return [3 /*break*/, 1];
-                    case 16: return [2 /*return*/];
+                    case 17: return [2 /*return*/];
                 }
             });
         });
