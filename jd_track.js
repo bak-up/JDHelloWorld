@@ -3,6 +3,21 @@
  * 京东快递更新通知
  * cron: 0 0-23/4 * * *
  */
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -40,177 +55,128 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var path = require("path");
-var sendNotify_1 = require("./sendNotify");
+var TS_JDHelloWorld_1 = require("./TS_JDHelloWorld");
+var h5st_1 = require("./utils/h5st");
 var fs_1 = require("fs");
-var TS_USER_AGENTS_1 = require("./TS_USER_AGENTS");
-var pushplus_1 = require("./utils/pushplus");
-var cookie = '', UserName, allMessage = '', res = '';
-!(function () { return __awaiter(void 0, void 0, void 0, function () {
-    var cookiesArr, except, orders, pushplusArr, pushplusUser, _i, pushplusArr_1, user, _a, _b, _c, index, value, message, markdown, i, headers, _d, _e, order, orderId, orderType, title, t, status_1, shopName, carrier, carriageId, e_1, account, _f, account_1, acc;
-    var _g, _h, _j;
-    return __generator(this, function (_k) {
-        switch (_k.label) {
-            case 0: return [4 /*yield*/, (0, TS_USER_AGENTS_1.getCookie)()];
-            case 1:
-                cookiesArr = _k.sent();
-                except = (0, TS_USER_AGENTS_1.exceptCookie)(path.basename(__filename));
-                orders = {}, pushplusUser = [];
-                try {
-                    pushplusArr = JSON.parse((0, fs_1.readFileSync)('./utils/account.json').toString());
+var sendNotify_1 = require("./sendNotify");
+var Jd_track = /** @class */ (function (_super) {
+    __extends(Jd_track, _super);
+    function Jd_track() {
+        var _this = _super.call(this) || this;
+        _this.msg = '';
+        return _this;
+    }
+    Jd_track.prototype.init = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = this;
+                        return [4 /*yield*/, this.getFp4_1()];
+                    case 1:
+                        _a.fp = _b.sent();
+                        this.arr = JSON.parse((0, fs_1.readFileSync)('json/jd_track.json').toString());
+                        this.existOrderId = this.arr.map(function (t) {
+                            return t.orderId;
+                        });
+                        return [4 /*yield*/, this.run(this)];
+                    case 2:
+                        _b.sent();
+                        return [2 /*return*/];
                 }
-                catch (e) {
-                    console.log('utils/account.json load failed');
+            });
+        });
+    };
+    Jd_track.prototype.api = function (body) {
+        return __awaiter(this, void 0, void 0, function () {
+            var ts, h5st;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        ts = Date.now();
+                        h5st = this.h5stTool.genH5st('new_order', body, 'mac', '3.8.2', 'common_order_list', ts);
+                        return [4 /*yield*/, this.get("https://api.m.jd.com/client.action?t=".concat(ts, "&loginType=2&loginWQBiz=golden-trade&appid=new_order&client=mac&clientVersion=3.8.2&functionId=common_order_list&body=").concat(encodeURIComponent(JSON.stringify(body)), "&h5st=").concat(h5st), {
+                                'Host': 'api.m.jd.com',
+                                'xweb_xhr': '1',
+                                'X-Rp-Client': 'mini_2.0.0',
+                                'User-Agent': this.user.UserAgent,
+                                'X-Referer-Package': 'wx91d27dbf599dff74',
+                                'X-Referer-Page': '/pages/order_taro/pages/list/index',
+                                'Referer': 'https://servicewechat.com/wx91d27dbf599dff74/728/page-frame.html',
+                                'Cookie': this.user.cookie
+                            })];
+                    case 1: return [2 /*return*/, _a.sent()];
                 }
-                for (_i = 0, pushplusArr_1 = pushplusArr; _i < pushplusArr_1.length; _i++) {
-                    user = pushplusArr_1[_i];
-                    if (user.pushplus)
-                        pushplusUser.push(decodeURIComponent(user.pt_pin));
-                }
-                if ((0, fs_1.existsSync)('./json')) {
-                    if ((0, fs_1.existsSync)('./json/jd_track.json')) {
-                        orders = JSON.parse((0, fs_1.readFileSync)('./json/jd_track.json').toString() || '{}');
-                    }
-                    else {
-                        (0, fs_1.writeFileSync)('./json/jd_track.json', '{}');
-                    }
-                }
-                else {
-                    (0, fs_1.mkdirSync)('./json');
-                    (0, fs_1.writeFileSync)('./json/jd_track.json', '{}');
-                }
-                _a = 0, _b = cookiesArr.entries();
-                _k.label = 2;
-            case 2:
-                if (!(_a < _b.length)) return [3 /*break*/, 16];
-                _c = _b[_a], index = _c[0], value = _c[1];
-                cookie = value;
-                UserName = decodeURIComponent(cookie.match(/pt_pin=([^;]*)/)[1]);
-                console.log("\n\u5F00\u59CB\u3010\u4EAC\u4E1C\u8D26\u53F7".concat(index + 1, "\u3011").concat(UserName, "\n"));
-                if (except.includes(encodeURIComponent(UserName))) {
-                    console.log('已设置跳过');
-                    return [3 /*break*/, 15];
-                }
-                message = '', markdown = '', i = 1;
-                headers = {
-                    'authority': 'wq.jd.com',
-                    'user-agent': TS_USER_AGENTS_1.default,
-                    'referer': 'https://wqs.jd.com/',
-                    'cookie': cookie
-                };
-                _k.label = 3;
-            case 3:
-                _k.trys.push([3, 14, , 15]);
-                return [4 /*yield*/, (0, TS_USER_AGENTS_1.get)("https://wq.jd.com/bases/orderlist/list?order_type=2&start_page=1&last_page=0&page_size=10&callersource=mainorder&t=".concat(Date.now(), "&sceneval=2&_=").concat(Date.now(), "&sceneval=2"), headers)];
-            case 4:
-                res = _k.sent();
-                return [4 /*yield*/, (0, TS_USER_AGENTS_1.wait)(1000)];
-            case 5:
-                _k.sent();
-                _d = 0, _e = res.orderList;
-                _k.label = 6;
-            case 6:
-                if (!(_d < _e.length)) return [3 /*break*/, 10];
-                order = _e[_d];
-                orderId = order.orderId;
-                orderType = order.orderType;
-                title = order.productList[0].title;
-                t = ((_g = order.progressInfo) === null || _g === void 0 ? void 0 : _g.tip) || null;
-                status_1 = ((_h = order.progressInfo) === null || _h === void 0 ? void 0 : _h.content) || null;
-                shopName = order.shopInfo.shopName;
-                return [4 /*yield*/, (0, TS_USER_AGENTS_1.get)("https://wq.jd.com/bases/wuliudetail/dealloglist?deal_id=".concat(orderId, "&orderstate=15&ordertype=").concat(orderType, "&t=").concat(Date.now(), "&sceneval=2"), headers)];
-            case 7:
-                res = _k.sent();
-                return [4 /*yield*/, (0, TS_USER_AGENTS_1.wait)(1000)];
-            case 8:
-                _k.sent();
-                carrier = res.carrier, carriageId = res.carriageId;
-                if (t && status_1) {
-                    if (status_1.match(/(?=签收|已取走|已暂存)/))
-                        return [3 /*break*/, 9];
-                    if (!pushplusUser.includes(UserName)) {
-                        console.log("<".concat(shopName, ">\t").concat(title));
-                        console.log('\t', t, status_1);
-                        console.log();
-                    }
-                    else {
-                        console.log('隐私保护，不显示日志');
-                    }
-                    if (!Object.keys(orders).includes(orderId) || orders[orderId]['status'] !== status_1) {
-                        if (pushplusUser.includes(UserName)) {
-                            console.log('+ pushplus');
-                            markdown += "".concat(i++, ". ").concat(title, "\n\t- ").concat(carrier, "  ").concat(carriageId, "\n\t- ").concat(t, "  ").concat(status_1, "\n");
+            });
+        });
+    };
+    Jd_track.prototype.main = function (user) {
+        var _a, _b, _c;
+        return __awaiter(this, void 0, void 0, function () {
+            var res, _loop_1, this_1, _i, _d, t, e_1;
+            var _this = this;
+            return __generator(this, function (_e) {
+                switch (_e.label) {
+                    case 0:
+                        _e.trys.push([0, 3, , 5]);
+                        this.user = user;
+                        this.user.UserAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.5938.132 Safari/537.36 MicroMessenger/6.8.0(0x16080000) NetType/WIFI MiniProgramEnv/Mac MacWechat/WMPF XWEB/30817';
+                        this.h5stTool = new h5st_1.H5ST('2d275', this.fp, this.user.UserAgent, this.user.UserName, 'https://servicewechat.com/wx91d27dbf599dff74/728/page-frame.html', 'https://servicewechat.com');
+                        return [4 /*yield*/, this.h5stTool.genAlgo()];
+                    case 1:
+                        _e.sent();
+                        return [4 /*yield*/, this.api({ "externalLoginType": 1, "appType": "1", "bizType": "2", "source": "-1", "token": "", "deviceUUId": "", "platform": 2, "uuid": "", "systemBaseInfo": "{\"SDKVersion\":\"2.32.3\",\"system\":\"Mac OS X 13.5.0\"}", "orderListTag": 128, "curTab": "waitReceipt", "referer": "http%3A%2F%2Fwq.jd.com%2Fwxapp%2Fpages%2Fmy%2Findex%2Findex", "page": 1, "pageSize": 10 })];
+                    case 2:
+                        res = _e.sent();
+                        _loop_1 = function (t) {
+                            var orderId = t.orderId, time = (_a = t.progressInfo) === null || _a === void 0 ? void 0 : _a.tip, content = (_c = (_b = t.progressInfo) === null || _b === void 0 ? void 0 : _b.content) !== null && _c !== void 0 ? _c : '', wareName = t.wareInfoList[0].wareName;
+                            if (content) {
+                                console.log(orderId, wareName, time, content);
+                                if (!this_1.existOrderId.includes(orderId)) {
+                                    this_1.arr.push({ user: this_1.user.UserName, orderId: orderId, wareName: wareName, time: time, content: content });
+                                    this_1.msg += "".concat(this_1.user.UserName, "\n").concat(wareName, "\n").concat(time, " ").concat(content, "\n\n");
+                                }
+                                else {
+                                    this_1.arr.forEach(function (order) {
+                                        if (order.orderId === orderId && order.time !== time) {
+                                            _this.msg += "".concat(_this.user.UserName, "\n").concat(wareName, "\n").concat(time, " ").concat(content, "\n\n");
+                                        }
+                                    });
+                                }
+                            }
+                        };
+                        this_1 = this;
+                        for (_i = 0, _d = res.body.orderList; _i < _d.length; _i++) {
+                            t = _d[_i];
+                            _loop_1(t);
                         }
-                        else {
-                            console.log('+ sendNotify');
-                            message += "<".concat(shopName, ">\t").concat(title, "\n").concat(carrier, "  ").concat(carriageId, "\n").concat(t, "  ").concat(status_1, "\n\n");
-                        }
-                    }
-                    orders[orderId] = {
-                        user: UserName,
-                        shopName: shopName,
-                        title: title,
-                        t: t,
-                        status: status_1,
-                        carrier: carrier,
-                        carriageId: carriageId
-                    };
+                        (0, fs_1.writeFileSync)('json/jd_track.json', JSON.stringify(this.arr, null, 2));
+                        return [3 /*break*/, 5];
+                    case 3:
+                        e_1 = _e.sent();
+                        console.log(e_1.message);
+                        return [4 /*yield*/, this.wait(5000)];
+                    case 4:
+                        _e.sent();
+                        return [3 /*break*/, 5];
+                    case 5: return [2 /*return*/];
                 }
-                _k.label = 9;
-            case 9:
-                _d++;
-                return [3 /*break*/, 6];
-            case 10:
-                if (message) {
-                    message = "\u3010\u4EAC\u4E1C\u8D26\u53F7".concat(index + 1, "\u3011  ").concat(UserName, "\n\n").concat(message);
-                    allMessage += message;
+            });
+        });
+    };
+    Jd_track.prototype.help = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, (0, sendNotify_1.sendNotify)('京东待收货', this.msg)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
                 }
-                if (!markdown) return [3 /*break*/, 12];
-                markdown = "#### <".concat(UserName, ">\n").concat(markdown);
-                return [4 /*yield*/, (0, pushplus_1.pushplus)('京东快递更新', markdown, 'markdown')];
-            case 11:
-                _k.sent();
-                _k.label = 12;
-            case 12: return [4 /*yield*/, (0, TS_USER_AGENTS_1.wait)(1000)];
-            case 13:
-                _k.sent();
-                return [3 /*break*/, 15];
-            case 14:
-                e_1 = _k.sent();
-                return [3 /*break*/, 15];
-            case 15:
-                _a++;
-                return [3 /*break*/, 2];
-            case 16:
-                account = [];
-                try {
-                    account = JSON.parse((0, fs_1.readFileSync)('./utils/account.json').toString());
-                }
-                catch (e) {
-                    console.log('utils/account.json load failed');
-                }
-                // 删除已签收
-                Object.keys(orders).map(function (key) {
-                    if (orders[key].status.match(/(?=签收|已取走|已暂存)/)) {
-                        delete orders[key];
-                    }
-                    if (pushplusUser.includes(orders[key].user)) {
-                        orders[key].title = '******';
-                    }
-                });
-                // 替换通知中的用户名为备注
-                orders = JSON.stringify(orders, null, 2);
-                for (_f = 0, account_1 = account; _f < account_1.length; _f++) {
-                    acc = account_1[_f];
-                    orders = orders.replace(new RegExp(decodeURIComponent(acc.pt_pin), 'g'), (_j = acc.remarks) !== null && _j !== void 0 ? _j : acc.pt_pin);
-                }
-                (0, fs_1.writeFileSync)('./json/jd_track.json', orders);
-                if (!allMessage) return [3 /*break*/, 18];
-                return [4 /*yield*/, (0, sendNotify_1.sendNotify)('京东快递更新', allMessage)];
-            case 17:
-                _k.sent();
-                _k.label = 18;
-            case 18: return [2 /*return*/];
-        }
-    });
-}); })();
+            });
+        });
+    };
+    return Jd_track;
+}(TS_JDHelloWorld_1.JDHelloWorld));
+new Jd_track().init().then();

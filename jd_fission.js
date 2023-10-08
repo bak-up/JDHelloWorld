@@ -1,7 +1,7 @@
 "use strict";
 /**
  * 抽奖
- * cron: 3 0-23/2 * * *
+ * cron: 5 0-3 * * *
  */
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -65,6 +65,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var TS_JDHelloWorld_1 = require("./TS_JDHelloWorld");
+var h5st_1 = require("./utils/h5st");
 var Jd_simple = /** @class */ (function (_super) {
     __extends(Jd_simple, _super);
     function Jd_simple() {
@@ -97,73 +98,73 @@ var Jd_simple = /** @class */ (function (_super) {
                 switch (_a.label) {
                     case 0:
                         timestamp = Date.now();
-                        return [4 /*yield*/, this.h5st('activities_platform', body, 'ios', '6.3.0', fn, Date.now(), this.appId, this.tk, this.rd, this.enc, this.fp, this.sua, this.user.UserName)];
-                    case 1:
-                        h5st = _a.sent();
-                        return [4 /*yield*/, this.post('https://api.m.jd.com/', "functionId=".concat(fn, "&body=").concat(JSON.stringify(body), "&t=").concat(timestamp, "&appid=activities_platform&client=ios&clientVersion=6.3.0&h5st=").concat(h5st), {
-                                'Host': 'api.m.jd.com',
-                                'x-rp-client': 'h5_1.0.0',
-                                'Origin': 'https://pro.m.jd.com',
+                        h5st = this.h5stTool.genH5st('activities_platform', body, 'ios', '11.3.0', fn, timestamp);
+                        return [4 /*yield*/, this.post('https://api.m.jd.com/api', "functionId=".concat(fn, "&body=").concat(JSON.stringify(body), "&t=").concat(timestamp, "&appid=activities_platform&client=ios&clientVersion=11.3.0&h5st=").concat(h5st), {
+                                'authority': 'api.m.jd.com',
                                 'User-Agent': this.user.UserAgent,
-                                'Referer': 'https://pro.m.jd.com/jdlite/active/23CeE8ZXA4uFS9M9mTjtta9T4S5x/index.html',
-                                'x-referer-page': 'https://pro.m.jd.com/jdlite/active/23CeE8ZXA4uFS9M9mTjtta9T4S5x/index.html',
-                                'Cookie': this.user.cookie
+                                'origin': 'https://pro.m.jd.com',
+                                'referer': 'https://pro.m.jd.com/mall/active/3BwUqhLsJYrHP4qgAgDDJGrSVngK/index.html',
+                                'Cookie': this.user.cookie,
+                                'x-referer-page': 'https://pro.m.jd.com/mall/active/3BwUqhLsJYrHP4qgAgDDJGrSVngK/index.html',
+                                'x-rp-client': 'h5_1.0.0'
                             })];
-                    case 2: return [2 /*return*/, _a.sent()];
+                    case 1: return [2 /*return*/, _a.sent()];
                 }
             });
         });
     };
     Jd_simple.prototype.main = function (user) {
         return __awaiter(this, void 0, void 0, function () {
-            var j, res, data, linkId, lotteryTimes, i, end, i, _i, _a, t, e_1;
+            var j, res, data, linkId, lotteryTimes, i, end, i, _i, _a, t, e_1, e_2;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
                         j = 0;
                         _b.label = 1;
                     case 1:
-                        if (!(j < 2)) return [3 /*break*/, 28];
-                        this.user = user;
-                        this.user.UserAgent = j === 0 ? "jdapp;iPhone;11.4.0;;;M/5.0;appBuild/168411;jdSupportDarkMode/0;ef/1;Mozilla/5.0 (iPhone; CPU iPhone OS ".concat(this.getIosVer(), " like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1;") : "jdltapp;iPhone;6.3.0;;;M/5.0;hasUPPay/0;pushNoticeIsOpen/0;lang/zh_CN;hasOCPay/0;appBuild/1372;Mozilla/5.0 (iPhone; CPU iPhone OS 15_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1;";
-                        this.appId = '02f8d';
-                        res = void 0, data = void 0;
-                        return [4 /*yield*/, this.algo(this.appId, this.fp, this.user.UserAgent, this.user.UserName, j === 0 ? 'https://pro.m.jd.com/mall/active/3BwUqhLsJYrHP4qgAgDDJGrSVngK/index.html' : 'https://pro.m.jd.com/jdlite/active/23CeE8ZXA4uFS9M9mTjtta9T4S5x/index.html', 'https://pro.m.jd.com')];
+                        if (!(j < 2)) return [3 /*break*/, 33];
+                        _b.label = 2;
                     case 2:
-                        res = _b.sent();
-                        this.tk = res.tk;
-                        this.rd = res.rd;
-                        this.enc = res.enc;
-                        this.sua = res.sua;
+                        _b.trys.push([2, 30, , 32]);
+                        this.user = user;
+                        this.user.UserAgent = j === 0
+                            ? "jdapp;iPhone;11.3.0;;;M/5.0;JDEbook/openapp.jdreader;appBuild/168341;jdSupportDarkMode/0;ef/1;Mozilla/5.0 (iPhone; CPU iPhone OS 15_5_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1;"
+                            : "jdltapp;iPhone;6.3.0;;;M/5.0;hasUPPay/0;pushNoticeIsOpen/0;lang/zh_CN;hasOCPay/0;appBuild/1372;Mozilla/5.0 (iPhone; CPU iPhone OS 15_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1;";
+                        this.appId = '02f8d';
+                        this.h5stTool = new h5st_1.H5ST(this.appId, this.fp, this.user.UserAgent, this.user.UserName, j === 0 ? 'https://pro.m.jd.com/mall/active/3BwUqhLsJYrHP4qgAgDDJGrSVngK/index.html' : 'https://pro.m.jd.com/jdlite/active/23CeE8ZXA4uFS9M9mTjtta9T4S5x/index.html', 'https://pro.m.jd.com');
+                        return [4 /*yield*/, this.h5stTool.genAlgo()];
+                    case 3:
+                        _b.sent();
+                        res = void 0, data = void 0;
                         linkId = j === 0 ? '3orGfh1YkwNLksxOcN8zWQ' : 'Wvzc_VpNTlSkiQdHT8r7QA';
                         return [4 /*yield*/, this.api('inviteFissionBeforeHome', { "linkId": linkId, "isJdApp": true, "inviter": "" })];
-                    case 3:
+                    case 4:
                         res = _b.sent();
                         console.log('助力码', res.data.inviter);
+                        return [4 /*yield*/, this.wait(5000)];
+                    case 5:
+                        _b.sent();
                         this.shareCodeSelf.push(res.data.inviter);
                         return [4 /*yield*/, this.api('inviteFissionHome', { "linkId": linkId, "inviter": "" })];
-                    case 4:
+                    case 6:
                         _b.sent();
                         return [4 /*yield*/, this.api('inviteFissionPoll', { "linkId": linkId })];
-                    case 5:
+                    case 7:
                         res = _b.sent();
                         lotteryTimes = res.data.lotteryTimes;
                         console.log('可抽奖', lotteryTimes);
-                        if (!lotteryTimes) return [3 /*break*/, 11];
+                        if (!lotteryTimes) return [3 /*break*/, 13];
                         this.appId = 'c02c6';
-                        return [4 /*yield*/, this.algo(this.appId, this.fp, this.user.UserAgent, this.user.UserName, j === 0 ? 'https://pro.m.jd.com/mall/active/3BwUqhLsJYrHP4qgAgDDJGrSVngK/index.html' : 'https://pro.m.jd.com/jdlite/active/23CeE8ZXA4uFS9M9mTjtta9T4S5x/index.html', 'https://pro.m.jd.com')];
-                    case 6:
-                        res = _b.sent();
-                        this.tk = res.tk;
-                        this.rd = res.rd;
-                        this.enc = res.enc;
-                        this.sua = res.sua;
-                        i = 0;
-                        _b.label = 7;
-                    case 7:
-                        if (!(i < lotteryTimes)) return [3 /*break*/, 11];
-                        return [4 /*yield*/, this.api('inviteFissionDrawPrize', { "linkId": linkId })];
+                        this.h5stTool = new h5st_1.H5ST(this.appId, this.fp, this.user.UserAgent, this.user.UserName, j === 0 ? 'https://pro.m.jd.com/mall/active/3BwUqhLsJYrHP4qgAgDDJGrSVngK/index.html' : 'https://pro.m.jd.com/jdlite/active/23CeE8ZXA4uFS9M9mTjtta9T4S5x/index.html', 'https://pro.m.jd.com');
+                        return [4 /*yield*/, this.h5stTool.genAlgo()];
                     case 8:
+                        _b.sent();
+                        i = 0;
+                        _b.label = 9;
+                    case 9:
+                        if (!(i < lotteryTimes)) return [3 /*break*/, 13];
+                        return [4 /*yield*/, this.api('inviteFissionDrawPrize', { "linkId": linkId })];
+                    case 10:
                         data = _b.sent();
                         try {
                             if (data.data.prizeType === 2) {
@@ -177,80 +178,86 @@ var Jd_simple = /** @class */ (function (_super) {
                             }
                         }
                         catch (e) {
-                            console.log(e);
+                            console.log(e.message);
+                            this.o2s(data);
                         }
-                        return [4 /*yield*/, this.wait(3000)];
-                    case 9:
-                        _b.sent();
-                        _b.label = 10;
-                    case 10:
-                        i++;
-                        return [3 /*break*/, 7];
+                        return [4 /*yield*/, this.wait(10000)];
                     case 11:
-                        this.appId = 'f2b1d';
-                        return [4 /*yield*/, this.algo(this.appId, this.fp, this.user.UserAgent, this.user.UserName, j === 0 ? 'https://pro.m.jd.com/mall/active/3BwUqhLsJYrHP4qgAgDDJGrSVngK/index.html' : 'https://pro.m.jd.com/jdlite/active/23CeE8ZXA4uFS9M9mTjtta9T4S5x/index.html', 'https://pro.m.jd.com')];
+                        _b.sent();
+                        _b.label = 12;
                     case 12:
-                        res = _b.sent();
-                        this.tk = res.tk;
-                        this.rd = res.rd;
-                        this.enc = res.enc;
-                        this.sua = res.sua;
+                        i++;
+                        return [3 /*break*/, 9];
+                    case 13:
+                        this.appId = 'f2b1d';
+                        this.h5stTool = new h5st_1.H5ST(this.appId, this.fp, this.user.UserAgent, this.user.UserName, j === 0 ? 'https://pro.m.jd.com/mall/active/3BwUqhLsJYrHP4qgAgDDJGrSVngK/index.html' : 'https://pro.m.jd.com/jdlite/active/23CeE8ZXA4uFS9M9mTjtta9T4S5x/index.html', 'https://pro.m.jd.com');
+                        return [4 /*yield*/, this.h5stTool.genAlgo()];
+                    case 14:
+                        _b.sent();
                         end = false;
                         i = 1;
-                        _b.label = 13;
-                    case 13:
-                        if (!(i < 100)) return [3 /*break*/, 27];
-                        console.log('page', i);
-                        return [4 /*yield*/, this.api('superRedBagList', { "pageNum": i, "pageSize": 20, "linkId": linkId, "business": "fission" })];
-                    case 14:
-                        res = _b.sent();
-                        if (end)
-                            return [3 /*break*/, 27];
                         _b.label = 15;
                     case 15:
-                        _b.trys.push([15, 23, , 24]);
-                        _i = 0, _a = res.data.items;
-                        _b.label = 16;
+                        if (!(i < 5)) return [3 /*break*/, 29];
+                        console.log('page', i);
+                        return [4 /*yield*/, this.api('superRedBagList', { "pageNum": i, "pageSize": 20, "linkId": linkId, "business": "fission" })];
                     case 16:
-                        if (!(_i < _a.length)) return [3 /*break*/, 22];
-                        t = _a[_i];
-                        if (!(t.prizeType === 4 && t.state === -1)) return [3 /*break*/, 17];
-                        end = true;
-                        return [3 /*break*/, 22];
+                        res = _b.sent();
+                        if (end)
+                            return [3 /*break*/, 29];
+                        _b.label = 17;
                     case 17:
-                        if (!(res.data.items.length < 20)) return [3 /*break*/, 18];
-                        end = true;
-                        return [3 /*break*/, 22];
+                        _b.trys.push([17, 25, , 26]);
+                        _i = 0, _a = res.data.items;
+                        _b.label = 18;
                     case 18:
-                        if (!(t.prizeType === 4 && t.state === 0)) return [3 /*break*/, 21];
-                        return [4 /*yield*/, this.api('apCashWithDraw', { "businessSource": "NONE", "base": { "id": t.id, "business": "fission", "poolBaseId": t.poolBaseId, "prizeGroupId": t.prizeGroupId, "prizeBaseId": t.prizeBaseId, "prizeType": 4 }, "linkId": linkId })];
+                        if (!(_i < _a.length)) return [3 /*break*/, 24];
+                        t = _a[_i];
+                        if (!(t.prizeType === 4 && t.state === -1)) return [3 /*break*/, 19];
+                        end = true;
+                        return [3 /*break*/, 24];
                     case 19:
+                        if (!(res.data.items.length < 20)) return [3 /*break*/, 20];
+                        end = true;
+                        return [3 /*break*/, 24];
+                    case 20:
+                        if (!(t.prizeType === 4 && t.state === 0)) return [3 /*break*/, 23];
+                        return [4 /*yield*/, this.api('apCashWithDraw', { "businessSource": "NONE", "base": { "id": t.id, "business": "fission", "poolBaseId": t.poolBaseId, "prizeGroupId": t.prizeGroupId, "prizeBaseId": t.prizeBaseId, "prizeType": 4 }, "linkId": linkId })];
+                    case 21:
                         data = _b.sent();
                         console.log(data.data.message, data.data.record.amount * 1);
                         return [4 /*yield*/, this.wait(8000)];
-                    case 20:
+                    case 22:
                         _b.sent();
-                        _b.label = 21;
-                    case 21:
-                        _i++;
-                        return [3 /*break*/, 16];
-                    case 22: return [3 /*break*/, 24];
+                        _b.label = 23;
                     case 23:
+                        _i++;
+                        return [3 /*break*/, 18];
+                    case 24: return [3 /*break*/, 26];
+                    case 25:
                         e_1 = _b.sent();
                         console.log(e_1.message);
-                        return [3 /*break*/, 27];
-                    case 24: return [4 /*yield*/, this.wait(1000)];
-                    case 25:
-                        _b.sent();
-                        _b.label = 26;
-                    case 26:
-                        i++;
-                        return [3 /*break*/, 13];
+                        return [3 /*break*/, 29];
+                    case 26: return [4 /*yield*/, this.wait(5000)];
                     case 27:
+                        _b.sent();
+                        _b.label = 28;
+                    case 28:
+                        i++;
+                        return [3 /*break*/, 15];
+                    case 29: return [3 /*break*/, 32];
+                    case 30:
+                        e_2 = _b.sent();
+                        console.log(e_2.message);
+                        return [4 /*yield*/, this.wait(5000)];
+                    case 31:
+                        _b.sent();
+                        return [3 /*break*/, 32];
+                    case 32:
                         j++;
                         return [3 /*break*/, 1];
-                    case 28: return [4 /*yield*/, this.wait(60000)];
-                    case 29:
+                    case 33: return [4 /*yield*/, this.wait(60000)];
+                    case 34:
                         _b.sent();
                         return [2 /*return*/];
                 }
@@ -259,7 +266,7 @@ var Jd_simple = /** @class */ (function (_super) {
     };
     Jd_simple.prototype.help = function (users) {
         return __awaiter(this, void 0, void 0, function () {
-            var res, j, shareCodeHW, _i, users_1, user, shareCode, _a, shareCode_1, code, e_2;
+            var res, j, shareCodeHW, _i, users_1, user, shareCode, _a, shareCode_1, code, e_3;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
@@ -285,13 +292,13 @@ var Jd_simple = /** @class */ (function (_super) {
                         _b.label = 5;
                     case 5:
                         this.user = user;
-                        return [4 /*yield*/, this.algo(this.appId, this.fp, this.user.UserAgent, this.user.UserName, j === 0 ? 'https://pro.m.jd.com/mall/active/3BwUqhLsJYrHP4qgAgDDJGrSVngK/index.html' : 'https://pro.m.jd.com/jdlite/active/23CeE8ZXA4uFS9M9mTjtta9T4S5x/index.html', 'https://pro.m.jd.com')];
+                        this.user.UserAgent = j === 0
+                            ? "jdapp;iPhone;11.3.0;;;M/5.0;JDEbook/openapp.jdreader;appBuild/168341;jdSupportDarkMode/0;ef/1;Mozilla/5.0 (iPhone; CPU iPhone OS 15_5_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1;"
+                            : "jdltapp;iPhone;6.3.0;;;M/5.0;hasUPPay/0;pushNoticeIsOpen/0;lang/zh_CN;hasOCPay/0;appBuild/1372;Mozilla/5.0 (iPhone; CPU iPhone OS 15_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1;";
+                        this.h5stTool = new h5st_1.H5ST(this.appId, this.fp, this.user.UserAgent, this.user.UserName, j === 0 ? 'https://pro.m.jd.com/mall/active/3BwUqhLsJYrHP4qgAgDDJGrSVngK/index.html' : 'https://pro.m.jd.com/jdlite/active/23CeE8ZXA4uFS9M9mTjtta9T4S5x/index.html', 'https://pro.m.jd.com');
+                        return [4 /*yield*/, this.h5stTool.genAlgo()];
                     case 6:
-                        res = _b.sent();
-                        this.tk = res.tk;
-                        this.rd = res.rd;
-                        this.enc = res.enc;
-                        this.sua = res.sua;
+                        _b.sent();
                         shareCode = user.index === 0 ? __spreadArray(__spreadArray([], shareCodeHW, true), this.shareCodeSelf, true) : __spreadArray(__spreadArray([], this.shareCodeSelf, true), shareCodeHW, true);
                         _a = 0, shareCode_1 = shareCode;
                         _b.label = 7;
@@ -322,8 +329,8 @@ var Jd_simple = /** @class */ (function (_super) {
                         return [3 /*break*/, 7];
                     case 11: return [3 /*break*/, 13];
                     case 12:
-                        e_2 = _b.sent();
-                        console.log(e_2.message);
+                        e_3 = _b.sent();
+                        console.log(e_3.message);
                         return [3 /*break*/, 13];
                     case 13:
                         _i++;

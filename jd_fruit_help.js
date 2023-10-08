@@ -71,7 +71,6 @@ var Jd_fruit_help = /** @class */ (function (_super) {
     function Jd_fruit_help() {
         var _this = _super.call(this) || this;
         _this.shareCodeSelf = [];
-        _this.fp = '';
         return _this;
     }
     Jd_fruit_help.prototype.init = function () {
@@ -99,14 +98,16 @@ var Jd_fruit_help = /** @class */ (function (_super) {
                 switch (_a.label) {
                     case 0:
                         timestamp = Date.now();
-                        h5st = this.h5stTool.genH5st('235ec', body, 'mac', '3.8.2', fn, timestamp);
+                        h5st = this.h5stTool.genH5st('signed_mp', body, 'mac', '3.8.2', fn, timestamp);
                         return [4 /*yield*/, this.get("https://api.m.jd.com/client.action?functionId=".concat(fn, "&body=").concat(encodeURIComponent(JSON.stringify(body)), "&appid=signed_mp&timestamp=").concat(timestamp, "&client=mac&clientVersion=3.8.2&loginType=2&loginWQBiz=ddnc&h5st=").concat(h5st), {
                                 'Host': 'api.m.jd.com',
-                                'user-agent': this.user.UserAgent,
-                                'Referer': 'https://servicewechat.com/wx91d27dbf599dff74/725/page-frame.html',
-                                'Cookie': this.user.cookie,
+                                'xweb_xhr': '1',
+                                'X-Rp-Client': 'mini_2.0.0',
+                                'User-Agent': this.user.UserAgent,
                                 'X-Referer-Package': 'wx91d27dbf599dff74',
                                 'X-Referer-Page': '/pages/farm/pages/index/index',
+                                'Referer': 'https://servicewechat.com/wx91d27dbf599dff74/728/page-frame.html',
+                                'Cookie': this.user.cookie
                             })];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
@@ -121,12 +122,12 @@ var Jd_fruit_help = /** @class */ (function (_super) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
                         this.user = user;
-                        this.user.UserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36 MicroMessenger/6.8.0(0x16080000) NetType/WIFI MiniProgramEnv/Mac MacWechat/WMPF XWEB/30515";
-                        this.h5stTool = new h5st_1.H5ST('235ec', this.fp, this.user.UserAgent, this.user.UserName, 'https://servicewechat.com/wx91d27dbf599dff74/725/page-frame.html', 'https://servicewechat.com');
+                        this.user.UserAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.5938.132 Safari/537.36 MicroMessenger/6.8.0(0x16080000) NetType/WIFI MiniProgramEnv/Mac MacWechat/WMPF XWEB/30817';
+                        this.h5stTool = new h5st_1.H5ST('235ec', this.fp, this.user.UserAgent, this.user.UserName, 'https://servicewechat.com/wx91d27dbf599dff74/728/page-frame.html', 'https://servicewechat.com');
                         return [4 /*yield*/, this.h5stTool.genAlgo()];
                     case 1:
                         _a.sent();
-                        return [4 /*yield*/, this.api('initForFarm', { "PATH": "1", "PTAG": "", "ptag": "", "referer": "http://wq.jd.com/wxapp/pages/index/index", "originUrl": "/pages/farm/pages/index/index", "imageUrl": "", "nickName": "微信用户", "version": 25, "channel": 2, "babelChannel": 0, "lat": "", "lng": "" })];
+                        return [4 /*yield*/, this.api('initForFarm', { "PATH": "1", "PTAG": "", "ptag": "", "referer": "http://wq.jd.com/wxapp/pages/index/index", "originUrl": "/pages/farm/pages/index/index", "version": 25, "channel": 2, "babelChannel": 0, "lat": "", "lng": "" })];
                     case 2:
                         res = _a.sent();
                         console.log('助力码', res['farmUserPro'].shareCode);
@@ -136,7 +137,10 @@ var Jd_fruit_help = /** @class */ (function (_super) {
                         e_1 = _a.sent();
                         console.log('获取失败', e_1);
                         return [3 /*break*/, 4];
-                    case 4: return [2 /*return*/];
+                    case 4: return [4 /*yield*/, this.wait(5000)];
+                    case 5:
+                        _a.sent();
+                        return [2 /*return*/];
                 }
             });
         });
@@ -156,8 +160,8 @@ var Jd_fruit_help = /** @class */ (function (_super) {
                     case 2:
                         _b.trys.push([2, 13, , 14]);
                         this.user = user;
-                        this.user.UserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36 MicroMessenger/6.8.0(0x16080000) NetType/WIFI MiniProgramEnv/Mac MacWechat/WMPF XWEB/30515";
-                        this.h5stTool = new h5st_1.H5ST('235ec', this.fp, this.user.UserAgent, this.user.UserName, 'https://servicewechat.com/wx91d27dbf599dff74/725/page-frame.html', 'https://servicewechat.com');
+                        this.user.UserAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.5938.132 Safari/537.36 MicroMessenger/6.8.0(0x16080000) NetType/WIFI MiniProgramEnv/Mac MacWechat/WMPF XWEB/30817';
+                        this.h5stTool = new h5st_1.H5ST('235ec', this.fp, this.user.UserAgent, this.user.UserName, 'https://servicewechat.com/wx91d27dbf599dff74/728/page-frame.html', 'https://servicewechat.com');
                         return [4 /*yield*/, this.h5stTool.genAlgo()];
                     case 3:
                         _b.sent();
@@ -174,7 +178,7 @@ var Jd_fruit_help = /** @class */ (function (_super) {
                     case 6:
                         _b.trys.push([6, 8, , 9]);
                         console.log("\u8D26\u53F7".concat(user.index + 1, " ").concat(user.UserName, " \u53BB\u52A9\u529B ").concat(code, " ").concat(this.shareCodeSelf.includes(code) ? '*内部*' : ''));
-                        return [4 /*yield*/, this.api('initForFarm', { "ad_od": "share", "mpin": "", "shareCode": code, "utm_campaign": "t_335139774", "utm_medium": "appshare", "utm_source": "androidapp", "utm_term": "Wxfriends", "imageUrl": "", "nickName": "微信用户", "version": 25, "channel": 2, "babelChannel": 0, "lat": "", "lng": "" })];
+                        return [4 /*yield*/, this.api('initForFarm', { "ad_od": "share", "mpin": "", "shareCode": code, "utm_campaign": "t_335139774", "utm_medium": "appshare", "utm_source": "androidapp", "utm_term": "Wxfriends", "version": 25, "channel": 2, "babelChannel": 0, "lat": "", "lng": "" })];
                     case 7:
                         res = _b.sent();
                         console.log(res.helpResult.remainTimes, res.helpResult.code);
