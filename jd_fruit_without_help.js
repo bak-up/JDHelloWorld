@@ -66,7 +66,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var TS_JDHelloWorld_1 = require("./TS_JDHelloWorld");
-var h5st_1 = require("./utils/h5st");
+var h5st_pro_1 = require("./utils/h5st_pro");
 var date_fns_1 = require("date-fns");
 var Jd_fruit = /** @class */ (function (_super) {
     __extends(Jd_fruit, _super);
@@ -78,25 +78,16 @@ var Jd_fruit = /** @class */ (function (_super) {
     }
     Jd_fruit.prototype.init = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var _a, e_1;
+            var _a;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
-                        _b.trys.push([0, 3, , 4]);
-                        this.fp = process.env.FP_8A2AF || process.env.FP_0C010;
-                        if (!!this.fp) return [3 /*break*/, 2];
                         _a = this;
                         return [4 /*yield*/, this.getFp()];
                     case 1:
                         _a.fp = _b.sent();
-                        _b.label = 2;
-                    case 2: return [3 /*break*/, 4];
-                    case 3:
-                        e_1 = _b.sent();
-                        console.log(e_1.message);
-                        return [3 /*break*/, 4];
-                    case 4: return [4 /*yield*/, this.run(this)];
-                    case 5:
+                        return [4 /*yield*/, this.run(this)];
+                    case 2:
                         _b.sent();
                         return [2 /*return*/];
                 }
@@ -110,13 +101,15 @@ var Jd_fruit = /** @class */ (function (_super) {
                 switch (_a.label) {
                     case 0:
                         timestamp = Date.now().toString();
-                        h5st = this.h5stTool.__genH5st({
-                            'appid': 'signed_wh5',
-                            'body': JSON.stringify(body),
-                            'client': 'iOS',
-                            'clientVersion': '11.3.0',
-                            'functionId': fn,
-                        });
+                        return [4 /*yield*/, this.h5stTool.__genH5st({
+                                'appid': 'signed_wh5',
+                                'body': JSON.stringify(body),
+                                'client': 'iOS',
+                                'clientVersion': '11.3.0',
+                                'functionId': fn,
+                            })];
+                    case 1:
+                        h5st = _a.sent();
                         return [4 /*yield*/, this.get("https://api.m.jd.com/client.action?functionId=".concat(fn, "&body=").concat(encodeURIComponent(JSON.stringify(body)), "&appid=signed_wh5&timestamp=").concat(timestamp, "&client=iOS&clientVersion=11.3.0&h5st=").concat(h5st), {
                                 'Host': 'api.m.jd.com',
                                 'Origin': 'https://carry.m.jd.com',
@@ -124,7 +117,7 @@ var Jd_fruit = /** @class */ (function (_super) {
                                 'Referer': 'https://carry.m.jd.com/',
                                 'Cookie': this.user.cookie
                             })];
-                    case 1: return [2 /*return*/, _a.sent()];
+                    case 2: return [2 /*return*/, _a.sent()];
                 }
             });
         });
@@ -148,7 +141,7 @@ var Jd_fruit = /** @class */ (function (_super) {
     Jd_fruit.prototype.main = function (user) {
         var _a;
         return __awaiter(this, void 0, void 0, function () {
-            var res, data, totalEnergy, _i, _b, t, i, i, _c, _d, t, friendList, finishCount, _e, _f, t, _g, _h, t, _j, _k, t, i, e_2;
+            var res, data, totalEnergy, _i, _b, t, i, i, _c, _d, t, friendList, finishCount, _e, _f, t, _g, _h, t, _j, _k, t, i, e_1;
             return __generator(this, function (_l) {
                 switch (_l.label) {
                     case 0:
@@ -156,7 +149,7 @@ var Jd_fruit = /** @class */ (function (_super) {
                         this.user = user;
                         this.user.UserAgent = "jdapp;iPhone;11.3.0;;;M/5.0;appBuild/168341;Mozilla/5.0 (iPhone; CPU iPhone OS ".concat(this.getIosVer(), " like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1;");
                         res = void 0, data = void 0;
-                        this.h5stTool = new h5st_1.H5ST('8a2af', this.user.UserAgent, this.fp);
+                        this.h5stTool = new h5st_pro_1.H5ST('8a2af', this.user.UserAgent, this.fp, 'https://carry.m.jd.com/', 'https://carry.m.jd.com/');
                         return [4 /*yield*/, this.h5stTool.__genAlgo()];
                     case 1:
                         _l.sent();
@@ -181,7 +174,7 @@ var Jd_fruit = /** @class */ (function (_super) {
                             return [2 /*return*/, { msg: "\u8D26\u53F7".concat(this.user.index + 1, " ").concat(this.user.UserName, "\n\u79CD\u6811\u6210\u719F\n") }];
                         }
                         if (!res.todayGotWaterGoalTask.canPop) return [3 /*break*/, 5];
-                        this.h5stTool = new h5st_1.H5ST('c901b', this.user.UserAgent, this.fp);
+                        this.h5stTool = new h5st_pro_1.H5ST('c901b', this.user.UserAgent, this.fp, 'https://carry.m.jd.com/', 'https://carry.m.jd.com/');
                         return [4 /*yield*/, this.h5stTool.__genAlgo()];
                     case 3:
                         _l.sent();
@@ -192,7 +185,7 @@ var Jd_fruit = /** @class */ (function (_super) {
                         _l.label = 5;
                     case 5:
                         // 背包
-                        this.h5stTool = new h5st_1.H5ST('157b6', this.user.UserAgent, this.fp);
+                        this.h5stTool = new h5st_pro_1.H5ST('157b6', this.user.UserAgent, this.fp, 'https://carry.m.jd.com/', 'https://carry.m.jd.com/');
                         return [4 /*yield*/, this.h5stTool.__genAlgo()];
                     case 6:
                         _l.sent();
@@ -201,7 +194,7 @@ var Jd_fruit = /** @class */ (function (_super) {
                         res = _l.sent();
                         if (!(res.doubleCard && totalEnergy >= 100)) return [3 /*break*/, 13];
                         console.log('水滴翻倍卡数量', res.doubleCard);
-                        this.h5stTool = new h5st_1.H5ST('86ba5', this.user.UserAgent, this.fp);
+                        this.h5stTool = new h5st_pro_1.H5ST('86ba5', this.user.UserAgent, this.fp, 'https://carry.m.jd.com/', 'https://carry.m.jd.com/');
                         return [4 /*yield*/, this.h5stTool.__genAlgo()];
                     case 8:
                         _l.sent();
@@ -270,7 +263,7 @@ var Jd_fruit = /** @class */ (function (_super) {
                         return [3 /*break*/, 24];
                     case 28:
                         // 任务列表
-                        this.h5stTool = new h5st_1.H5ST('fcb5a', this.user.UserAgent, this.fp);
+                        this.h5stTool = new h5st_pro_1.H5ST('fcb5a', this.user.UserAgent, this.fp, 'https://carry.m.jd.com/', 'https://carry.m.jd.com/');
                         return [4 /*yield*/, this.h5stTool.__genAlgo()];
                     case 29:
                         _l.sent();
@@ -280,7 +273,7 @@ var Jd_fruit = /** @class */ (function (_super) {
                         if (!((_a = res['treasureBoxInit-getBean']) === null || _a === void 0 ? void 0 : _a.f)) {
                         }
                         if (!!res.totalWaterTaskInit.f) return [3 /*break*/, 39];
-                        this.h5stTool = new h5st_1.H5ST('0c010', this.user.UserAgent, this.fp);
+                        this.h5stTool = new h5st_pro_1.H5ST('0c010', this.user.UserAgent, this.fp, 'https://carry.m.jd.com/', 'https://carry.m.jd.com/');
                         return [4 /*yield*/, this.h5stTool.__genAlgo()];
                     case 31:
                         _l.sent();
@@ -307,7 +300,7 @@ var Jd_fruit = /** @class */ (function (_super) {
                         i++;
                         return [3 /*break*/, 32];
                     case 36:
-                        this.h5stTool = new h5st_1.H5ST('102f5', this.user.UserAgent, this.fp);
+                        this.h5stTool = new h5st_pro_1.H5ST('102f5', this.user.UserAgent, this.fp, 'https://carry.m.jd.com/', 'https://carry.m.jd.com/');
                         return [4 /*yield*/, this.h5stTool.__genAlgo()];
                     case 37:
                         _l.sent();
@@ -318,7 +311,7 @@ var Jd_fruit = /** @class */ (function (_super) {
                         _l.label = 39;
                     case 39:
                         if (!(!res.firstWaterInit.f && res.firstWaterInit.totalWaterTimes)) return [3 /*break*/, 42];
-                        this.h5stTool = new h5st_1.H5ST('0cf1e', this.user.UserAgent, this.fp);
+                        this.h5stTool = new h5st_pro_1.H5ST('0cf1e', this.user.UserAgent, this.fp, 'https://carry.m.jd.com/', 'https://carry.m.jd.com/');
                         return [4 /*yield*/, this.h5stTool.__genAlgo()];
                     case 40:
                         _l.sent();
@@ -340,7 +333,7 @@ var Jd_fruit = /** @class */ (function (_super) {
                         _l.label = 45;
                     case 45:
                         if (!!res.gotBrowseTaskAdInit.f) return [3 /*break*/, 53];
-                        this.h5stTool = new h5st_1.H5ST('53f09', this.user.UserAgent, this.fp);
+                        this.h5stTool = new h5st_pro_1.H5ST('53f09', this.user.UserAgent, this.fp, 'https://carry.m.jd.com/', 'https://carry.m.jd.com/');
                         return [4 /*yield*/, this.h5stTool.__genAlgo()];
                     case 46:
                         _l.sent();
@@ -371,7 +364,7 @@ var Jd_fruit = /** @class */ (function (_super) {
                         return [3 /*break*/, 47];
                     case 53:
                         if (!(!res.waterRainInit.f && Date.now() > (0, date_fns_1.getTime)((0, date_fns_1.addHours)(res.lastTime || 1669906397000, 4)))) return [3 /*break*/, 57];
-                        this.h5stTool = new h5st_1.H5ST('9983a', this.user.UserAgent, this.fp);
+                        this.h5stTool = new h5st_pro_1.H5ST('9983a', this.user.UserAgent, this.fp, 'https://carry.m.jd.com/', 'https://carry.m.jd.com/');
                         return [4 /*yield*/, this.h5stTool.__genAlgo()];
                     case 54:
                         _l.sent();
@@ -396,14 +389,14 @@ var Jd_fruit = /** @class */ (function (_super) {
                         t = _f[_e];
                         if (!(t.friendState === 1)) return [3 /*break*/, 65];
                         console.log("\u5E2E\u597D\u53CB ".concat(t.nickName, " ").concat(t.shareCode, " \u6D47\u6C34"));
-                        this.h5stTool = new h5st_1.H5ST('a5a9c', this.user.UserAgent, this.fp);
+                        this.h5stTool = new h5st_pro_1.H5ST('a5a9c', this.user.UserAgent, this.fp, 'https://carry.m.jd.com/', 'https://carry.m.jd.com/');
                         return [4 /*yield*/, this.h5stTool.__genAlgo()];
                     case 60:
                         _l.sent();
                         return [4 /*yield*/, this.api('friendInitForFarm', { "shareCode": t.shareCode, "version": 18, "channel": 1, "babelChannel": "10" })];
                     case 61:
                         _l.sent();
-                        this.h5stTool = new h5st_1.H5ST('673a0', this.user.UserAgent, this.fp);
+                        this.h5stTool = new h5st_pro_1.H5ST('673a0', this.user.UserAgent, this.fp, 'https://carry.m.jd.com/', 'https://carry.m.jd.com/');
                         return [4 /*yield*/, this.h5stTool.__genAlgo()];
                     case 62:
                         _l.sent();
@@ -428,7 +421,7 @@ var Jd_fruit = /** @class */ (function (_super) {
                         _e++;
                         return [3 /*break*/, 59];
                     case 66:
-                        this.h5stTool = new h5st_1.H5ST('d08ff', this.user.UserAgent, this.fp);
+                        this.h5stTool = new h5st_pro_1.H5ST('d08ff', this.user.UserAgent, this.fp, 'https://carry.m.jd.com/', 'https://carry.m.jd.com/');
                         return [4 /*yield*/, this.h5stTool.__genAlgo()];
                     case 67:
                         _l.sent();
@@ -439,14 +432,14 @@ var Jd_fruit = /** @class */ (function (_super) {
                         _l.label = 69;
                     case 69:
                         // 签到页面
-                        this.h5stTool = new h5st_1.H5ST('08dc3', this.user.UserAgent, this.fp);
+                        this.h5stTool = new h5st_pro_1.H5ST('08dc3', this.user.UserAgent, this.fp, 'https://carry.m.jd.com/', 'https://carry.m.jd.com/');
                         return [4 /*yield*/, this.h5stTool.__genAlgo()];
                     case 70:
                         _l.sent();
                         return [4 /*yield*/, this.api('clockInInitForFarm', { "timestamp": Date.now(), "version": 18, "channel": 1, "babelChannel": "10" })];
                     case 71:
                         res = _l.sent();
-                        this.h5stTool = new h5st_1.H5ST('4a0b4', this.user.UserAgent, this.fp);
+                        this.h5stTool = new h5st_pro_1.H5ST('4a0b4', this.user.UserAgent, this.fp, 'https://carry.m.jd.com/', 'https://carry.m.jd.com/');
                         return [4 /*yield*/, this.h5stTool.__genAlgo()];
                     case 72:
                         _l.sent();
@@ -473,7 +466,7 @@ var Jd_fruit = /** @class */ (function (_super) {
                         return [3 /*break*/, 73];
                     case 78:
                         if (!!res.todaySigned) return [3 /*break*/, 82];
-                        this.h5stTool = new h5st_1.H5ST('32b94', this.user.UserAgent, this.fp);
+                        this.h5stTool = new h5st_pro_1.H5ST('32b94', this.user.UserAgent, this.fp, 'https://carry.m.jd.com/', 'https://carry.m.jd.com/');
                         return [4 /*yield*/, this.h5stTool.__genAlgo()];
                     case 79:
                         _l.sent();
@@ -497,7 +490,7 @@ var Jd_fruit = /** @class */ (function (_super) {
                         _l.label = 85;
                     case 85:
                         // 删除好友
-                        this.h5stTool = new h5st_1.H5ST('eaf91', this.user.UserAgent, this.fp);
+                        this.h5stTool = new h5st_pro_1.H5ST('eaf91', this.user.UserAgent, this.fp, 'https://carry.m.jd.com/', 'https://carry.m.jd.com/');
                         return [4 /*yield*/, this.h5stTool.__genAlgo()];
                     case 86:
                         _l.sent();
@@ -528,7 +521,7 @@ var Jd_fruit = /** @class */ (function (_super) {
                         return [3 /*break*/, 88];
                     case 92:
                         // 点鸭子
-                        this.h5stTool = new h5st_1.H5ST('5c767', this.user.UserAgent, this.fp);
+                        this.h5stTool = new h5st_pro_1.H5ST('5c767', this.user.UserAgent, this.fp, 'https://carry.m.jd.com/', 'https://carry.m.jd.com/');
                         return [4 /*yield*/, this.h5stTool.__genAlgo()];
                     case 93:
                         _l.sent();
@@ -555,8 +548,8 @@ var Jd_fruit = /** @class */ (function (_super) {
                         return [3 /*break*/, 94];
                     case 98: return [3 /*break*/, 100];
                     case 99:
-                        e_2 = _l.sent();
-                        console.log('error', e_2.message);
+                        e_1 = _l.sent();
+                        console.log('error', e_1.message);
                         return [3 /*break*/, 100];
                     case 100: return [4 /*yield*/, this.wait(30000)];
                     case 101:
@@ -568,7 +561,7 @@ var Jd_fruit = /** @class */ (function (_super) {
     };
     Jd_fruit.prototype.help = function (users) {
         return __awaiter(this, void 0, void 0, function () {
-            var res, _i, users_1, user, shareCodePool, shareCode, _a, shareCode_1, code, e_3;
+            var res, _i, users_1, user, shareCodePool, shareCode, _a, shareCode_1, code, e_2;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
@@ -581,7 +574,7 @@ var Jd_fruit = /** @class */ (function (_super) {
                         user = users_1[_i];
                         this.user = user;
                         this.user.UserAgent = "jdapp;iPhone;10.2.4;;;M/5.0;appBuild/167874;Mozilla/5.0 (iPhone; CPU iPhone OS ".concat(this.getIosVer(), " like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1;");
-                        this.h5stTool = new h5st_1.H5ST('8a2af', this.user.UserAgent, this.fp);
+                        this.h5stTool = new h5st_pro_1.H5ST('8a2af', this.user.UserAgent, this.fp, 'https://carry.m.jd.com/', 'https://carry.m.jd.com/');
                         return [4 /*yield*/, this.h5stTool.__genAlgo()];
                     case 2:
                         _b.sent();
@@ -616,8 +609,8 @@ var Jd_fruit = /** @class */ (function (_super) {
                         _b.sent();
                         return [3 /*break*/, 9];
                     case 8:
-                        e_3 = _b.sent();
-                        console.log(e_3.message);
+                        e_2 = _b.sent();
+                        console.log(e_2.message);
                         return [3 /*break*/, 10];
                     case 9:
                         _a++;
