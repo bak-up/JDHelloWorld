@@ -1,7 +1,7 @@
 "use strict";
 /**
  * 抽奖
- * cron: 5 0-3 * * *
+ * cron: 5 0-3,20-22 * * *
  */
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
@@ -66,14 +66,14 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var TS_JDHelloWorld_1 = require("./TS_JDHelloWorld");
 var h5st_1 = require("./utils/h5st");
-var Jd_simple = /** @class */ (function (_super) {
-    __extends(Jd_simple, _super);
-    function Jd_simple() {
+var Jd_fission = /** @class */ (function (_super) {
+    __extends(Jd_fission, _super);
+    function Jd_fission() {
         var _this = _super.call(this) || this;
         _this.shareCodeSelf = [];
         return _this;
     }
-    Jd_simple.prototype.init = function () {
+    Jd_fission.prototype.init = function () {
         return __awaiter(this, void 0, void 0, function () {
             var _a;
             return __generator(this, function (_b) {
@@ -91,15 +91,15 @@ var Jd_simple = /** @class */ (function (_super) {
             });
         });
     };
-    Jd_simple.prototype.api = function (fn, body) {
+    Jd_fission.prototype.api = function (fn, body) {
         return __awaiter(this, void 0, void 0, function () {
             var timestamp, h5st;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         timestamp = Date.now();
-                        h5st = this.h5stTool.genH5st('activities_platform', body, 'ios', '11.3.0', fn, timestamp);
-                        return [4 /*yield*/, this.post('https://api.m.jd.com/api', "functionId=".concat(fn, "&body=").concat(JSON.stringify(body), "&t=").concat(timestamp, "&appid=activities_platform&client=ios&clientVersion=11.3.0&h5st=").concat(h5st), {
+                        h5st = this.h5stTool.genH5st('activities_platform', body, 'ios', '12.2.0', fn, timestamp);
+                        return [4 /*yield*/, this.post('https://api.m.jd.com/api', "functionId=".concat(fn, "&body=").concat(JSON.stringify(body), "&t=").concat(timestamp, "&appid=activities_platform&client=ios&clientVersion=12.2.0&h5st=").concat(h5st), {
                                 'authority': 'api.m.jd.com',
                                 'User-Agent': this.user.UserAgent,
                                 'origin': 'https://pro.m.jd.com',
@@ -113,59 +113,64 @@ var Jd_simple = /** @class */ (function (_super) {
             });
         });
     };
-    Jd_simple.prototype.main = function (user) {
+    Jd_fission.prototype.main = function (user) {
         return __awaiter(this, void 0, void 0, function () {
-            var j, res, data, linkId, lotteryTimes, i, end, i, _i, _a, t, e_1, e_2;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
+            var j, res, data, linkId, lotteryTimes, i, e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
                     case 0:
                         j = 0;
-                        _b.label = 1;
+                        _a.label = 1;
                     case 1:
-                        if (!(j < 2)) return [3 /*break*/, 33];
-                        _b.label = 2;
+                        if (!(j < 2)) return [3 /*break*/, 17];
+                        _a.label = 2;
                     case 2:
-                        _b.trys.push([2, 30, , 32]);
+                        _a.trys.push([2, 14, , 16]);
                         this.user = user;
                         this.user.UserAgent = j === 0
-                            ? "jdapp;iPhone;11.3.0;;;M/5.0;JDEbook/openapp.jdreader;appBuild/168341;jdSupportDarkMode/0;ef/1;Mozilla/5.0 (iPhone; CPU iPhone OS 15_5_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1;"
+                            ? "jdapp;iPhone;12.2.0;;;M/5.0;appBuild/168919;jdSupportDarkMode/0;Mozilla/5.0 (iPhone; CPU iPhone OS ".concat(this.getIosVer(), " like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1;")
                             : "jdltapp;iPhone;6.3.0;;;M/5.0;hasUPPay/0;pushNoticeIsOpen/0;lang/zh_CN;hasOCPay/0;appBuild/1372;Mozilla/5.0 (iPhone; CPU iPhone OS 15_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1;";
                         this.appId = '02f8d';
                         this.h5stTool = new h5st_1.H5ST(this.appId, this.fp, this.user.UserAgent, this.user.UserName, j === 0 ? 'https://pro.m.jd.com/mall/active/3BwUqhLsJYrHP4qgAgDDJGrSVngK/index.html' : 'https://pro.m.jd.com/jdlite/active/23CeE8ZXA4uFS9M9mTjtta9T4S5x/index.html', 'https://pro.m.jd.com');
                         return [4 /*yield*/, this.h5stTool.genAlgo()];
                     case 3:
-                        _b.sent();
+                        _a.sent();
                         res = void 0, data = void 0;
                         linkId = j === 0 ? '3orGfh1YkwNLksxOcN8zWQ' : 'Wvzc_VpNTlSkiQdHT8r7QA';
                         return [4 /*yield*/, this.api('inviteFissionBeforeHome', { "linkId": linkId, "isJdApp": true, "inviter": "" })];
                     case 4:
-                        res = _b.sent();
+                        res = _a.sent();
                         console.log('助力码', res.data.inviter);
-                        return [4 /*yield*/, this.wait(5000)];
-                    case 5:
-                        _b.sent();
                         this.shareCodeSelf.push(res.data.inviter);
-                        return [4 /*yield*/, this.api('inviteFissionHome', { "linkId": linkId, "inviter": "" })];
+                        return [4 /*yield*/, this.wait(1000)];
+                    case 5:
+                        _a.sent();
+                        this.appId = 'eb67b';
+                        this.h5stTool = new h5st_1.H5ST(this.appId, this.fp, this.user.UserAgent, this.user.UserName, j === 0 ? 'https://pro.m.jd.com/mall/active/3BwUqhLsJYrHP4qgAgDDJGrSVngK/index.html' : 'https://pro.m.jd.com/jdlite/active/23CeE8ZXA4uFS9M9mTjtta9T4S5x/index.html', 'https://pro.m.jd.com');
+                        return [4 /*yield*/, this.h5stTool.genAlgo()];
                     case 6:
-                        _b.sent();
-                        return [4 /*yield*/, this.api('inviteFissionPoll', { "linkId": linkId })];
+                        _a.sent();
+                        return [4 /*yield*/, this.api('inviteFissionHome', { "linkId": linkId, "inviter": "" })];
                     case 7:
-                        res = _b.sent();
-                        lotteryTimes = res.data.lotteryTimes;
+                        res = _a.sent();
+                        lotteryTimes = res.data.prizeNum;
                         console.log('可抽奖', lotteryTimes);
                         if (!lotteryTimes) return [3 /*break*/, 13];
                         this.appId = 'c02c6';
                         this.h5stTool = new h5st_1.H5ST(this.appId, this.fp, this.user.UserAgent, this.user.UserName, j === 0 ? 'https://pro.m.jd.com/mall/active/3BwUqhLsJYrHP4qgAgDDJGrSVngK/index.html' : 'https://pro.m.jd.com/jdlite/active/23CeE8ZXA4uFS9M9mTjtta9T4S5x/index.html', 'https://pro.m.jd.com');
                         return [4 /*yield*/, this.h5stTool.genAlgo()];
                     case 8:
-                        _b.sent();
+                        _a.sent();
                         i = 0;
-                        _b.label = 9;
+                        _a.label = 9;
                     case 9:
                         if (!(i < lotteryTimes)) return [3 /*break*/, 13];
                         return [4 /*yield*/, this.api('inviteFissionDrawPrize', { "linkId": linkId })];
                     case 10:
-                        data = _b.sent();
+                        data = _a.sent();
+                        return [4 /*yield*/, this.wait(5000)];
+                    case 11:
+                        _a.sent();
                         try {
                             if (data.data.prizeType === 2) {
                                 console.log('🧧', data.data.prizeValue * 1);
@@ -174,109 +179,46 @@ var Jd_simple = /** @class */ (function (_super) {
                                 console.log('💰', data.data.prizeValue * 1);
                             }
                             else {
-                                this.o2s(data);
+                                this.o2s(data, '抽到其他');
                             }
                         }
                         catch (e) {
                             console.log(e.message);
                             this.o2s(data);
                         }
-                        return [4 /*yield*/, this.wait(10000)];
-                    case 11:
-                        _b.sent();
-                        _b.label = 12;
+                        _a.label = 12;
                     case 12:
                         i++;
                         return [3 /*break*/, 9];
-                    case 13:
-                        this.appId = 'f2b1d';
-                        this.h5stTool = new h5st_1.H5ST(this.appId, this.fp, this.user.UserAgent, this.user.UserName, j === 0 ? 'https://pro.m.jd.com/mall/active/3BwUqhLsJYrHP4qgAgDDJGrSVngK/index.html' : 'https://pro.m.jd.com/jdlite/active/23CeE8ZXA4uFS9M9mTjtta9T4S5x/index.html', 'https://pro.m.jd.com');
-                        return [4 /*yield*/, this.h5stTool.genAlgo()];
+                    case 13: return [3 /*break*/, 16];
                     case 14:
-                        _b.sent();
-                        end = false;
-                        i = 1;
-                        _b.label = 15;
-                    case 15:
-                        if (!(i < 5)) return [3 /*break*/, 29];
-                        console.log('page', i);
-                        return [4 /*yield*/, this.api('superRedBagList', { "pageNum": i, "pageSize": 20, "linkId": linkId, "business": "fission" })];
-                    case 16:
-                        res = _b.sent();
-                        if (end)
-                            return [3 /*break*/, 29];
-                        _b.label = 17;
-                    case 17:
-                        _b.trys.push([17, 25, , 26]);
-                        _i = 0, _a = res.data.items;
-                        _b.label = 18;
-                    case 18:
-                        if (!(_i < _a.length)) return [3 /*break*/, 24];
-                        t = _a[_i];
-                        if (!(t.prizeType === 4 && t.state === -1)) return [3 /*break*/, 19];
-                        end = true;
-                        return [3 /*break*/, 24];
-                    case 19:
-                        if (!(res.data.items.length < 20)) return [3 /*break*/, 20];
-                        end = true;
-                        return [3 /*break*/, 24];
-                    case 20:
-                        if (!(t.prizeType === 4 && t.state === 0)) return [3 /*break*/, 23];
-                        return [4 /*yield*/, this.api('apCashWithDraw', { "businessSource": "NONE", "base": { "id": t.id, "business": "fission", "poolBaseId": t.poolBaseId, "prizeGroupId": t.prizeGroupId, "prizeBaseId": t.prizeBaseId, "prizeType": 4 }, "linkId": linkId })];
-                    case 21:
-                        data = _b.sent();
-                        console.log(data.data.message, data.data.record.amount * 1);
-                        return [4 /*yield*/, this.wait(8000)];
-                    case 22:
-                        _b.sent();
-                        _b.label = 23;
-                    case 23:
-                        _i++;
-                        return [3 /*break*/, 18];
-                    case 24: return [3 /*break*/, 26];
-                    case 25:
-                        e_1 = _b.sent();
+                        e_1 = _a.sent();
                         console.log(e_1.message);
-                        return [3 /*break*/, 29];
-                    case 26: return [4 /*yield*/, this.wait(5000)];
-                    case 27:
-                        _b.sent();
-                        _b.label = 28;
-                    case 28:
-                        i++;
-                        return [3 /*break*/, 15];
-                    case 29: return [3 /*break*/, 32];
-                    case 30:
-                        e_2 = _b.sent();
-                        console.log(e_2.message);
                         return [4 /*yield*/, this.wait(5000)];
-                    case 31:
-                        _b.sent();
-                        return [3 /*break*/, 32];
-                    case 32:
+                    case 15:
+                        _a.sent();
+                        return [3 /*break*/, 16];
+                    case 16:
                         j++;
                         return [3 /*break*/, 1];
-                    case 33: return [4 /*yield*/, this.wait(60000)];
-                    case 34:
-                        _b.sent();
-                        return [2 /*return*/];
+                    case 17: return [2 /*return*/];
                 }
             });
         });
     };
-    Jd_simple.prototype.help = function (users) {
+    Jd_fission.prototype.help = function (users) {
         return __awaiter(this, void 0, void 0, function () {
-            var res, j, shareCodeHW, _i, users_1, user, shareCode, _a, shareCode_1, code, e_3;
+            var res, shareCodeHW, j, _i, users_1, user, shareCode, _a, shareCode_1, code, e_2;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
                         this.o2s(this.shareCodeSelf, '内部助力');
-                        this.appId = '02f8d';
+                        this.appId = 'c5389';
+                        shareCodeHW = [];
                         j = 0;
                         _b.label = 1;
                     case 1:
                         if (!(j < 2)) return [3 /*break*/, 15];
-                        shareCodeHW = [];
                         _i = 0, users_1 = users;
                         _b.label = 2;
                     case 2:
@@ -293,7 +235,7 @@ var Jd_simple = /** @class */ (function (_super) {
                     case 5:
                         this.user = user;
                         this.user.UserAgent = j === 0
-                            ? "jdapp;iPhone;11.3.0;;;M/5.0;JDEbook/openapp.jdreader;appBuild/168341;jdSupportDarkMode/0;ef/1;Mozilla/5.0 (iPhone; CPU iPhone OS 15_5_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1;"
+                            ? "jdapp;iPhone;12.2.0;;;M/5.0;appBuild/168919;jdSupportDarkMode/0;Mozilla/5.0 (iPhone; CPU iPhone OS ".concat(this.getIosVer(), " like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1;")
                             : "jdltapp;iPhone;6.3.0;;;M/5.0;hasUPPay/0;pushNoticeIsOpen/0;lang/zh_CN;hasOCPay/0;appBuild/1372;Mozilla/5.0 (iPhone; CPU iPhone OS 15_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1;";
                         this.h5stTool = new h5st_1.H5ST(this.appId, this.fp, this.user.UserAgent, this.user.UserName, j === 0 ? 'https://pro.m.jd.com/mall/active/3BwUqhLsJYrHP4qgAgDDJGrSVngK/index.html' : 'https://pro.m.jd.com/jdlite/active/23CeE8ZXA4uFS9M9mTjtta9T4S5x/index.html', 'https://pro.m.jd.com');
                         return [4 /*yield*/, this.h5stTool.genAlgo()];
@@ -306,12 +248,17 @@ var Jd_simple = /** @class */ (function (_super) {
                         if (!(_a < shareCode_1.length)) return [3 /*break*/, 11];
                         code = shareCode_1[_a];
                         console.log("\u8D26\u53F7".concat(user.index + 1, " ").concat(user.UserName, " \u53BB\u52A9\u529B ").concat(code));
-                        return [4 /*yield*/, this.api('inviteFissionBeforeHome', { "linkId": j === 0 ? '3orGfh1YkwNLksxOcN8zWQ' : "Wvzc_VpNTlSkiQdHT8r7QA", "isJdApp": true, "inviter": code })];
+                        return [4 /*yield*/, this.api('inviteFissionhelp', { "linkId": j === 0 ? '3orGfh1YkwNLksxOcN8zWQ' : "Wvzc_VpNTlSkiQdHT8r7QA", "isJdApp": true, "inviter": code })];
                     case 8:
                         res = _b.sent();
-                        return [4 /*yield*/, this.wait(10000)];
+                        this.o2s(res, 'inviteFissionhelp');
+                        return [4 /*yield*/, this.wait(3000)];
                     case 9:
                         _b.sent();
+                        if (!res.data.helpResult) {
+                            console.log('!helpResult');
+                            return [3 /*break*/, 10];
+                        }
                         if (res.data.helpResult === 1) {
                             console.log('助力成功');
                             return [3 /*break*/, 11];
@@ -320,17 +267,14 @@ var Jd_simple = /** @class */ (function (_super) {
                             console.log('上限');
                             return [3 /*break*/, 11];
                         }
-                        else if (!res.data.helpResult) {
-                            console.log('不能助力自己');
-                        }
                         _b.label = 10;
                     case 10:
                         _a++;
                         return [3 /*break*/, 7];
                     case 11: return [3 /*break*/, 13];
                     case 12:
-                        e_3 = _b.sent();
-                        console.log(e_3.message);
+                        e_2 = _b.sent();
+                        console.log(e_2.message);
                         return [3 /*break*/, 13];
                     case 13:
                         _i++;
@@ -343,6 +287,6 @@ var Jd_simple = /** @class */ (function (_super) {
             });
         });
     };
-    return Jd_simple;
+    return Jd_fission;
 }(TS_JDHelloWorld_1.JDHelloWorld));
-new Jd_simple().init().then();
+new Jd_fission().init().then();
