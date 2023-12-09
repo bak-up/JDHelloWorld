@@ -65,7 +65,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var TS_JDHelloWorld_1 = require("./TS_JDHelloWorld");
-var h5st_1 = require("./utils/h5st");
+var h5st_4_2_1 = require("./utils/h5st_4.2");
 var Jd_fruit_help = /** @class */ (function (_super) {
     __extends(Jd_fruit_help, _super);
     function Jd_fruit_help() {
@@ -98,15 +98,21 @@ var Jd_fruit_help = /** @class */ (function (_super) {
                 switch (_a.label) {
                     case 0:
                         timestamp = Date.now();
-                        h5st = this.h5stTool.genH5st('signed_mp', body, 'mac', '3.8.2', fn, timestamp);
-                        return [4 /*yield*/, this.get("https://api.m.jd.com/client.action?functionId=".concat(fn, "&body=").concat(encodeURIComponent(JSON.stringify(body)), "&appid=signed_mp&timestamp=").concat(timestamp, "&client=mac&clientVersion=3.8.2&loginType=2&loginWQBiz=ddnc&h5st=").concat(h5st), {
+                        h5st = this.h5stTool.h5st({
+                            appid: 'signed_wh5',
+                            body: body,
+                            client: 'iOS',
+                            clientVersion: '12.2.5',
+                            functionId: fn,
+                            t: timestamp
+                        });
+                        return [4 /*yield*/, this.get("https://api.m.jd.com/client.action?functionId=".concat(fn, "&body=").concat(encodeURIComponent(JSON.stringify(body)), "&appid=signed_wh5&timestamp=").concat(timestamp, "&client=iOS&clientVersion=12.2.5&h5st=").concat(h5st), {
                                 'Host': 'api.m.jd.com',
-                                'xweb_xhr': '1',
-                                'X-Rp-Client': 'mini_2.0.0',
+                                'Origin': 'https://carry.m.jd.com',
+                                'x-referer-page': 'https://carry.m.jd.com/babelDiy/Zeus/3KSjXqQabiTuD1cJ28QskrpWoBKT/index.html',
                                 'User-Agent': this.user.UserAgent,
-                                'X-Referer-Package': 'wx91d27dbf599dff74',
-                                'X-Referer-Page': '/pages/farm/pages/index/index',
-                                'Referer': 'https://servicewechat.com/wx91d27dbf599dff74/728/page-frame.html',
+                                'Referer': 'https://carry.m.jd.com/',
+                                'x-rp-client': 'h5_1.0.0',
                                 'Cookie': this.user.cookie
                             })];
                     case 1: return [2 /*return*/, _a.sent()];
@@ -122,12 +128,12 @@ var Jd_fruit_help = /** @class */ (function (_super) {
                     case 0:
                         _a.trys.push([0, 3, , 4]);
                         this.user = user;
-                        this.user.UserAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.5938.132 Safari/537.36 MicroMessenger/6.8.0(0x16080000) NetType/WIFI MiniProgramEnv/Mac MacWechat/WMPF XWEB/30817';
-                        this.h5stTool = new h5st_1.H5ST('235ec', this.fp, this.user.UserAgent, this.user.UserName, 'https://servicewechat.com/wx91d27dbf599dff74/728/page-frame.html', 'https://servicewechat.com');
-                        return [4 /*yield*/, this.h5stTool.genAlgo()];
+                        this.user.UserAgent = "jdapp;iPhone;12.2.5;;;M/5.0;appBuild/168943;Mozilla/5.0 (iPhone; CPU iPhone OS ".concat(this.getIosVer(), " like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1;");
+                        this.h5stTool = new h5st_4_2_1.H5ST_42('8a2af', this.user.UserAgent, this.user.UserName, 'https://carry.m.jd.com/babelDiy/Zeus/3KSjXqQabiTuD1cJ28QskrpWoBKT/index.html', 'https://carry.m.jd.com');
+                        return [4 /*yield*/, this.h5stTool.algo()];
                     case 1:
                         _a.sent();
-                        return [4 /*yield*/, this.api('initForFarm', { "PATH": "1", "PTAG": "", "ptag": "", "referer": "http://wq.jd.com/wxapp/pages/index/index", "originUrl": "/pages/farm/pages/index/index", "version": 25, "channel": 2, "babelChannel": 0, "lat": "", "lng": "" })];
+                        return [4 /*yield*/, this.api('initForFarm', { "babelChannel": "522", "sid": "", "un_area": "", "version": 26, "channel": 1, "lat": "0", "lng": "0" })];
                     case 2:
                         res = _a.sent();
                         console.log('助力码', res['farmUserPro'].shareCode);
@@ -147,7 +153,7 @@ var Jd_fruit_help = /** @class */ (function (_super) {
     };
     Jd_fruit_help.prototype.help = function (users) {
         return __awaiter(this, void 0, void 0, function () {
-            var res, _i, users_1, user, shareCodePool, shareCode, _a, shareCode_1, code, e_2, e_3;
+            var res, _i, users_1, user, shareCodePool, shareCode, _a, shareCode_1, code, res_1, e_2, e_3;
             return __generator(this, function (_b) {
                 switch (_b.label) {
                     case 0:
@@ -160,15 +166,15 @@ var Jd_fruit_help = /** @class */ (function (_super) {
                     case 2:
                         _b.trys.push([2, 13, , 14]);
                         this.user = user;
-                        this.user.UserAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.5938.132 Safari/537.36 MicroMessenger/6.8.0(0x16080000) NetType/WIFI MiniProgramEnv/Mac MacWechat/WMPF XWEB/30817';
-                        this.h5stTool = new h5st_1.H5ST('235ec', this.fp, this.user.UserAgent, this.user.UserName, 'https://servicewechat.com/wx91d27dbf599dff74/728/page-frame.html', 'https://servicewechat.com');
-                        return [4 /*yield*/, this.h5stTool.genAlgo()];
+                        this.user.UserAgent = "jdapp;iPhone;12.2.5;;;M/5.0;appBuild/168943;Mozilla/5.0 (iPhone; CPU iPhone OS ".concat(this.getIosVer(), " like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1;");
+                        this.h5stTool = new h5st_4_2_1.H5ST_42('8a2af', this.user.UserAgent, this.user.UserName, 'https://carry.m.jd.com/babelDiy/Zeus/3KSjXqQabiTuD1cJ28QskrpWoBKT/index.html', 'https://carry.m.jd.com');
+                        return [4 /*yield*/, this.h5stTool.algo()];
                     case 3:
                         _b.sent();
                         return [4 /*yield*/, this.getShareCodePool('farm', 50)];
                     case 4:
                         shareCodePool = _b.sent();
-                        shareCode = __spreadArray(__spreadArray([], this.shareCodeSelf, true), shareCodePool, true);
+                        shareCode = Array.from(new Set(__spreadArray(__spreadArray([], this.shareCodeSelf, true), shareCodePool, true)));
                         _a = 0, shareCode_1 = shareCode;
                         _b.label = 5;
                     case 5:
@@ -178,11 +184,11 @@ var Jd_fruit_help = /** @class */ (function (_super) {
                     case 6:
                         _b.trys.push([6, 8, , 9]);
                         console.log("\u8D26\u53F7".concat(user.index + 1, " ").concat(user.UserName, " \u53BB\u52A9\u529B ").concat(code, " ").concat(this.shareCodeSelf.includes(code) ? '*内部*' : ''));
-                        return [4 /*yield*/, this.api('initForFarm', { "ad_od": "share", "mpin": "", "shareCode": code, "utm_campaign": "t_335139774", "utm_medium": "appshare", "utm_source": "androidapp", "utm_term": "Wxfriends", "version": 25, "channel": 2, "babelChannel": 0, "lat": "", "lng": "" })];
+                        return [4 /*yield*/, this.api('initForFarm', { "babelChannel": "522", "shareCode": code, "mpin": "", "from": "kouling", "sid": "", "un_area": "", "version": 26, "channel": 1, "lat": "0", "lng": "0" })];
                     case 7:
-                        res = _b.sent();
-                        console.log(res.helpResult.remainTimes, res.helpResult.code);
-                        if (res.helpResult.remainTimes === 0) {
+                        res_1 = _b.sent();
+                        console.log('剩余助力', res_1.helpResult.remainTimes, '助力结果', res_1.helpResult.code);
+                        if (res_1.helpResult.remainTimes === 0) {
                             console.log('上限');
                             return [3 /*break*/, 12];
                         }
@@ -191,7 +197,7 @@ var Jd_fruit_help = /** @class */ (function (_super) {
                         e_2 = _b.sent();
                         console.log(e_2.message);
                         return [3 /*break*/, 9];
-                    case 9: return [4 /*yield*/, this.wait(30000)];
+                    case 9: return [4 /*yield*/, this.wait(3000)];
                     case 10:
                         _b.sent();
                         _b.label = 11;
@@ -203,7 +209,7 @@ var Jd_fruit_help = /** @class */ (function (_super) {
                         e_3 = _b.sent();
                         console.log(e_3);
                         return [3 /*break*/, 14];
-                    case 14: return [4 /*yield*/, this.wait(60000)];
+                    case 14: return [4 /*yield*/, this.wait(15000)];
                     case 15:
                         _b.sent();
                         _b.label = 16;
