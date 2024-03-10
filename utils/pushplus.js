@@ -46,10 +46,10 @@ try {
 catch (e) {
     console.log('utils/account.json load failed');
 }
-function pushplus(title, content, template) {
-    if (template === void 0) { template = 'html'; }
-    return __awaiter(this, void 0, void 0, function () {
+function pushplus(title_1, content_1) {
+    return __awaiter(this, arguments, void 0, function (title, content, template) {
         var token, _i, account_1, user, data;
+        if (template === void 0) { template = 'html'; }
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:

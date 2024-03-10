@@ -216,9 +216,9 @@ var Joy_Park_Run = /** @class */ (function (_super) {
         });
     };
     Joy_Park_Run.prototype.main = function (user) {
-        var _a;
         return __awaiter(this, void 0, void 0, function () {
-            var assets, rewardAmount, res, apTaskList, _i, _b, t, _c, _d, t, apTaskDetail, taskItemList, i, sum, success, _e, _f, t, _g, _h, member, energy, i, e_1;
+            var assets, rewardAmount, res, apTaskList, _i, _a, t, _b, _c, t, apTaskDetail, taskItemList, i, sum, success, _d, _e, t, _f, _g, member, energy, i, e_1;
+            var _h;
             return __generator(this, function (_j) {
                 switch (_j.label) {
                     case 0:
@@ -237,11 +237,11 @@ var Joy_Park_Run = /** @class */ (function (_super) {
                         return [4 /*yield*/, this.api('apTaskList', { "linkId": "LsQNxL7iWDlXUs6cFl-AAg" })];
                     case 3:
                         apTaskList = _j.sent();
-                        _i = 0, _b = apTaskList.data;
+                        _i = 0, _a = apTaskList.data;
                         _j.label = 4;
                     case 4:
-                        if (!(_i < _b.length)) return [3 /*break*/, 9];
-                        t = _b[_i];
+                        if (!(_i < _a.length)) return [3 /*break*/, 9];
+                        t = _a[_i];
                         if (!(t.taskType === 'BROWSE_CHANNEL' && !t.taskFinished)) return [3 /*break*/, 8];
                         console.log(t.taskTitle);
                         return [4 /*yield*/, this.api('apDoTask', { "taskType": t.taskType, "taskId": t.id, "itemId": encodeURIComponent(t.taskSourceUrl), "linkId": "LsQNxL7iWDlXUs6cFl-AAg" })];
@@ -262,11 +262,11 @@ var Joy_Park_Run = /** @class */ (function (_super) {
                     case 9: return [4 /*yield*/, this.api('apTaskList', { "linkId": "L-sOanK_5RJCz7I314FpnQ" })];
                     case 10:
                         apTaskList = _j.sent();
-                        _c = 0, _d = apTaskList.data;
+                        _b = 0, _c = apTaskList.data;
                         _j.label = 11;
                     case 11:
-                        if (!(_c < _d.length)) return [3 /*break*/, 21];
-                        t = _d[_c];
+                        if (!(_b < _c.length)) return [3 /*break*/, 21];
+                        t = _c[_b];
                         if (!(t.taskShowTitle === '逛会场得生命值' && !t.taskFinished)) return [3 /*break*/, 20];
                         return [4 /*yield*/, this.api('apTaskDetail', { "linkId": "L-sOanK_5RJCz7I314FpnQ", "taskType": "BROWSE_CHANNEL", "taskId": t.id, "channel": 4 })];
                     case 12:
@@ -303,7 +303,7 @@ var Joy_Park_Run = /** @class */ (function (_super) {
                         i++;
                         return [3 /*break*/, 14];
                     case 20:
-                        _c++;
+                        _b++;
                         return [3 /*break*/, 11];
                     case 21: return [4 /*yield*/, this.wait(2000)];
                     case 22:
@@ -330,8 +330,8 @@ var Joy_Park_Run = /** @class */ (function (_super) {
                         res = _j.sent();
                         _j.label = 27;
                     case 27:
-                        for (_e = 0, _f = ((_a = res === null || res === void 0 ? void 0 : res.data) === null || _a === void 0 ? void 0 : _a.detailVos) || []; _e < _f.length; _e++) {
-                            t = _f[_e];
+                        for (_d = 0, _e = ((_h = res === null || res === void 0 ? void 0 : res.data) === null || _h === void 0 ? void 0 : _h.detailVos) || []; _d < _e.length; _d++) {
+                            t = _e[_d];
                             if (t.amount > 0 && (0, date_fns_1.getDate)(new Date(t.createTime)) === new Date().getDate()) {
                                 sum += t.amount;
                                 success++;
@@ -367,8 +367,8 @@ var Joy_Park_Run = /** @class */ (function (_super) {
                         res = _j.sent();
                         if (res.code === 0) {
                             console.log('组队成功');
-                            for (_g = 0, _h = res.data.members; _g < _h.length; _g++) {
-                                member = _h[_g];
+                            for (_f = 0, _g = res.data.members; _f < _g.length; _f++) {
+                                member = _g[_f];
                                 if (member.captain) {
                                     console.log('队长', member.nickName);
                                     break;

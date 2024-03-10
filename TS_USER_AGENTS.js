@@ -89,9 +89,9 @@ exports.getRandomNumberByRange = getRandomNumberByRange;
 var USER_AGENT = USER_AGENTS_ARR[getRandomNumberByRange(0, USER_AGENTS_ARR.length)];
 exports.USER_AGENT = USER_AGENT;
 function getBeanShareCode(cookie) {
-    var _a, _b;
     return __awaiter(this, void 0, void 0, function () {
         var data;
+        var _a, _b;
         return __generator(this, function (_c) {
             switch (_c.label) {
                 case 0: return [4 /*yield*/, axios_1.default.post('https://api.m.jd.com/client.action', "functionId=plantBeanIndex&body=".concat(encodeURIComponent(JSON.stringify({ version: "9.0.0.1", "monitor_source": "plant_app_plant_index", "monitor_refer": "" })), "&appid=ld&client=apple&area=5_274_49707_49973&build=167283&clientVersion=9.1.0"), {

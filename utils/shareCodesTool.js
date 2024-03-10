@@ -41,9 +41,9 @@ var axios_1 = require("axios");
 var TS_USER_AGENTS_1 = require("../TS_USER_AGENTS");
 var V3_1 = require("./V3");
 function bean(cookie) {
-    var _a, _b, _c;
     return __awaiter(this, void 0, void 0, function () {
         var data;
+        var _a, _b, _c;
         return __generator(this, function (_d) {
             switch (_d.label) {
                 case 0: return [4 /*yield*/, axios_1.default.post('https://api.m.jd.com/client.action', "functionId=plantBeanIndex&body=".concat(decodeURIComponent(JSON.stringify({ version: "9.0.0.1", "monitor_source": "plant_app_plant_index", "monitor_refer": "" })), "&appid=ld&client=apple&area=5_274_49707_49973&build=167283&clientVersion=9.1.0"), {
@@ -66,9 +66,9 @@ function bean(cookie) {
 }
 exports.bean = bean;
 function farm(cookie) {
-    var _a, _b;
     return __awaiter(this, void 0, void 0, function () {
         var data;
+        var _a, _b;
         return __generator(this, function (_c) {
             switch (_c.label) {
                 case 0: return [4 /*yield*/, axios_1.default.post('https://api.m.jd.com/client.action?functionId=initForFarm', "body=".concat(encodeURIComponent(JSON.stringify({ "version": 4 })), "&appid=wh5&clientVersion=9.1.0"), {
@@ -89,9 +89,9 @@ function farm(cookie) {
 }
 exports.farm = farm;
 function health(cookie) {
-    var _a, _b, _c;
     return __awaiter(this, void 0, void 0, function () {
         var data;
+        var _a, _b, _c;
         return __generator(this, function (_d) {
             switch (_d.label) {
                 case 0: return [4 /*yield*/, axios_1.default.get("https://api.m.jd.com/client.action/client.action?functionId=jdhealth_getTaskDetail&body=".concat(encodeURIComponent(JSON.stringify({ "buildingId": "", taskId: 6, "channelId": 1 })), "&client=wh5&clientVersion=1.0.0"), {
@@ -112,9 +112,9 @@ function health(cookie) {
 }
 exports.health = health;
 function pet(cookie) {
-    var _a, _b;
     return __awaiter(this, void 0, void 0, function () {
         var data;
+        var _a, _b;
         return __generator(this, function (_c) {
             switch (_c.label) {
                 case 0: return [4 /*yield*/, axios_1.default.post('https://api.m.jd.com/client.action', "functionId=initPetTown&body=".concat(JSON.stringify({ "version": 1 }), "&appid=wh5&client=apple&clientVersion=10.3.6&build=167963&rfs=0000"), {
@@ -136,9 +136,9 @@ function pet(cookie) {
 }
 exports.pet = pet;
 function factory(cookie) {
-    var _a, _b;
     return __awaiter(this, void 0, void 0, function () {
-        var data, _i, _c, t;
+        var data, _i, _a, t;
+        var _b, _c;
         return __generator(this, function (_d) {
             switch (_d.label) {
                 case 0: return [4 /*yield*/, axios_1.default.post("https://api.m.jd.com/client.action?functionId=jdfactory_getTaskDetail", "functionId=jdfactory_getTaskDetail&body=".concat(encodeURIComponent(JSON.stringify({})), "&client=wh5&clientVersion=9.1.0"), {
@@ -153,8 +153,8 @@ function factory(cookie) {
                 case 1:
                     data = (_d.sent()).data;
                     if (data.data.bizCode === 0) {
-                        for (_i = 0, _c = (_b = (_a = data.data) === null || _a === void 0 ? void 0 : _a.result) === null || _b === void 0 ? void 0 : _b.taskVos; _i < _c.length; _i++) {
-                            t = _c[_i];
+                        for (_i = 0, _a = (_c = (_b = data.data) === null || _b === void 0 ? void 0 : _b.result) === null || _c === void 0 ? void 0 : _c.taskVos; _i < _a.length; _i++) {
+                            t = _a[_i];
                             if (t.taskType === 14)
                                 return [2 /*return*/, t.assistTaskDetailVo.taskToken];
                         }
@@ -166,9 +166,9 @@ function factory(cookie) {
 }
 exports.factory = factory;
 function sgmh(cookie) {
-    var _a, _b;
     return __awaiter(this, void 0, void 0, function () {
-        var data, _i, _c, t;
+        var data, _i, _a, t;
+        var _b, _c;
         return __generator(this, function (_d) {
             switch (_d.label) {
                 case 0: return [4 /*yield*/, axios_1.default.post("https://api.m.jd.com/client.action", "functionId=interact_template_getHomeData&body={\"appId\":\"1EFRXxg\",\"taskToken\":\"\"}&client=wh5&clientVersion=1.0.0", {
@@ -183,8 +183,8 @@ function sgmh(cookie) {
                 case 1:
                     data = (_d.sent()).data;
                     if (data.data.bizCode === 0) {
-                        for (_i = 0, _c = (_b = (_a = data.data) === null || _a === void 0 ? void 0 : _a.result) === null || _b === void 0 ? void 0 : _b.taskVos; _i < _c.length; _i++) {
-                            t = _c[_i];
+                        for (_i = 0, _a = (_c = (_b = data.data) === null || _b === void 0 ? void 0 : _b.result) === null || _c === void 0 ? void 0 : _c.taskVos; _i < _a.length; _i++) {
+                            t = _a[_i];
                             if (t.taskName === '邀请好友助力')
                                 return [2 /*return*/, t.assistTaskDetailVo.taskToken];
                         }
@@ -196,9 +196,9 @@ function sgmh(cookie) {
 }
 exports.sgmh = sgmh;
 function jxfactory(cookie) {
-    var _a;
     return __awaiter(this, void 0, void 0, function () {
-        var url, timestamp, stk, params, t, _i, _b, _c, key, value, h5st, data;
+        var url, timestamp, stk, params, t, _i, _a, _b, key, value, h5st, data;
+        var _c;
         return __generator(this, function (_d) {
             switch (_d.label) {
                 case 0: return [4 /*yield*/, (0, V3_1.requestAlgo)('c0ff1')];
@@ -213,8 +213,8 @@ function jxfactory(cookie) {
                         { key: 'source', value: 'dreamfactory' },
                     ];
                     url = "https://m.jingxi.com/newtasksys/newtasksys_front/GetUserTaskStatusList?source=dreamfactory&_time=".concat(timestamp, "&_ts=").concat(timestamp, "&_stk=").concat(encodeURIComponent(stk), "&_=").concat(timestamp + 3, "&sceneval=2&g_login_type=1&callback=jsonpCBK").concat((0, TS_USER_AGENTS_1.randomWord)(), "&g_ty=ls");
-                    for (_i = 0, _b = Object.entries(params); _i < _b.length; _i++) {
-                        _c = _b[_i], key = _c[0], value = _c[1];
+                    for (_i = 0, _a = Object.entries(params); _i < _a.length; _i++) {
+                        _b = _a[_i], key = _b[0], value = _b[1];
                         t.push({ key: key, value: value });
                         url += "&".concat(key, "=").concat(value);
                     }
@@ -230,7 +230,7 @@ function jxfactory(cookie) {
                         })];
                 case 2:
                     data = (_d.sent()).data;
-                    return [2 /*return*/, ((_a = JSON.parse(data.match(/try{jsonpCBK.?\((.*)/)[1]).data) === null || _a === void 0 ? void 0 : _a.encryptPin) || 'null'];
+                    return [2 /*return*/, ((_c = JSON.parse(data.match(/try{jsonpCBK.?\((.*)/)[1]).data) === null || _c === void 0 ? void 0 : _c.encryptPin) || 'null'];
             }
         });
     });

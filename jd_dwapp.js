@@ -114,9 +114,9 @@ var Jd_dwapp = /** @class */ (function (_super) {
         });
     };
     Jd_dwapp.prototype.main = function (user) {
-        var _a;
         return __awaiter(this, void 0, void 0, function () {
-            var res, _i, _b, t;
+            var res, _i, _a, t;
+            var _b;
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
@@ -136,11 +136,11 @@ var Jd_dwapp = /** @class */ (function (_super) {
                     case 4: return [4 /*yield*/, this.api('dwapp_task_dwList', {})];
                     case 5:
                         res = _c.sent();
-                        _i = 0, _b = res.data;
+                        _i = 0, _a = res.data;
                         _c.label = 6;
                     case 6:
-                        if (!(_i < _b.length)) return [3 /*break*/, 13];
-                        t = _b[_i];
+                        if (!(_i < _a.length)) return [3 /*break*/, 13];
+                        t = _a[_i];
                         if (!(t.viewStatus === 0)) return [3 /*break*/, 10];
                         console.log(t.name);
                         return [4 /*yield*/, this.task('dwRecord', { id: t.id, "taskType": t.taskType, "agentNum": "m", "followChannelStatus": "" })];
@@ -153,7 +153,7 @@ var Jd_dwapp = /** @class */ (function (_super) {
                         return [4 /*yield*/, this.task('dwReceive', { id: t.id })];
                     case 9:
                         res = _c.sent();
-                        console.log((_a = res === null || res === void 0 ? void 0 : res.data) === null || _a === void 0 ? void 0 : _a.giveScoreNum);
+                        console.log((_b = res === null || res === void 0 ? void 0 : res.data) === null || _b === void 0 ? void 0 : _b.giveScoreNum);
                         _c.label = 10;
                     case 10: return [4 /*yield*/, this.wait(6000)];
                     case 11:

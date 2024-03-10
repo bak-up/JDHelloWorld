@@ -139,9 +139,9 @@ var Jd_fruit = /** @class */ (function (_super) {
         });
     };
     Jd_fruit.prototype.main = function (user) {
-        var _a;
         return __awaiter(this, void 0, void 0, function () {
-            var res, data, totalEnergy, _i, _b, t, i, i, _c, _d, t, friendList, finishCount, _e, _f, t, _g, _h, t, _j, _k, t, i, e_1;
+            var res, data, totalEnergy, _i, _a, t, i, i, _b, _c, t, friendList, finishCount, _d, _e, t, _f, _g, t, _h, _j, t, i, e_1;
+            var _k;
             return __generator(this, function (_l) {
                 switch (_l.label) {
                     case 0:
@@ -215,11 +215,11 @@ var Jd_fruit = /** @class */ (function (_super) {
                     case 13: return [4 /*yield*/, this.api('initForTurntableFarm', { "version": 4, "channel": 1 })];
                     case 14:
                         res = _l.sent();
-                        _i = 0, _b = res.turntableBrowserAds;
+                        _i = 0, _a = res.turntableBrowserAds;
                         _l.label = 15;
                     case 15:
-                        if (!(_i < _b.length)) return [3 /*break*/, 20];
-                        t = _b[_i];
+                        if (!(_i < _a.length)) return [3 /*break*/, 20];
+                        t = _a[_i];
                         if (!!t.status) return [3 /*break*/, 19];
                         console.log(t.main);
                         return [4 /*yield*/, this.api('browserForTurntableFarm', { "type": 1, "adId": t.adId, "version": 4, "channel": 1 })];
@@ -270,7 +270,7 @@ var Jd_fruit = /** @class */ (function (_super) {
                         return [4 /*yield*/, this.api('taskInitForFarm', { "version": 18, "channel": 1, "babelChannel": "10" })];
                     case 30:
                         res = _l.sent();
-                        if (!((_a = res['treasureBoxInit-getBean']) === null || _a === void 0 ? void 0 : _a.f)) {
+                        if (!((_k = res['treasureBoxInit-getBean']) === null || _k === void 0 ? void 0 : _k.f)) {
                         }
                         if (!!res.totalWaterTaskInit.f) return [3 /*break*/, 39];
                         this.h5stTool = new h5st_pro_1.H5ST('0c010', this.user.UserAgent, this.fp, 'https://carry.m.jd.com/', 'https://carry.m.jd.com/');
@@ -337,11 +337,11 @@ var Jd_fruit = /** @class */ (function (_super) {
                         return [4 /*yield*/, this.h5stTool.__genAlgo()];
                     case 46:
                         _l.sent();
-                        _c = 0, _d = res.gotBrowseTaskAdInit.userBrowseTaskAds;
+                        _b = 0, _c = res.gotBrowseTaskAdInit.userBrowseTaskAds;
                         _l.label = 47;
                     case 47:
-                        if (!(_c < _d.length)) return [3 /*break*/, 53];
-                        t = _d[_c];
+                        if (!(_b < _c.length)) return [3 /*break*/, 53];
+                        t = _c[_b];
                         if (!(t.hadFinishedTimes !== t.limit)) return [3 /*break*/, 52];
                         console.log(t.mainTitle);
                         return [4 /*yield*/, this.api('browseAdTaskForFarm', { "advertId": t.advertId, "type": 0, "version": 18, "channel": 1, "babelChannel": "10" })];
@@ -360,7 +360,7 @@ var Jd_fruit = /** @class */ (function (_super) {
                         _l.sent();
                         _l.label = 52;
                     case 52:
-                        _c++;
+                        _b++;
                         return [3 /*break*/, 47];
                     case 53:
                         if (!(!res.waterRainInit.f && Date.now() > (0, date_fns_1.getTime)((0, date_fns_1.addHours)(res.lastTime || 1669906397000, 4)))) return [3 /*break*/, 57];
@@ -382,11 +382,11 @@ var Jd_fruit = /** @class */ (function (_super) {
                     case 58:
                         friendList = _l.sent();
                         finishCount = 0;
-                        _e = 0, _f = friendList.friends;
+                        _d = 0, _e = friendList.friends;
                         _l.label = 59;
                     case 59:
-                        if (!(_e < _f.length)) return [3 /*break*/, 66];
-                        t = _f[_e];
+                        if (!(_d < _e.length)) return [3 /*break*/, 66];
+                        t = _e[_d];
                         if (!(t.friendState === 1)) return [3 /*break*/, 65];
                         console.log("\u5E2E\u597D\u53CB ".concat(t.nickName, " ").concat(t.shareCode, " \u6D47\u6C34"));
                         this.h5stTool = new h5st_pro_1.H5ST('a5a9c', this.user.UserAgent, this.fp, 'https://carry.m.jd.com/', 'https://carry.m.jd.com/');
@@ -418,7 +418,7 @@ var Jd_fruit = /** @class */ (function (_super) {
                             return [3 /*break*/, 66];
                         _l.label = 65;
                     case 65:
-                        _e++;
+                        _d++;
                         return [3 /*break*/, 59];
                     case 66:
                         this.h5stTool = new h5st_pro_1.H5ST('d08ff', this.user.UserAgent, this.fp, 'https://carry.m.jd.com/', 'https://carry.m.jd.com/');
@@ -443,11 +443,11 @@ var Jd_fruit = /** @class */ (function (_super) {
                         return [4 /*yield*/, this.h5stTool.__genAlgo()];
                     case 72:
                         _l.sent();
-                        _g = 0, _h = res.themes || [];
+                        _f = 0, _g = res.themes || [];
                         _l.label = 73;
                     case 73:
-                        if (!(_g < _h.length)) return [3 /*break*/, 78];
-                        t = _h[_g];
+                        if (!(_f < _g.length)) return [3 /*break*/, 78];
+                        t = _g[_f];
                         if (!!t.hadGot) return [3 /*break*/, 77];
                         console.log(t.name);
                         return [4 /*yield*/, this.api('clockInFollowForFarm', { "id": t.id, "type": "theme", "step": 1, "version": 18, "channel": 1, "babelChannel": "10" })];
@@ -462,7 +462,7 @@ var Jd_fruit = /** @class */ (function (_super) {
                         data.code === '0' && console.log('关注成功💧', data.amount);
                         _l.label = 77;
                     case 77:
-                        _g++;
+                        _f++;
                         return [3 /*break*/, 73];
                     case 78:
                         if (!!res.todaySigned) return [3 /*break*/, 82];
@@ -497,11 +497,11 @@ var Jd_fruit = /** @class */ (function (_super) {
                         return [4 /*yield*/, this.friendListInitForFarm()];
                     case 87:
                         res = _l.sent();
-                        _j = 0, _k = res.friends;
+                        _h = 0, _j = res.friends;
                         _l.label = 88;
                     case 88:
-                        if (!(_j < _k.length)) return [3 /*break*/, 92];
-                        t = _k[_j];
+                        if (!(_h < _j.length)) return [3 /*break*/, 92];
+                        t = _j[_h];
                         return [4 /*yield*/, this.api('deleteFriendForFarm', { "shareCode": t.shareCode, "version": 18, "channel": 1, "babelChannel": "10" })];
                     case 89:
                         data = _l.sent();
@@ -517,7 +517,7 @@ var Jd_fruit = /** @class */ (function (_super) {
                         _l.sent();
                         _l.label = 91;
                     case 91:
-                        _j++;
+                        _h++;
                         return [3 /*break*/, 88];
                     case 92:
                         // 点鸭子

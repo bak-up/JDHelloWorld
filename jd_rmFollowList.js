@@ -63,23 +63,23 @@ var Jd_RmFollowList = /** @class */ (function (_super) {
         return _super.call(this, '取消关注商品、店铺') || this;
     }
     Jd_RmFollowList.prototype.init = function () {
-        var _a;
         return __awaiter(this, void 0, void 0, function () {
-            var _b, _c, e_1;
+            var _a, _b, e_1;
+            var _c;
             return __generator(this, function (_d) {
                 switch (_d.label) {
                     case 0:
                         _d.trys.push([0, 4, , 5]);
-                        _b = this;
-                        if (!((_a = process.env.FP_B3F11) !== null && _a !== void 0)) return [3 /*break*/, 1];
-                        _c = _a;
+                        _a = this;
+                        if (!((_c = process.env.FP_B3F11) !== null && _c !== void 0)) return [3 /*break*/, 1];
+                        _b = _c;
                         return [3 /*break*/, 3];
                     case 1: return [4 /*yield*/, this.getFp()];
                     case 2:
-                        _c = _d.sent();
+                        _b = _d.sent();
                         _d.label = 3;
                     case 3:
-                        _b.fp = _c;
+                        _a.fp = _b;
                         return [3 /*break*/, 5];
                     case 4:
                         e_1 = _d.sent();

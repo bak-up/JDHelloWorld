@@ -122,9 +122,9 @@ var Health = /** @class */ (function (_super) {
         });
     };
     Health.prototype.main = function (user) {
-        var _a;
         return __awaiter(this, void 0, void 0, function () {
-            var res, i, _i, _b, t, data, _c, _d, tp, e_2;
+            var res, i, _i, _a, t, data, _b, _c, tp, e_2;
+            var _d;
             return __generator(this, function (_e) {
                 switch (_e.label) {
                     case 0:
@@ -132,7 +132,7 @@ var Health = /** @class */ (function (_super) {
                         return [4 /*yield*/, this.api('jdhealth_getHomeData', {})];
                     case 1:
                         res = _e.sent();
-                        if (!((_a = res.data) === null || _a === void 0 ? void 0 : _a.result)) {
+                        if (!((_d = res.data) === null || _d === void 0 ? void 0 : _d.result)) {
                             return [2 /*return*/];
                         }
                         if (!res.data.result.popupInfo.continuousSignInfo) return [3 /*break*/, 3];
@@ -154,11 +154,11 @@ var Health = /** @class */ (function (_super) {
                         _e.label = 6;
                     case 6:
                         _e.trys.push([6, 23, , 24]);
-                        _i = 0, _b = res.data.result.taskVos;
+                        _i = 0, _a = res.data.result.taskVos;
                         _e.label = 7;
                     case 7:
-                        if (!(_i < _b.length)) return [3 /*break*/, 22];
-                        t = _b[_i];
+                        if (!(_i < _a.length)) return [3 /*break*/, 22];
+                        t = _a[_i];
                         if (!(t.status === 1 || t.status === 3)) return [3 /*break*/, 21];
                         console.log(t.taskName);
                         if (!(t.taskName.includes('打卡') && t.threeMealInfoVos[0].status === 1)) return [3 /*break*/, 10];
@@ -174,11 +174,11 @@ var Health = /** @class */ (function (_super) {
                         _e.sent();
                         _e.label = 10;
                     case 10:
-                        _c = 0, _d = t.productInfoVos || t.followShopVo || t.shoppingActivityVos || [];
+                        _b = 0, _c = t.productInfoVos || t.followShopVo || t.shoppingActivityVos || [];
                         _e.label = 11;
                     case 11:
-                        if (!(_c < _d.length)) return [3 /*break*/, 19];
-                        tp = _d[_c];
+                        if (!(_b < _c.length)) return [3 /*break*/, 19];
+                        tp = _c[_b];
                         if (!(tp.status === 1)) return [3 /*break*/, 18];
                         console.log('\t', tp.skuName || tp.shopName || tp.title);
                         if (!t.waitDuration) return [3 /*break*/, 14];
@@ -203,7 +203,7 @@ var Health = /** @class */ (function (_super) {
                         _e.sent();
                         _e.label = 18;
                     case 18:
-                        _c++;
+                        _b++;
                         return [3 /*break*/, 11];
                     case 19: return [4 /*yield*/, this.wait(3000)];
                     case 20:

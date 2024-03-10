@@ -87,9 +87,9 @@ var Jd_queryRedpacket = /** @class */ (function (_super) {
         return parseFloat(((arg1 * m + arg2 * m) / m).toFixed(2));
     };
     Jd_queryRedpacket.prototype.main = function (user) {
-        var _a;
         return __awaiter(this, void 0, void 0, function () {
-            var res, day, jdRed, jdRedExp, jsRed, jsRedExp, _i, _b, j, msg;
+            var res, day, jdRed, jdRedExp, jsRed, jsRedExp, _i, _a, j, msg;
+            var _b;
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0: return [4 /*yield*/, this.get("https://m.jingxi.com/user/info/QueryUserRedEnvelopesV2?type=1&orgFlag=JD_PinGou_New&page=1&cashRedType=1&redBalanceFlag=1&channel=1&_=".concat(Date.now(), "&sceneval=2&g_login_type=1&g_ty=ls"), {
@@ -101,8 +101,8 @@ var Jd_queryRedpacket = /** @class */ (function (_super) {
                     case 1:
                         res = _c.sent();
                         day = new Date().getDay(), jdRed = 0, jdRedExp = 0, jsRed = 0, jsRedExp = 0;
-                        for (_i = 0, _b = ((_a = res.data.useRedInfo) === null || _a === void 0 ? void 0 : _a.redList) || []; _i < _b.length; _i++) {
-                            j = _b[_i];
+                        for (_i = 0, _a = ((_b = res.data.useRedInfo) === null || _b === void 0 ? void 0 : _b.redList) || []; _i < _a.length; _i++) {
+                            j = _a[_i];
                             console.log(j);
                             if (j.orgLimitStr.includes('京喜')) {
                             }

@@ -112,10 +112,10 @@ var Jd_track = /** @class */ (function (_super) {
         });
     };
     Jd_track.prototype.main = function (user) {
-        var _a, _b, _c;
         return __awaiter(this, void 0, void 0, function () {
-            var res, _loop_1, this_1, _i, _d, t, e_1;
+            var res, _loop_1, this_1, _i, _a, t, e_1;
             var _this = this;
+            var _b, _c, _d;
             return __generator(this, function (_e) {
                 switch (_e.label) {
                     case 0:
@@ -130,7 +130,7 @@ var Jd_track = /** @class */ (function (_super) {
                     case 2:
                         res = _e.sent();
                         _loop_1 = function (t) {
-                            var orderId = t.orderId, time = (_a = t.progressInfo) === null || _a === void 0 ? void 0 : _a.tip, content = (_c = (_b = t.progressInfo) === null || _b === void 0 ? void 0 : _b.content) !== null && _c !== void 0 ? _c : '', wareName = t.wareInfoList[0].wareName;
+                            var orderId = t.orderId, time = (_b = t.progressInfo) === null || _b === void 0 ? void 0 : _b.tip, content = (_d = (_c = t.progressInfo) === null || _c === void 0 ? void 0 : _c.content) !== null && _d !== void 0 ? _d : '', wareName = t.wareInfoList[0].wareName;
                             if (content) {
                                 console.log(orderId, wareName, time, content);
                                 if (!this_1.existOrderId.includes(orderId)) {
@@ -147,8 +147,8 @@ var Jd_track = /** @class */ (function (_super) {
                             }
                         };
                         this_1 = this;
-                        for (_i = 0, _d = res.body.orderList; _i < _d.length; _i++) {
-                            t = _d[_i];
+                        for (_i = 0, _a = res.body.orderList; _i < _a.length; _i++) {
+                            t = _a[_i];
                             _loop_1(t);
                         }
                         (0, fs_1.writeFileSync)('json/jd_track.json', JSON.stringify(this.arr, null, 2));
