@@ -36,7 +36,23 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.USER_AGENTS_ARR = exports.USER_AGENT = exports.post = exports.get = exports.jdpingou = exports.randomWord = exports.getShareCodePool = exports.getshareCodeHW = exports.randomNumString = exports.o2s = exports.randomString = exports.exceptCookie = exports.getJxToken = exports.getRandomNumberByRange = exports.wait = exports.getCookie = exports.getFarmShareCode = exports.getBeanShareCode = void 0;
+exports.USER_AGENTS_ARR = exports.USER_AGENT = void 0;
+exports.getBeanShareCode = getBeanShareCode;
+exports.getFarmShareCode = getFarmShareCode;
+exports.getCookie = getCookie;
+exports.wait = wait;
+exports.getRandomNumberByRange = getRandomNumberByRange;
+exports.getJxToken = getJxToken;
+exports.exceptCookie = exceptCookie;
+exports.randomString = randomString;
+exports.o2s = o2s;
+exports.randomNumString = randomNumString;
+exports.getshareCodeHW = getshareCodeHW;
+exports.getShareCodePool = getShareCodePool;
+exports.randomWord = randomWord;
+exports.jdpingou = jdpingou;
+exports.get = get;
+exports.post = post;
 var axios_1 = require("axios");
 var ts_md5_1 = require("ts-md5");
 var dotenv = require("dotenv");
@@ -85,7 +101,6 @@ function getRandomNumberByRange(start, end) {
     end <= start && (end = start + 100);
     return Math.floor(Math.random() * (end - start) + start);
 }
-exports.getRandomNumberByRange = getRandomNumberByRange;
 var USER_AGENT = USER_AGENTS_ARR[getRandomNumberByRange(0, USER_AGENTS_ARR.length)];
 exports.USER_AGENT = USER_AGENT;
 function getBeanShareCode(cookie) {
@@ -114,7 +129,6 @@ function getBeanShareCode(cookie) {
         });
     });
 }
-exports.getBeanShareCode = getBeanShareCode;
 function getFarmShareCode(cookie) {
     return __awaiter(this, void 0, void 0, function () {
         var data;
@@ -140,7 +154,6 @@ function getFarmShareCode(cookie) {
         });
     });
 }
-exports.getFarmShareCode = getFarmShareCode;
 function getCookie() {
     return __awaiter(this, void 0, void 0, function () {
         var cookiesArr, jdCookieNode, _i, _a, keys, ptpin_temp, uniqueCookieArr, _b, cookiesArr_1, cookie, UserName;
@@ -166,13 +179,11 @@ function getCookie() {
         });
     });
 }
-exports.getCookie = getCookie;
 function wait(ms) {
     return new Promise(function (resolve) {
         setTimeout(resolve, ms);
     });
 }
-exports.wait = wait;
 function getJxToken(cookie, phoneId) {
     if (phoneId === void 0) { phoneId = ''; }
     function generateStr(input) {
@@ -194,7 +205,6 @@ function getJxToken(cookie, phoneId) {
         'strPgUUNum': jstoken
     };
 }
-exports.getJxToken = getJxToken;
 function exceptCookie(filename) {
     if (filename === void 0) { filename = 'x.ts'; }
     var except = [];
@@ -208,7 +218,6 @@ function exceptCookie(filename) {
     }
     return except;
 }
-exports.exceptCookie = exceptCookie;
 function randomString(e, word) {
     e = e || 32;
     var t = word === 26 ? "012345678abcdefghijklmnopqrstuvwxyz" : "0123456789abcdef", a = t.length, n = "";
@@ -216,13 +225,11 @@ function randomString(e, word) {
         n += t.charAt(Math.floor(Math.random() * a));
     return n;
 }
-exports.randomString = randomString;
 function o2s(msg, title) {
     if (title === void 0) { title = ''; }
     title && console.log('⬇️', title, '⬇️');
     typeof msg === 'string' ? console.log(msg) : console.log(JSON.stringify(msg));
 }
-exports.o2s = o2s;
 function randomNumString(e) {
     e = e || 32;
     var t = '0123456789', a = t.length, n = "";
@@ -230,7 +237,6 @@ function randomNumString(e) {
         n += t.charAt(Math.floor(Math.random() * a));
     return n;
 }
-exports.randomNumString = randomNumString;
 function randomWord(n) {
     if (n === void 0) { n = 1; }
     var t = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', a = t.length;
@@ -240,7 +246,6 @@ function randomWord(n) {
     }
     return rnd;
 }
-exports.randomWord = randomWord;
 function getshareCodeHW(key) {
     return __awaiter(this, void 0, void 0, function () {
         var shareCodeHW, i, data, e_1;
@@ -278,7 +283,6 @@ function getshareCodeHW(key) {
         });
     });
 }
-exports.getshareCodeHW = getshareCodeHW;
 function getShareCodePool(key, num) {
     return __awaiter(this, void 0, void 0, function () {
         var shareCode, i, data, e_2;
@@ -317,7 +321,6 @@ function getShareCodePool(key, num) {
         });
     });
 }
-exports.getShareCodePool = getShareCodePool;
 /*
 async function wechat_app_msg(title: string, content: string, user: string) {
   let corpid: string = "", corpsecret: string = ""
@@ -392,7 +395,6 @@ function jdpingou() {
         });
     });
 }
-exports.jdpingou = jdpingou;
 function get(url, headers) {
     return new Promise(function (resolve, reject) {
         axios_1.default.get(url, {
@@ -413,7 +415,6 @@ function get(url, headers) {
         });
     });
 }
-exports.get = get;
 function post(url, prarms, headers) {
     return new Promise(function (resolve, reject) {
         axios_1.default.post(url, prarms, {
@@ -429,5 +430,4 @@ function post(url, prarms, headers) {
         });
     });
 }
-exports.post = post;
 exports.default = USER_AGENT;

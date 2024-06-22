@@ -36,7 +36,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.jxfactory = exports.sgmh = exports.factory = exports.pet = exports.health = exports.farm = exports.bean = void 0;
+exports.bean = bean;
+exports.farm = farm;
+exports.health = health;
+exports.pet = pet;
+exports.factory = factory;
+exports.sgmh = sgmh;
+exports.jxfactory = jxfactory;
 var axios_1 = require("axios");
 var TS_USER_AGENTS_1 = require("../TS_USER_AGENTS");
 var V3_1 = require("./V3");
@@ -64,7 +70,6 @@ function bean(cookie) {
         });
     });
 }
-exports.bean = bean;
 function farm(cookie) {
     return __awaiter(this, void 0, void 0, function () {
         var data;
@@ -87,7 +92,6 @@ function farm(cookie) {
         });
     });
 }
-exports.farm = farm;
 function health(cookie) {
     return __awaiter(this, void 0, void 0, function () {
         var data;
@@ -110,7 +114,6 @@ function health(cookie) {
         });
     });
 }
-exports.health = health;
 function pet(cookie) {
     return __awaiter(this, void 0, void 0, function () {
         var data;
@@ -134,7 +137,6 @@ function pet(cookie) {
         });
     });
 }
-exports.pet = pet;
 function factory(cookie) {
     return __awaiter(this, void 0, void 0, function () {
         var data, _i, _a, t;
@@ -164,7 +166,6 @@ function factory(cookie) {
         });
     });
 }
-exports.factory = factory;
 function sgmh(cookie) {
     return __awaiter(this, void 0, void 0, function () {
         var data, _i, _a, t;
@@ -194,7 +195,6 @@ function sgmh(cookie) {
         });
     });
 }
-exports.sgmh = sgmh;
 function jxfactory(cookie) {
     return __awaiter(this, void 0, void 0, function () {
         var url, timestamp, stk, params, t, _i, _a, _b, key, value, h5st, data;
@@ -235,4 +235,3 @@ function jxfactory(cookie) {
         });
     });
 }
-exports.jxfactory = jxfactory;

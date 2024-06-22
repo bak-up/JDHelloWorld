@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.pushplus = void 0;
+exports.pushplus = pushplus;
 var axios_1 = require("axios");
 var fs_1 = require("fs");
 var account = [];
@@ -87,4 +87,3 @@ function pushplus(title_1, content_1) {
         });
     });
 }
-exports.pushplus = pushplus;
